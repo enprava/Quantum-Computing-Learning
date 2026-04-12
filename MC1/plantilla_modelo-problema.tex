@@ -7,15 +7,15 @@
 	citecolor   = red %Colour of citations
 }
 \usepackage[nottoc]{tocbibind}
-
+\usepackage{physics}
 %---------------------------
 %título de la asignatura, trabajo y autor
 %---------------------------
-\subject{Nombre de la asignatura}
-\title{Escribir el título del documento}
-\author{Nombre y Apellidos de los autores}
-\profesor{Nombre del profesor}
-\date{introducir fecha}
+\subject{Mecánica Cuántica}
+\title{Tremendo}
+\author{Enrique Prada Vázquez}
+\profesor{Rodrigo Gil-Merino y Rubio}
+\date{10-04-2026}
 
 %---------------------------
 %marges
@@ -123,53 +123,96 @@ En esta Sección vamos a dar detalles concretos de lo que queremos conseguir. Po
 
 \chapter{Enunciado del problema}
 
-Esquematizar claramente los enunciados de los problemas, cuestiones o las ideas que queremos demostrar. Podemos extender el enunciado de la Actividad para mejorarlo o para dejar más claro aquello que vamos a solucionar.
+El propósito de este Trabajo es el estudio cinemático y espectral de un sistema cuántico unidimensional definido en un espacio de Hilbert $\mathcal{H}$ de dimensión finita ($d=4$). El sistema está caracterizado por un operador Hamiltoniano $\hat{H}$ cuya representación matricial en una base ortonormal $\{|1\rangle, |2\rangle, |3\rangle, |4\rangle\}$ es:
 
+\begin{equation}
+\mathbf{H} = \begin{pmatrix} 
+2 & 0 & 0 & 0 \\ 
+0 & 1 & 1 & 0 \\ 
+0 & 1 & 1 & 0 \\ 
+0 & 0 & 0 & 3 
+\end{pmatrix}
+\end{equation}
+
+A través del análisis de este sistema, se pretenden resolver los siguientes objetivos:
+
+\begin{itemize}
+    \item \textbf{Análisis Espectral:} Determinar la descomposición espectral del Hamiltoniano. Esto implica el cálculo de los autovalores de energía y la obtención de sus correspondientes proyectores ortogonales sobre los autoespacios del sistema.
+
+    \item \textbf{Dinámica Cuántica:} Estudiar la evolución temporal de un estado inicial preparado específicamente como una superposición de estados de la base:
+
+    \begin{equation}
+    |\psi(0)\rangle = \frac{1}{\sqrt{2}} (|2\rangle + |3\rangle)
+    \end{equation}
+    Se debe obtener la expresión analítica del vector de estado $|\psi(t)\rangle$ para cualquier instante de tiempo $t > 0$ mediante la aplicación del operador de evolución unitaria $U(t) = e^{-iHt/\hbar}$.
+    \item \textbf{Cálculo de Probabilidades:} Evaluar la probabilidad de transición o de medida, determinando la probabilidad de hallar al sistema en el autoestado $|4\rangle$ en un tiempo arbitrario $t$.
+
+    \item \textbf{Constantes de Movimiento y Simetrías:} Investigar la existencia de observables compatibles $\hat{A}$ que conmuten con el Hamiltoniano ($[\hat{A}, \hat{H}] = 0$) y que posean al estado inicial $|\psi(0)\rangle$ como autovector, discutiendo las implicaciones físicas de dicha compatibilidad.
+
+\end{itemize}
 \chapter{Desarrollo del Trabajo}
 
-Aquí desarrollaremos nuestro trabajo. Contrastaremos la ideas entre varios autores y, si es posible, con las nuestras. Podemos incluir las secciones y subsecciones que necesitemos.
-\newline
+En este capítulo se aborda el análisis de un sistema cuántico unidimensional definido en un espacio de Hilbert $\mathcal{H}$ de dimensión $d=4$. El Hamiltoniano del sistema, representado por una matriz hermítica $H$, rige la dinámica y el espectro energético del sistema.
 
-Tanto en esta Sección, como en el resto del Trabajo, se debe cuidar la redacción, el uso de las comas, puntos, puntos y coma, puntos y aparte y demás recursos. Fijaos en esta plantilla como estan escritas ciertas palabras que usamos mucho: \emph{Sección xx}, pero \emph{secciones}; \emph{Figura xx}, pero \emph{figuras}; \emph{Ecuación xx}, pero \emph{ecuaciones}; etc... Podéis echar un vistazo a trabajos de fin de estudios para comprobar la organización, ortografía y redacción de un trabajo a este nivel. En el repositorio de UNIR tenéis la posibilidad de acceder a trabajos presentados como TFMs en esta Titulación que os servirán de modelo: \url{https://reunir.unir.net/handle/123456789/6218}
-\newline
+\section{Descomposición Espectral de $H$}
 
-Las figuras y tablas tienen que tener su numeración y su título. Además, se debe indicar la fuente, si es de elaboración propia o se ha tomado de alguna referencia.
-\newline
+Un operador hermítico $H$ en un espacio de dimensión finita puede descomponerse en términos de sus autovalores $E_n$ y sus proyectores espectrales $P_n$ mediante la relación:
+\begin{equation}
+    H = \sum_{n=1}^{4} E_n P_n
+\end{equation}
 
-Por ejemplo:
 
-\begin{figure}[h]
-	\centerline{\includegraphics[scale=0.4]{figuras/inversionmedia.png}}
-	\caption[Inversión sobre la media del algoritmo de Grover]{Inversión sobre la media del algoritmo de Grover. El conjunto de ${x_i}$ son las amplitudes de cada estado cuántico. La línea discontinua es la media de las amplitudes. Después de cada inversión, la amplitudes grandes se vuelven más grandes y las pequeñas más pequeñas. Fuente: elaboración propia}
-	\label{fig:inversionmedia}
-\end{figure}
+\subsection{Cálculo de Autovalores y Autovectores}
 
-En la Figura~\ref{fig:inversionmedia} vemos que es una figura de elaboración propia, mientras que la Figura~\ref{fig:distprob}, la fuente es un artículo cuya referencia viene indicada y el artículo es incluído en la Bibliografía.
-\newline
-\begin{figure}[h]
-	\centerline{\includegraphics[scale=0.6]{figuras/distribucionprobabilidades.png}}
-	\caption[Distribución de probabilidades]{a) Un ejemplo de distribución de probabilidad sobre 8 símbolos. (b) 100 muestras aleatorias de la distribución de probabilidad.
-		probabilidad. El objetivo de un problema de muestreo es calcular muestras como las secuencias mostradas en (b) cuya complejidad	puede ser diferente a la complejidad de calcular la distribución de probabilidad (a). Fuente: \cite{lund2017}}
-	\label{fig:distprob}
-\end{figure}
+Para hallar los niveles de energía, resolvemos la ecuación característica $\det(H - \lambda I) = 0$. Tras el cálculo algebraico sobre la matriz dada, obtenemos los siguientes autovalores:
+% RELLENAR: Inserta aquí los valores propios calculados
+\begin{itemize}
+    \item $E_1 = \dots$
+    \item $E_2 = \dots$
+    \item $E_3 = \dots$
+    \item $E_4 = \dots$
+\end{itemize}
 
-Se incluye la Tabla~\ref{tab:balance} a modo de ejemplo. Solo contiene información sobre el balance de dos empresas ficticias. Debe incluirse también una leyenda, debajo de la tabla, junto con la fuente.
-\newline
-\begin{table}[Ht]
-	\centering % esto centra la tabla
-	\begin{tabular}{c c c c} % centra las 4 columnas
-		\hline\hline %incluye líneas horizontales dobles
-		Empresa & Ingresos & Gastos & Otros \\ [0.5ex] 
-		\hline 
-		Tintileo  & 50000 & 83700 & 97000 \\
-		Packandgo & 47000 & 87700 & 23000 \\
-		\hline
-	\end{tabular}
-	\caption[Balance de empresas]{Dos empresas ficticias con las columnas de ingresos y gastos, para dos años que no se especifican. Fuente: elaboración propia.}
-	\label{tab:balance}
-	\label{table:nonlin} % is used to refer this table in the text
-\end{table}
+Posteriormente, determinamos los autovectores correspondientes resolviendo el sistema $(H - E_n\mathbb{I})\ket{v_n} = 0$. Tras el proceso de ortonormalización, la base de autovetores resultante es:
+% RELLENAR: Inserta aquí los vectores columna
+\begin{equation}
+    \ket{v_n} \in \{ \ket{v_1}, \ket{v_2}, \ket{v_3}, \ket{v_4} \}
+\end{equation}
 
+\subsection{Proyectores Espectrales}
+
+Los proyectores asociados a cada nivel de energía se definen mediante el producto exterior $P_n = \ket{v_n}\bra{v_n}$. Estos operadores cumplen con las propiedades de idempotencia ($P_n^2 = P_n$), ortogonalidad ($P_n P_m = \delta_{nm} P_n$) y completitud ($\sum P_n = \mathbb{I}$).
+
+\section{Evolución Temporal del Estado}
+
+Dado el estado inicial $\ket{\psi(0)}$, la evolución temporal está gobernada por el operador unitario $U(t) = e^{-iHt/\hbar}$. Utilizando la descomposición espectral, la acción del operador sobre el estado inicial se simplifica como:
+\begin{equation}
+    \ket{\psi(t)} = \sum_{n=1}^{4} e^{-i E_n t / \hbar} P_n \ket{\psi(0)}
+\end{equation}
+
+Sustituyendo los valores del sistema, el estado evolucionado para un tiempo $t$ arbitrario es:
+% RELLENAR: Escribe la combinación lineal final
+\begin{equation}
+    \ket{\psi(t)} = \dots
+\end{equation}
+
+\section{Cálculo de Probabilidad}
+
+Se requiere la probabilidad de encontrar el sistema en el estado $\ket{\phi}$ en el instante $t$. De acuerdo con los postulados de la mecánica cuántica, esta probabilidad viene dada por el cuadrado del módulo del producto escalar (amplitud de probabilidad):
+\begin{equation}
+    \mathcal{P}_{\phi}(t) = \abs{\braket{\phi}{\psi(t)}}^2
+\end{equation}
+
+\section{Análisis de Conmutación y Observables}
+
+Para determinar la existencia de un observable $A$ tal que $[A, H] = 0$ y que admita a $\ket{\phi}$ como autovector, se aplica el teorema de conmutación de operadores.
+
+\textbf{Razonamiento:} Dos operadores conmutan si y solo si poseen una base común de autovectores. Por tanto, para que $\ket{\phi}$ sea autovector de $A$ y este a su vez conmute con $H$, es condición necesaria que $\ket{\phi}$ sea un autovector del Hamiltoniano $H$.
+
+\begin{itemize}
+    \item Si $\ket{\phi}$ coincide con alguno de los $\ket{v_n}$ calculados anteriormente (o pertenece a un subespacio degenerado de $H$), el observable $A$ existe.
+    \item Si $\ket{\phi}$ no es autovector de $H$, no puede existir tal observable, ya que la evolución temporal de $\ket{\phi}$ no sería puramente una fase, invalidando su carácter estacionario respecto a $H$.
+\end{itemize}
 
 \chapter{Conclusiones}
 

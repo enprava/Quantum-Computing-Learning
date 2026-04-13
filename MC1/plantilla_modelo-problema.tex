@@ -13,7 +13,7 @@
 %título de la asignatura, trabajo y autor
 %---------------------------
 \subject{Mecánica Cuántica}
-\title{Escribir el título del documento}
+\title{Dinámica y constantes de movimiento en sistemas hermíticos}
 \author{Enrique Prada Vázquez}
 \profesor{Rodrigo Gil-Merino y Rubio}
 \date{13-04-2026}
@@ -38,17 +38,17 @@
 \tableofcontents
 
 \chapter{Resumen}
-Este Trabajo presenta un análisis exhaustivo de un sistema cuántico unidimensional en un espacio de Hilbert de dimensión $d=4$. El propósito principal es caracterizar la dinámica y las propiedades estadísticas del sistema a partir de un Hamiltoniano específico. La metodología se fundamenta en la resolución de la ecuación de autovalores para determinar el espectro energético y la construcción de una base ortonormal de autoestados. Se aborda el fenómeno de la degeneración en el nivel de energía $E=2$ y se realiza la descomposición espectral del operador mediante proyectores. 
+Este Trabajo presenta un análisis de un sistema cuántico unidimensional en un espacio de Hilbert de dimensión $d=4$. El propósito principal es caracterizar la dinámica y las propiedades estadísticas del sistema a partir de un Hamiltoniano específico. La metodología se fundamenta en la resolución de la ecuación de autovalores para determinar el espectro energético y la construcción de una base ortonormal de autoestados. Se aborda el fenómeno de la degeneración en el nivel de energía $E=2$ y se realiza la descomposición espectral del operador mediante proyectores. 
 
-Posteriormente, se estudia la evolución temporal de un estado inicial en superposición, aplicando el principio de superposición y la separación de variables según la ecuación de Schrödinger. Los resultados demuestran que, bajo la interpretación probabilística de Max Born, las probabilidades de ocupación de ciertos autoestados permanecen constantes en el tiempo. Finalmente, se investiga la relación entre constantes de movimiento y simetrías, identificando observables compatibles que conmutan con el Hamiltoniano. Se concluye que la estructura algebraica del sistema permite predicciones deterministas sobre la conservación de ciertas magnitudes físicas, garantizando la consistencia del modelo propuesto.
+Posteriormente, se estudia la evolución temporal de un estado inicial en superposición, aplicando el principio de superposición y la separación de variables según la ecuación de Schrödinger. Los resultados demuestran que, bajo la interpretación probabilística de Max Born, las probabilidades de ocupación de ciertos autoestados permanecen constantes en el tiempo. Finalmente, se investiga la relación entre constantes de movimiento y simetrías, identificando observables compatibles que conmutan con el Hamiltoniano.
 
 \vspace{0.5cm}
 {\bf Palabras clave:} mecánica cuántica, espacio de hilbert, hamiltoniano, evolución temporal, regla de born, constantes de movimiento
 
 \chapter{Abstract}
-This Report provides a comprehensive analysis of a one-dimensional quantum system within a four-dimensional Hilbert space. The primary objective is to characterize the dynamics and statistical properties of the system based on a specific Hamiltonian. The methodology is centered on solving the eigenvalue equation to determine the energy spectrum and constructing an orthonormal basis of eigenstates. The work addresses the phenomenon of degeneracy at the $E=2$ energy level and performs the spectral decomposition of the operator using projectors.
+This Report provides an analysis of a one-dimensional quantum system within a four-dimensional Hilbert space. The primary objective is to characterize the dynamics and statistical properties of the system based on a specific Hamiltonian. The methodology is centered on solving the eigenvalue equation to determine the energy spectrum and constructing an orthonormal basis of eigenstates. The work addresses the phenomenon of degeneracy at the $E=2$ energy level and performs the spectral decomposition of the operator using projectors.
 
-Furthermore, the temporal evolution of an initial superposition state is studied by applying the superposition principle and the separation of variables according to the Schrödinger equation. The results demonstrate that, under Max Born's probabilistic interpretation, the occupation probabilities of certain eigenstates remain constant over time. Finally, the relationship between constants of motion and symmetries is investigated, identifying compatible observables that commute with the Hamiltonian. It is concluded that the algebraic structure of the system allows for deterministic predictions regarding the conservation of specific physical magnitudes, ensuring the consistency of the proposed model.
+Furthermore, the temporal evolution of an initial superposition state is studied by applying the superposition principle and the separation of variables according to the Schrödinger equation. The results demonstrate that, under Max Born's probabilistic interpretation, the occupation probabilities of certain eigenstates remain constant over time. Finally, the relationship between constants of motion and symmetries is investigated, identifying compatible observables that commute with the Hamiltonian.
 
 \vspace{0.5cm}
 {\bf Keywords:} quantum mechanics, hilbert space, hamiltonian, time evolution, born rule, constants of motion
@@ -58,7 +58,7 @@ Furthermore, the temporal evolution of an initial superposition state is studied
 
 \chapter{Introducción}
 
-La mecánica cuántica representa uno de los pilares fundamentales de la física moderna, proporcionando el marco teórico necesario para comprender el comportamiento de la materia a escalas microscópicas \citep{planck1900}. A diferencia de la mecánica clásica, donde el estado de un sistema se define por variables deterministas, el formalismo cuántico se sustenta en una estructura algebraica de espacios vectoriales complejos y operadores lineales \citep{dirac1930}. El presente Trabajo se enmarca en este contexto, analizando la dinámica de un sistema discreto mediante herramientas fundamentales como la descomposición espectral y la evolución temporal.
+La mecánica cuántica representa uno de los pilares fundamentales de la física moderna, proporcionando el marco teórico necesario para comprender el comportamiento de la materia a escalas microscópicas \citep{planck1900}. A diferencia de la mecánica clásica, donde el estado de un sistema se define por variables deterministas, el formalismo cuántico se sustenta en una estructura algebraica de espacios vectoriales complejos y operadores lineales \citep{dirac1930}. El presente Trabajo se enmarca en este contexto, analizando la dinámica de un sistema mediante herramientas fundamentales como la descomposición espectral y la evolución temporal.
 
 \section{Motivación y justificación}
 
@@ -313,7 +313,7 @@ Para que $\ket{\psi(0)}$ sea autovector de $\hat{A}$ con autovalor $a$, se debe 
     \hat{A} \ket{\psi(0)} = a \ket{\psi(0)}
 \end{equation}
 
-Dado que $[\hat{A}, \hat{H}] = 0$, $\hat{A}$ debe actuar de forma diagonal sobre los autoestados de energía. Un candidato natural para este observable es el propio proyector sobre el estado inicial, definido como $\hat{A} = \hat{P}_{\psi(0)} = \ket{\psi(0)}\bra{\psi(0)}$. Sin embargo, para que este proyector conmute con $\hat{H}$, el subespacio que proyecta debe estar compuesto por autoestados con el mismo autovalor (degeneración), o bien ser una combinación de proyectores espectrales completos.
+Dado que $[\hat{A}, \hat{H}] = 0$, ambos operadores deben compartir una base común de autovectores, lo que permite la determinación simultánea de sus valores propios \citep{heisenberg1927}. Un candidato natural para este observable es el propio proyector sobre el estado inicial, $\hat{A} = \hat{P}_{\psi(0)}$. Sin embargo, para que este proyector sea una constante de movimiento, debe ser funcionalmente dependiente del Hamiltoniano o proyectar sobre un autoespacio degenerado \citep{vonneumann1932}.
 
 Otra opción relevante es considerar el operador paridad o un operador de simetría interna si el Hamiltoniano presenta bloques idénticos. En este caso, dado que $\ket{\psi(0)}$ es una combinación de estados con energías $E=2$ y $E=3$, un observable compatible sería aquel que asigne un valor constante a dicho subespacio, como por ejemplo:
 \begin{equation}
@@ -345,6 +345,8 @@ Von Neumann, J. (1932). \emph{Mathematische Grundlagen der Quantenmechanik}. Spr
 \bibitem[Noether(1918)]{noether1918} 
 Noether, E. (1918). Invariante Variationsprobleme. \emph{Nachrichten von der Gesellschaft der Wissenschaften zu Göttingen}, 1918, 235-257.
 
+\bibitem[Heisenberg(1927)]{heisenberg1927} 
+Heisenberg, W. (1927). Über den anschaulichen Inhalt der quantentheoretischen Kinematik und Mechanik. \emph{Zeitschrift für Physik}, 43(3-4), 172-198.
 \end{thebibliography}
 %\bibliographystyle{plain} 
 %\bibliography{bibliografia}

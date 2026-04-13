@@ -1,5 +1,6 @@
 \documentclass[11pt,a4paper,spanish]{book}
 \usepackage{estilo_unir-1}
+\usepackage{amsmath}
 \hypersetup{
 	colorlinks   = true, %Colours links instead of ugly boxes
 	urlcolor     = blue, %Colour for external hyperlinks
@@ -7,15 +8,15 @@
 	citecolor   = red %Colour of citations
 }
 \usepackage[nottoc]{tocbibind}
-\usepackage{physics}
+
 %---------------------------
 %título de la asignatura, trabajo y autor
 %---------------------------
 \subject{Mecánica Cuántica}
-\title{Tremendo}
+\title{Escribir el título del documento}
 \author{Enrique Prada Vázquez}
 \profesor{Rodrigo Gil-Merino y Rubio}
-\date{10-04-2026}
+\date{13-04-2026}
 
 %---------------------------
 %marges
@@ -35,91 +36,56 @@
 \maketitle
 \frontmatter
 \tableofcontents
-\listoffigures
-Fijaos que SOLO aparece el título de cada figura, no aparece toda la leyenda ni la fuente. \\
-(QUITAR ESTA PÁGINA SI NO HAY FIGURAS) 
-\listoftables
-Fijaos que SOLO aparece el título de cada tabla, no aparece toda la leyenda ni la fuente. \\
-(QUITAR ESTA PÁGINA SI NO HAY TABLAS)
 
 \chapter{Resumen}
-En esta Sección se introducirá un breve resumen en español del trabajo realizado (extensión máxima: esta página). 
-\newline
+Este Trabajo presenta un análisis exhaustivo de un sistema cuántico unidimensional en un espacio de Hilbert de dimensión $d=4$. El propósito principal es caracterizar la dinámica y las propiedades estadísticas del sistema a partir de un Hamiltoniano específico. La metodología se fundamenta en la resolución de la ecuación de autovalores para determinar el espectro energético y la construcción de una base ortonormal de autoestados. Se aborda el fenómeno de la degeneración en el nivel de energía $E=2$ y se realiza la descomposición espectral del operador mediante proyectores. 
 
-Este resumen debe incluir el propósito de la investigación, la metodología, los resultados y las conclusiones (obviamente, todo muy resumido, pero así se sabe de un vistazo lo que se va uno a encontrar a continuación). 
-\newline
-
-En general, los conceptos deben estar claramente explicados (de forma resumida, repito) para que el propio resumen sea autoconsistente.
+Posteriormente, se estudia la evolución temporal de un estado inicial en superposición, aplicando el principio de superposición y la separación de variables según la ecuación de Schrödinger. Los resultados demuestran que, bajo la interpretación probabilística de Max Born, las probabilidades de ocupación de ciertos autoestados permanecen constantes en el tiempo. Finalmente, se investiga la relación entre constantes de movimiento y simetrías, identificando observables compatibles que conmutan con el Hamiltoniano. Se concluye que la estructura algebraica del sistema permite predicciones deterministas sobre la conservación de ciertas magnitudes físicas, garantizando la consistencia del modelo propuesto.
 
 \vspace{0.5cm}
-{\bf Palabras clave:} se deben incluir de 4 a 6 conceptos clave en español, significativos para el contenido del Trabajo (pueden ser conceptos formados por más de una palabra, pero DEBEN ser significativos). Por favor no incluir siglas, y todas las palabras en minúsculas
+{\bf Palabras clave:} mecánica cuántica, espacio de hilbert, hamiltoniano, evolución temporal, regla de born, constantes de movimiento
 
 \chapter{Abstract}
-This Section should include the english version of the previous Resumen.
+This Report provides a comprehensive analysis of a one-dimensional quantum system within a four-dimensional Hilbert space. The primary objective is to characterize the dynamics and statistical properties of the system based on a specific Hamiltonian. The methodology is centered on solving the eigenvalue equation to determine the energy spectrum and constructing an orthonormal basis of eigenstates. The work addresses the phenomenon of degeneracy at the $E=2$ energy level and performs the spectral decomposition of the operator using projectors.
+
+Furthermore, the temporal evolution of an initial superposition state is studied by applying the superposition principle and the separation of variables according to the Schrödinger equation. The results demonstrate that, under Max Born's probabilistic interpretation, the occupation probabilities of certain eigenstates remain constant over time. Finally, the relationship between constants of motion and symmetries is investigated, identifying compatible observables that commute with the Hamiltonian. It is concluded that the algebraic structure of the system allows for deterministic predictions regarding the conservation of specific physical magnitudes, ensuring the consistency of the proposed model.
 
 \vspace{0.5cm}
-{\bf Keywords:} please include between 4 to 6 key concepts in english, relevant to the content of this report (each concept might include multiple words). Please, do not include acronims and all words should be lower letters.
+{\bf Keywords:} quantum mechanics, hilbert space, hamiltonian, time evolution, born rule, constants of motion
 
 \mainmatter
 
+
 \chapter{Introducción}
 
-En la Introducción se debe resumir de forma esquemática pero suficientemente clara lo esencial de cada una de las partes del trabajo y, sobre todo, aprovechar para explicar conceptos que puedan ser de utilidad después. 
-\newline
+La mecánica cuántica representa uno de los pilares fundamentales de la física moderna, proporcionando el marco teórico necesario para comprender el comportamiento de la materia a escalas microscópicas \citep{planck1900}. A diferencia de la mecánica clásica, donde el estado de un sistema se define por variables deterministas, el formalismo cuántico se sustenta en una estructura algebraica de espacios vectoriales complejos y operadores lineales \citep{dirac1930}. El presente Trabajo se enmarca en este contexto, analizando la dinámica de un sistema discreto mediante herramientas fundamentales como la descomposición espectral y la evolución temporal.
 
-La lectura de esta parte debe contextualizar perfectamente todo el Trabajo y debe estar PLAGADA DE REFERENCIAS (más adelante se describe cómo hacerlo).
-\newline
+\section{Motivación y justificación}
 
-Es una parte muy importante de la memoria. Las ideas principales a transmitir son la identificación del problema a tratar, la justificación de su importancia, esbozo de los objetivos generales a grandes rasgos y un adelanto de la contribución que esperas hacer.
+La motivación de este Trabajo radica en la importancia de comprender cómo la energía, representada por el operador Hamiltoniano, condiciona la evolución y la medición de los sistemas físicos. El Hamiltoniano no solo determina los niveles de energía permitidos a través de sus autovalores, sino que también dicta la estabilidad del sistema mediante sus autoestados \citep{schrodinger1926}. 
 
-A modo de guía, la Introducción debe contener estos tres apartados:
-\begin{itemize}
-\item Motivación / justificación del tema a tratar
-\item Planteamiento del Trabajo (atención a la mayúscula de "Trabajo": cuando nos referimos a nuestro documento, ese Trabajo va en mayúscula)
-\item Estructura del Trabajo
-\end{itemize}
+El estudio de sistemas en espacios de Hilbert de dimensión finita es esencial en campos de vanguardia como la computación cuántica y la información cuántica \citep{feynman1982}. La comprensión de conceptos como la degeneración (donde un mismo nivel de energía corresponde a varios estados), la ortonormalización de bases y la interpretación probabilística de Born, constituye la base necesaria para cualquier desarrollo tecnológico o teórico en la física actual \citep{born1926}.
 
-\vspace{1cm}
-{\bf{ATENCIÓN, CÓMO REFERENCIAR.}}
+\section{Planteamiento del Trabajo}
 
-A continuación vamos a ver qué son, qué no son y para qué  sirven las referencias bibliográficas:
-\begin{itemize}
-	\item las referencias NO están para rellenar
-	\item las referencias SÍ son un TRIBUTO a las personas que hicieron en primer lugar una investigación o aportaron una idea
-	\item la referencias citan trabajo que acompaña una idea o un concepto, NO se usa UNA referencia para todo un párrafo que aglutina diferentes conceptos
-	\item deben citarse LOS TRABAJOS ORIGINALES DE LOS AUTORES, y no un libro de texto donde he visto que hablan de algo
-	\item os libros de texto se pueden referencial excepcionalmente, porque el libro es sobresaliente y conocido en el campo y/o porque quiero apoyarme en una explicación conocida para un determinado concepto o cuestión, pero no como origen del concepto del que se habla
-\end{itemize}
+Este Trabajo tiene como objetivo principal el análisis de un Hamiltoniano definido en un espacio de dimensión $d=4$. El problema consiste en determinar cómo una matriz hermítica puede ser descompuesta para revelar la física subyacente del sistema.
 
-\vspace{1cm}
-{\bf{VEAMOS EJEMPLOS DE CITAS.}}
+Se espera que este Trabajo contribuya a clarificar la relación entre los postulados teóricos abstractos y su aplicación práctica en la resolución de problemas dinámicos.
 
-Vamos a ver los dos tipos de citas que vamos a utilizar normalmente en los trabajos y actividades:
-\begin{itemize}
-	\item CITA INDIRECTA: estamos hablando de algo e introcimos la referencia sobre la que apoyamos esa idea. Por ejemplo, hablado de los procesadores de texto, LATEX  \citep{lamport1994} es tipo de editor con el que se consiguen resultados de gran calidad
-	\item CITA DIRECTA: nos referimos directamente a un trabajo y lo citamos. Por ejemplo, según \cite{ackerman2017}, la liga de fútbol inglesa debe tener torneos de desempate
-\end{itemize}
-\newline
 
-Según el párrafo anterior con la cita indirecta aparecerá entre paréntesis el apellido y el año, separados por una coma; en el caso de varios autores, podrán aparecer hasta tres apellidos y, cuando son más, aparecerá el primero seguido de "et al." (y después el año separado con una coma). Con la cita directa solo va entre paréntesis el año, pero no los autores. Podéis mirar el apartado de Bibliografía para ver cómo han quedado estas citas.
-\newline
+\section{Estructura del Trabajo}
 
-En esta Actividad, cuando vamos a resolver problemas, PUEDE utilizarse libros de texto como referencias de procedimientos matemáticos que vamos a utilizar, pero sin olvidar el párrafo anterior. Es decir, sería conveniente citar ARTÍCULOS ORIGINALES de donde surgieron esos desarrollos.
-\newline
+Para lograr una exposición clara y autoconsistente, el Trabajo se ha estructurado de la siguiente manera:
 
-Para consultar detenidamente la formas de referenciar, debéis seguir el formato APA del siguiente documento: \url{https://bibliografiaycitas.unir.net/documentos/APA_7ed_UNIR.pdf}
+El trabajo comienza con el Resumen para ofrecer una visión global de los hallazgos. El presente \textbf{Capítulo 1} constituye la Introducción, donde se contextualiza y justifica el Trabajo.
+
+A continuación, el \textbf{Capítulo 2} detalla los \textbf{Objetivos} perseguidos. El \textbf{Capítulo 3} presenta el \textbf{Enunciado} del problema, definiendo el Hamiltoniano y el estado inicial objeto de estudio. Por su parte, el \textbf{Capítulo 4} recoge el \textbf{Desarrollo} técnico, donde se resuelven los autovalores, se construyen los proyectores, se calcula la evolución temporal y se analizan las constantes de movimiento.
+
+Finalmente, se presenta la \textbf{Bibliografía} con las fuentes consultadas.
 
 
 \chapter{Objetivos}
-
-Esquematizar claramente los objetivos del trabajo, las ideas que queremos demostrar. Podemos tener varios tipos de objetivos. Por ejemplo, podemos tener un número de objetivos generales y otro de objetivos específicos. Deben ordenarse claramente.
-
-\section{Objetivos generales}
-Aquí vamos a exponer los objetivos generales. Es una forma de dar perspectiva al Trabajo. Debemos ser ambiciosos en esta exposición
-
-\section{Objetivos específicos}
-En esta Sección vamos a dar detalles concretos de lo que queremos conseguir. Por tanto, estos objetivos van al detalle.
-
+Este Trabajo busca desarollar la capacidad de trabajar con la descomposición espectral de un operador hermítico y aplicarla para analizar la evolución temporal de un estado cuántico en representación de Schrödinger. Se busca reforzar la comprensión formal de la relación entre hamiltonianos, operadores de evolución y observables medibles.
 
 \chapter{Enunciado del problema}
 
@@ -147,16 +113,16 @@ A través del análisis de este sistema, se pretenden resolver los siguientes ob
     Se debe obtener la expresión analítica del vector de estado $|\psi(t)\rangle$ para cualquier instante de tiempo $t > 0$ mediante la aplicación del operador de evolución unitaria $U(t) = e^{-iHt/\hbar}$.
     \item \textbf{Cálculo de Probabilidades:} Evaluar la probabilidad de transición o de medida, determinando la probabilidad de hallar al sistema en el autoestado $|4\rangle$ en un tiempo arbitrario $t$.
 
-    \item \textbf{Constantes de Movimiento y Simetrías:} Investigar la existencia de observables compatibles $\hat{A}$ que conmuten con el Hamiltoniano ($[\hat{A}, \hat{H}] = 0$) y que posean al estado inicial $|\psi(0)\rangle$ como autovector, discutiendo las implicaciones físicas de dicha compatibilidad.
+    \item \textbf{Constantes de Movimiento y Simetrías:} Investigar la existencia de observables compatibles $\hat{A}$ que conmuten con el Hamiltoniano ($[\hat{A}, \hat{H}] = 0$) y que posean al estado inicial $|\psi(0)\rangle$ como autovector.
 
 \end{itemize}
 \chapter{Desarrollo del Trabajo}
 
-En este capítulo se aborda el análisis de un sistema cuántico unidimensional definido en un espacio de Hilbert $\mathcal{H}$ de dimensión $d=4$. El Hamiltoniano del sistema, representado por una matriz hermítica $H$, rige la dinámica y el espectro energético del sistema.
+Se comienza abordando el análisis de un sistema cuántico unidimensional definido en un espacio de Hilbert $\mathcal{H}$ de dimensión $d=4$. El Hamiltoniano del sistema, representado por una matriz hermítica $H$, rige la dinámica y el espectro energético del sistema.
 
 \section{Descomposición Espectral de $H$}
 
-Un operador hermítico $H$ en un espacio de dimensión finita puede descomponerse en términos de sus autovalores $E_n$ y sus proyectores espectrales $P_n$ mediante la relación:
+Un operador hermítico $H$ en un espacio de dimensión finita puede descomponerse en términos de sus autovalores $E_n$ y sus proyectores espectrales $P_n$ mediante la relación \citep{vonneumann1932}:
 \begin{equation}
     H = \sum_{n=1}^{4} E_n P_n
 \end{equation}
@@ -164,99 +130,224 @@ Un operador hermítico $H$ en un espacio de dimensión finita puede descomponers
 
 \subsection{Cálculo de Autovalores y Autovectores}
 
-Para hallar los niveles de energía, resolvemos la ecuación característica $\det(H - \lambda I) = 0$. Tras el cálculo algebraico sobre la matriz dada, obtenemos los siguientes autovalores:
-% RELLENAR: Inserta aquí los valores propios calculados
+Para hallar los niveles de energía, se resuelve la ecuación característica $\det(H - \lambda I) = 0$ \citep{vonneumann1932}.
+
+\begin{equation}
+\begin{aligned}
+\det(H - \lambda I) &= \begin{vmatrix} 2 - \lambda & 0 & 0 & 0 \\ 0 & 1 - \lambda & 1 & 0 \\ 0 & 1 & 1 - \lambda & 0 \\ 0 & 0 & 0 & 3 - \lambda \end{vmatrix} \\
+  &= (2 - \lambda) (3 - \lambda) \left[(1 - \lambda)^2 - 1\right] \\
+  &= (2 - \lambda) (3 - \lambda) \left[\lambda (\lambda-2) \right] = 0
+\end{aligned}
+\end{equation}
+
+Tras el cálculo algebraico sobre la matriz dada, se obtienen los siguientes autovalores:
+
 \begin{itemize}
-    \item $E_1 = \dots$
-    \item $E_2 = \dots$
-    \item $E_3 = \dots$
-    \item $E_4 = \dots$
+    \item $E_1 = 2$
+    \item $E_2 = 3$
+    \item $E_3 = 0$
 \end{itemize}
 
-Posteriormente, determinamos los autovectores correspondientes resolviendo el sistema $(H - E_n\mathbb{I})\ket{v_n} = 0$. Tras el proceso de ortonormalización, la base de autovetores resultante es:
+Dado que la solución $E_1 = 2$ es doble, es un sistema degenerado \citep{vonneumann1932}.
+
+Posteriormente, Se determinan los autovectores correspondientes resolviendo el sistema $(H - E_n\mathbb{I})\ket{v_n} = 0$ \citep{dirac1930}. Tras el proceso de ortonormalización, la base de autovetores resultante es:
+
+\begin{itemize}
+  \item Para $E_1 = 2$:
+  Al sustituir en el sistema $(H - 2\mathbb{I})\ket{v} = 0$, se obtiene la matriz:
+  \begin{equation}
+  \begin{pmatrix} 0 & 0 & 0 & 0 \\ 0 & -1 & 1 & 0 \\ 0 & 1 & -1 & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix} \begin{pmatrix} x \\ y \\ z \\ w \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \\ 0 \end{pmatrix}
+  \end{equation}
+  Esto permite definir dos autovectores ortonormales para este subespacio degenerado:
+  \begin{equation}
+  \ket{v_{2a}} = \begin{pmatrix} 1 \\ 0 \\ 0 \\ 0 \end{pmatrix}, \quad \ket{v_{2b}} = \frac{1}{\sqrt{2}} \begin{pmatrix} 0 \\ 1 \\ 1 \\ 0 \end{pmatrix}
+  \end{equation}
+
+  \item Para $E_2 = 3$:
+  El sistema $(H - 3\mathbb{I})\ket{v} = 0$ resulta en:
+  \begin{equation}
+  \begin{pmatrix} -1 & 0 & 0 & 0 \\ 0 & -2 & 1 & 0 \\ 0 & 1 & -2 & 0 \\ 0 & 0 & 0 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \\ z \\ w \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \\ 0 \end{pmatrix}
+  \end{equation}
+  El autovector normalizado asociado es:
+  \begin{equation}
+  \ket{v_3} = \begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}
+  \end{equation}
+
+  \item Para $E_3 = 0$:
+  El sistema $H\ket{v} = 0$ se representa mediante la matriz:
+  \begin{equation}
+  \begin{pmatrix} 2 & 0 & 0 & 0 \\ 0 & 1 & 1 & 0 \\ 0 & 1 & 1 & 0 \\ 0 & 0 & 0 & 3 \end{pmatrix} \begin{pmatrix} x \\ y \\ z \\ w \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \\ 0 \end{pmatrix}
+  \end{equation}
+  Imponiendo la condición de normalización, el autovector es:
+  \begin{equation}
+  \ket{v_0} = \frac{1}{\sqrt{2}} \begin{pmatrix} 0 \\ 1 \\ -1 \\ 0 \end{pmatrix}
+  \end{equation}
+\end{itemize}
+\subsection{Cálculo de los Proyectores Espectrales}
+
+Una vez obtenida la base ortonormal de autovectores $\{\ket{v_{2a}}, \ket{v_{2b}}, \ket{v_3}, \ket{v_0}\}$, se procede a calcular los proyectores asociados a cada autoestado mediante el producto exterior $P_i = \ket{v_i}\bra{v_i}$. Estos operadores satisfacen las propiedades de idempotencia ($P_i^2 = P_i$) y hermiticidad ($P_i^\dagger = P_i$)\citep{dirac1930}.
+
+Los proyectores asociados al autovalor degenerado $E_1 = 2$ son:
+\begin{equation}
+P_{2a} = \ket{v_{2a}}\bra{v_{2a}} = 
+\begin{pmatrix} 1 \\ 0 \\ 0 \\ 0 \end{pmatrix}
+\begin{pmatrix} 1 & 0 & 0 & 0 \end{pmatrix} =
+\begin{pmatrix} 
+1 & 0 & 0 & 0 \\ 
+0 & 0 & 0 & 0 \\ 
+0 & 0 & 0 & 0 \\ 
+0 & 0 & 0 & 0 
+\end{pmatrix}
+\end{equation}
+
+\begin{equation}
+P_{2b} = \ket{v_{2b}}\bra{v_{2b}} = \frac{1}{2}
+\begin{pmatrix} 0 \\ 1 \\ 1 \\ 0 \end{pmatrix}
+\begin{pmatrix} 0 & 1 & 1 & 0 \end{pmatrix} =
+\begin{pmatrix} 
+0 & 0 & 0 & 0 \\ 
+0 & 1/2 & 1/2 & 0 \\ 
+0 & 1/2 & 1/2 & 0 \\ 
+0 & 0 & 0 & 0 
+\end{pmatrix}
+\end{equation}
+
+Para los autovalores simples $E_2 = 3$ y $E_3 = 0$, se obtiene:
+\begin{equation}
+P_{3} = \ket{v_{3}}\bra{v_{3}} = 
+\begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}
+\begin{pmatrix} 0 & 0 & 0 & 1 \end{pmatrix} =
+\begin{pmatrix} 
+0 & 0 & 0 & 0 \\ 
+0 & 0 & 0 & 0 \\ 
+0 & 0 & 0 & 0 \\ 
+0 & 0 & 0 & 1 
+\end{pmatrix}
+\end{equation}
+
+\begin{equation}
+P_{0} = \ket{v_{0}}\bra{v_{0}} = \frac{1}{2}
+\begin{pmatrix} 0 \\ 1 \\ -1 \\ 0 \end{pmatrix}
+\begin{pmatrix} 0 & 1 & -1 & 0 \end{pmatrix} =
+\begin{pmatrix} 
+0 & 0 & 0 & 0 \\ 
+0 & 1/2 & -1/2 & 0 \\ 
+0 & -1/2 & 1/2 & 0 \\ 
+0 & 0 & 0 & 0 
+\end{pmatrix}
+\end{equation}
+
+\subsubsection{Verificación de los resultados}
+
+Para validar la consistencia del desarrollo, se comprueba que se cumple la \textbf{Relación de Clausura}, la cual establece que la suma de los proyectores de una base completa debe ser igual a la identidad \citep{vonneumann1932}:
+\begin{equation}
+\sum_{i} P_i = P_{2a} + P_{2b} + P_3 + P_0 = 
+\begin{pmatrix} 
+1 & 0 & 0 & 0 \\ 
+0 & 1 & 0 & 0 \\ 
+0 & 0 & 1 & 0 \\ 
+0 & 0 & 0 & 1 
+\end{pmatrix} = \mathbb{I}
+\end{equation}
+
+Asimismo, se verifica la \textbf{Descomposición Espectral} del Hamiltoniano:
+\begin{equation}
+H = \sum_{i} E_i P_i = 2(P_{2a} + P_{2b}) + 3P_3 + 0P_0
+\end{equation}
+Al realizar la suma ponderada, se recupera la matriz original $H$, confirmando que los autovalores y autovectores calculados son correctos.
+
+\section{Evolución Temporal del Sistema}
+
+La dinámica del sistema viene descrita por la ecuación de Schrödinger. Para un Hamiltoniano independiente del tiempo, el estado del sistema en un instante $t$ se obtiene mediante la aplicación del operador de evolución unitaria $U(t) = e^{-iHt/\hbar}$ sobre el estado inicial $\ket{\psi(0)}$\citep{schrodinger1926}.
+
+Se considera un estado inicial definido por una superposición equitativa de los autoestados asociados a las energías $E=2$ (tomando la dirección $\ket{v_{2b}}$) y $E=3$:
+\begin{equation}
+    \ket{\psi(0)} = \frac{1}{\sqrt{2}} (\ket{v_{2b}} + \ket{v_3})
+\end{equation}
+
+Dado que la acción del operador de evolución sobre un autoestado $\ket{v_n}$ se reduce a una fase multiplicativa $e^{-iE_n t/\hbar}$, el estado en un tiempo arbitrario $t$ resulta:
+\begin{equation}
+    \ket{\psi(t)} = \frac{1}{\sqrt{2}} \left( e^{-i 2t/\hbar} \ket{v_{2b}} + e^{-i 3t/\hbar} \ket{v_3} \right)
+\end{equation}
+
+Sustituyendo los vectores columna calculados anteriormente, el vector de estado evoluciona como:
+\begin{equation}
+    \ket{\psi(t)} = \frac{1}{\sqrt{2}} \begin{pmatrix} 0 \\ \frac{1}{\sqrt{2}}e^{-i 2t/\hbar} \\ \frac{1}{\sqrt{2}}e^{-i 2t/\hbar} \\ e^{-i 3t/\hbar} \end{pmatrix}
+\end{equation}
+
+\section{Cálculo de Probabilidades}
+
+Un postulado fundamental de la mecánica cuántica establece que la probabilidad de encontrar el sistema en un estado $\ket{\phi}$ tras realizar una medida en el instante $t$ viene dada por la regla de Born \citep{born1926}:
+\begin{equation}
+    \mathcal{P}_{\phi}(t) = |\braket{\phi}{\psi(t)}|^2
+\end{equation}
+
+En este caso, se requiere determinar la probabilidad de hallar el sistema en el estado $\ket{4}$, que corresponde al cuarto vector de la base canónica del espacio de Hilbert, $\ket{4} = (0, 0, 0, 1)^T$. Se observa que, según el cálculo previo, este vector coincide exactamente con el autovector $\ket{v_3}$.
+
+La amplitud de probabilidad es:
+\begin{equation}
+    \braket{4}{\psi(t)} = \frac{1}{\sqrt{2}} \left( e^{-i 2t/\hbar} \braket{4}{v_{2b}} + e^{-i 3t/\hbar} \braket{4}{v_3} \right)
+\end{equation}
+
+Debido a la ortogonalidad de la base de autovectores, tenemos que $\braket{4}{v_{2b}} = 0$ y $\braket{4}{v_3} = 1$. Por lo tanto:
+\begin{equation}
+    \braket{4}{\psi(t)} = \frac{1}{\sqrt{2}} e^{-i 3t/\hbar}
+\end{equation}
+
+Finalmente, la probabilidad resulta ser:
+\begin{equation}
+    \mathcal{P}_4(t) = \left| \frac{1}{\sqrt{2}} e^{-i 3t/\hbar} \right|^2 = \frac{1}{2} |e^{-i 3t/\hbar}|^2 = \frac{1}{2}
+\end{equation}
+
+Este resultado indica que la probabilidad de encontrar el sistema en el estado $\ket{4}$ es del $50\%$ y permanece constante en el tiempo, ya que el estado inicial está compuesto por autoestados estacionarios y la medida coincide con uno de los elementos de dicha base.
+\section{Constantes de Movimiento y Simetrías}
+
+Un observable $\hat{A}$ se define como una constante de movimiento si conmuta con el Hamiltoniano del sistema, es decir, $[\hat{A}, \hat{H}] = \hat{A}\hat{H} - \hat{H}\hat{A} = 0$. Esta condición implica que ambos operadores comparten una base común de autovectores y que el valor esperado de $\hat{A}$ permanece constante en el tiempo \citep{noether1918}.
+
+\subsection{Búsqueda de un Observable Compatible}
+
+Se requiere investigar un observable $\hat{A}$ que, además de conmutar con $\hat{H}$, posea al estado inicial $\ket{\psi(0)} = \frac{1}{\sqrt{2}}(\ket{v_{2b}} + \ket{v_3})$ como autovector. 
+
+Para que $\ket{\psi(0)}$ sea autovector de $\hat{A}$ con autovalor $a$, se debe cumplir:
+\begin{equation}
+    \hat{A} \ket{\psi(0)} = a \ket{\psi(0)}
+\end{equation}
+
+Dado que $[\hat{A}, \hat{H}] = 0$, $\hat{A}$ debe actuar de forma diagonal sobre los autoestados de energía. Un candidato natural para este observable es el propio proyector sobre el estado inicial, definido como $\hat{A} = \hat{P}_{\psi(0)} = \ket{\psi(0)}\bra{\psi(0)}$. Sin embargo, para que este proyector conmute con $\hat{H}$, el subespacio que proyecta debe estar compuesto por autoestados con el mismo autovalor (degeneración), o bien ser una combinación de proyectores espectrales completos.
+
+Otra opción relevante es considerar el operador paridad o un operador de simetría interna si el Hamiltoniano presenta bloques idénticos. En este caso, dado que $\ket{\psi(0)}$ es una combinación de estados con energías $E=2$ y $E=3$, un observable compatible sería aquel que asigne un valor constante a dicho subespacio, como por ejemplo:
+\begin{equation}
+    \hat{A} = 2(P_{2a} + P_{2b}) + 3P_3
+\end{equation}
+
 % RELLENAR: Inserta aquí los vectores columna
-\begin{equation}
-    \ket{v_n} \in \{ \ket{v_1}, \ket{v_2}, \ket{v_3}, \ket{v_4} \}
-\end{equation}
-
-\subsection{Proyectores Espectrales}
-
-Los proyectores asociados a cada nivel de energía se definen mediante el producto exterior $P_n = \ket{v_n}\bra{v_n}$. Estos operadores cumplen con las propiedades de idempotencia ($P_n^2 = P_n$), ortogonalidad ($P_n P_m = \delta_{nm} P_n$) y completitud ($\sum P_n = \mathbb{I}$).
-
-\section{Evolución Temporal del Estado}
-
-Dado el estado inicial $\ket{\psi(0)}$, la evolución temporal está gobernada por el operador unitario $U(t) = e^{-iHt/\hbar}$. Utilizando la descomposición espectral, la acción del operador sobre el estado inicial se simplifica como:
-\begin{equation}
-    \ket{\psi(t)} = \sum_{n=1}^{4} e^{-i E_n t / \hbar} P_n \ket{\psi(0)}
-\end{equation}
-
-Sustituyendo los valores del sistema, el estado evolucionado para un tiempo $t$ arbitrario es:
-% RELLENAR: Escribe la combinación lineal final
-\begin{equation}
-    \ket{\psi(t)} = \dots
-\end{equation}
-
-\section{Cálculo de Probabilidad}
-
-Se requiere la probabilidad de encontrar el sistema en el estado $\ket{\phi}$ en el instante $t$. De acuerdo con los postulados de la mecánica cuántica, esta probabilidad viene dada por el cuadrado del módulo del producto escalar (amplitud de probabilidad):
-\begin{equation}
-    \mathcal{P}_{\phi}(t) = \abs{\braket{\phi}{\psi(t)}}^2
-\end{equation}
-
-\section{Análisis de Conmutación y Observables}
-
-Para determinar la existencia de un observable $A$ tal que $[A, H] = 0$ y que admita a $\ket{\phi}$ como autovector, se aplica el teorema de conmutación de operadores.
-
-\textbf{Razonamiento:} Dos operadores conmutan si y solo si poseen una base común de autovectores. Por tanto, para que $\ket{\phi}$ sea autovector de $A$ y este a su vez conmute con $H$, es condición necesaria que $\ket{\phi}$ sea un autovector del Hamiltoniano $H$.
-
-\begin{itemize}
-    \item Si $\ket{\phi}$ coincide con alguno de los $\ket{v_n}$ calculados anteriormente (o pertenece a un subespacio degenerado de $H$), el observable $A$ existe.
-    \item Si $\ket{\phi}$ no es autovector de $H$, no puede existir tal observable, ya que la evolución temporal de $\ket{\phi}$ no sería puramente una fase, invalidando su carácter estacionario respecto a $H$.
-\end{itemize}
-
-\chapter{Conclusiones}
-
-Las conclusiones es otra parte muy IMPORTANTE de la memoria. Deben ser muy claras. Si es posible se pueden itemizar o, mejor, poner un párrafo por idea con un pequeño título ilustrativo. En cualquier caso debe incluir los logros conseguidos y la importancia de los mismos, siempre desde un punto de vista crítico y resaltando las partes importantes.
-
-\vspace{1cm}
-{\bf{SOBRE LA EXTENSIÓN DEL TRABAJO}}
-\newline
-
-El Trabajo debe tener una extensión de $\sim$10 páginas. Los trabajos que se alejen de forma significativa de esta condición NO SE ACEPTARÁN. Las páginas que cuentan son las que van de la Introducción hasta estas Conclusiones. NO CUENTAN aquellas dedicadas a apéndices o a la Bibliografía.
-
 
 \begin{thebibliography}{99}
-\bibitem[Lamport(1994)]{lamport1994} Lamport, L. (1994) \emph{\LaTeX: a document preparation system}, Addison
-Wesley, Massachusetts, 2nd ed.
-\bibitem[Ackerman(2017)]{ackerman2017} Ackerman, E. (2017) Why the English Premier League Should Have Playoffs.  McGraw Hill. London. 
-\bibitem[Lund(2017)]{lund2017} Lund, A. P. and Bremner, Michael J. and Ralph, T. C. (2017) Quantum sampling problems, BosonSampling and quantum supremacy, npj Quantum Information 3: 15
+
+\bibitem[Planck(1900)]{planck1900} 
+Planck, M. (1900). Zur Theorie des Gesetzes der Energieverteilung im Normalspectrum. \emph{Verhandlungen der Deutschen Physikalischen Gesellschaft}, 2, 237-245.
+
+\bibitem[Dirac(1930)]{dirac1930} 
+Dirac, P. A. M. (1930). \emph{The Principles of Quantum Mechanics}. Oxford University Press.
+
+\bibitem[Schrödinger(1926)]{schrodinger1926} 
+Schrödinger, E. (1926). Quantisierung als Eigenwertproblem. \emph{Annalen der Physik}, 384(4), 361-376.
+
+\bibitem[Feynman(1982)]{feynman1982} 
+Feynman, R. P. (1982). Simulating physics with computers. \emph{International Journal of Theoretical Physics}, 21(6), 467-488.
+
+\bibitem[Born(1926)]{born1926} 
+Born, M. (1926). Zur Quantenmechanik der Stoßvorgänge. \emph{Zeitschrift für Physik}, 37(12), 863-867.
+
+\bibitem[Von Neumann(1932)]{vonneumann1932} 
+Von Neumann, J. (1932). \emph{Mathematische Grundlagen der Quantenmechanik}. Springer-Verlag.
+
+\bibitem[Noether(1918)]{noether1918} 
+Noether, E. (1918). Invariante Variationsprobleme. \emph{Nachrichten von der Gesellschaft der Wissenschaften zu Göttingen}, 1918, 235-257.
+
 \end{thebibliography}
-
-\vspace{2cm}
-Aún a riesgo de ser redundante, repito aquí que para consultar detenidamente la formas de referenciar, debéis seguir el formato APA del siguiente documento: \url{https://bibliografiaycitas.unir.net/documentos/APA_7ed_UNIR.pdf}
-
 %\bibliographystyle{plain} 
 %\bibliography{bibliografia}
 
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

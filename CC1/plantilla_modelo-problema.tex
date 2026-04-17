@@ -7,7 +7,8 @@
 	citecolor   = red %Colour of citations
 }
 \usepackage[nottoc]{tocbibind}
-
+\usepackage[authoryear]{natbib}
+\bibliographystyle{apalike}
 %---------------------------
 %título de la asignatura, trabajo y autor
 %---------------------------
@@ -36,11 +37,6 @@
 \frontmatter
 \tableofcontents
 \listoffigures
-Fijaos que SOLO aparece el título de cada figura, no aparece toda la leyenda ni la fuente. \\
-(QUITAR ESTA PÁGINA SI NO HAY FIGURAS) 
-\listoftables
-Fijaos que SOLO aparece el título de cada tabla, no aparece toda la leyenda ni la fuente. \\
-(QUITAR ESTA PÁGINA SI NO HAY TABLAS)
 
 \chapter{Resumen}
 Este Trabajo presenta una simulación interactiva que visualiza estados cuánticos en la Esfera de Bloch. Utilizando la librería Qiskit para el motor de cálculo y Matplotlib para el renderizado gráfico, se ha construido una herramienta modular que representa la evolución de un cúbit ante diversas puertas lógicas. El Trabajo se centra en el mapeo de vectores de estado complejos a coordenadas cartesianas reales, permitiendo observar fenómenos de superposición y fase de manera intuitiva. Los resultados visualizan el comportamiento de operadores unitarios fundamentales, tales como la puerta de Hadamard y las puertas de Pauli.
@@ -56,22 +52,25 @@ This Work presents an interactive simulation that visualizes quantum states on t
 
 \chapter{Introducción}
 
-El presente Trabajo aborda la simulación cúbits usando la representación geométrica de la Esfera de Bloch. La herramienta integra el cálculo de estados cuánticos mediante la librería Qiskit y una interfaz de visualización 3D programada en Matplotlib.
+El presente Trabajo aborda la simulación de cúbits usando la representación geométrica de la Esfera de Bloch, concepto introducido originalmente por \citet{bloch1946} para la resonancia magnética y adaptado aquí a la computación cuántica según el formalismo moderno de \citet{nielsen2010}. La herramienta integra el cálculo de estados cuánticos mediante la librería Qiskit \citep{qiskit2023} y una interfaz de visualización 3D programada en Matplotlib \citep{hunter2007}.
 
 \section{Motivación y justificación}
-El Trabajo se justifica como un ejercicio práctico para entender la manipulación de estados cuánticos y su representación geométrica, permitiendo asimilar conceptos como la superposición y la fase a través de la implementación directa del código.
+El Trabajo se justifica como un ejercicio práctico para entender la manipulación de estados cuánticos y su representación geométrica. Se utiliza la notación de vectores de estado introducida por \citet{dirac1981}, permitiendo asimilar conceptos fundamentales como la superposición y la fase a través de la implementación directa del código.
 
 \section{Planteamiento del Trabajo}
-La implementación se basa en un diseño modular que separa la lógica de computación cuántica del renderizado gráfico. Se implementan funciones específicas para la preparación del estado, la aplicación de operadores unitarios mediante Qiskit y la proyección geométrica manual en un entorno tridimensional utilizando Matplotlib.
+La implementación se basa en un diseño modular que separa la lógica de computación cuántica del renderizado gráfico. Se implementan funciones específicas para la preparación del estado, la aplicación de operadores unitarios mediante Qiskit y la proyección geométrica en un entorno tridimensional utilizando Matplotlib.
 
 \section{Estructura del Trabajo}
-La memoria se organiza en los siguientes apartados:
+La presente memoria se organiza en los siguientes apartados para facilitar su lectura y comprensión técnica:
+
 \begin{itemize}
-    \item \textbf{Objetivos:} Detalle de las metas técnicas y específicas de la simulación.
-    \item \textbf{Enunciado del problema:} Descripción de los requisitos y operaciones a implementar.
-    \item \textbf{Desarrollo del Trabajo:} Explicación de la arquitectura del código, la conexión con Qiskit y el motor de visualización.
-    \item \textbf{Resultados:} Ejecución y validación de la herramienta mediante casos de prueba estándar.
-    \item \textbf{Conclusiones:} Resumen de los logros alcanzados y la funcionalidad del sistema.
+    \item \textbf{Resumen:} Breve exposición del alcance del proyecto, las herramientas utilizadas y los resultados principales obtenidos en la simulación.
+    \item \textbf{Introducción:} Contextualización de la computación cuántica y la relevancia de la Esfera de Bloch como herramienta de visualización.
+    \item \textbf{Objetivos:} Definición de las metas técnicas, centradas en la integración de cálculo cuántico real con representaciones geométricas personalizadas.
+    \item \textbf{Enunciado del problema:} Descripción de los requisitos funcionales y los retos matemáticos de la representación de cúbits.
+    \item \textbf{Desarrollo del Trabajo:} Detalle de la implementación técnica, incluyendo el flujo de datos desde la lógica matricial en Qiskit hasta el mapeo de coordenadas en Matplotlib.
+    \item \textbf{Resultados:} Galería exhaustiva de 13 casos de prueba que validan el comportamiento de las puertas lógicas y la invarianza ante la fase global.
+    \item \textbf{Conclusiones:} Análisis crítico de los logros alcanzados, las limitaciones del sistema y la utilidad de la herramienta desarrollada.
 \end{itemize}
 \chapter{Objetivos}
 
@@ -81,7 +80,7 @@ El objetivo principal de este Trabajo es comprender las propiedades fundamentale
 \section{Objetivos específicos}
 \begin{itemize}
     \item Visualizar el impacto de las puertas cuánticas en la manipulación del vector de estado.
-    \item Implementar un motor gráfico manual para proyectar estas propiedades físicas en la Esfera de Bloch.
+    \item Implementar un modulo gráfico para proyectar estas propiedades físicas en la Esfera de Bloch.
     \item Validar el funcionamiento de los operadores unitarios mediante la observación de rotaciones en el espacio tridimensional.
 \end{itemize}
 
@@ -92,7 +91,7 @@ El problema central de este Trabajo consiste en la implementación de un sistema
 \begin{itemize}
     \item \textbf{Cálculo de la evolución cuántica:} Se requiere aplicar puertas lógicas sobre el vector de estado inicial, devolviendo el estado final resultante tras la operación.
     \item \textbf{Mapeo de coordenadas:} Transformar las amplitudes de probabilidad complejas $\alpha$ y $\beta$ del vector de estado en coordenadas reales $(x, y, z)$ dentro de un espacio euclídeo.
-    \item \textbf{Renderizado manual:} Creación de un entorno gráfico tridimensional donde se visualice tanto la estructura de la Esfera de Bloch como el vector de estado y su orientación.
+    \item \textbf{Renderizado:} Creación de un entorno gráfico tridimensional donde se visualice tanto la estructura de la Esfera de Bloch como el vector de estado y su orientación.
     \item \textbf{Representación de estados:} Con el fin de parametrizar el espacio de estados completo, el sistema debe permitir la entrada de parámetros $(\theta, \phi)$ para definir cualquier estado en la superficie de la esfera, gestionando correctamente la superposición y la fase.
 \end{itemize}
 
@@ -101,34 +100,135 @@ En definitiva, se busca demostrar que mediante el uso de Qiskit y Matplotlib es 
 
 \chapter{Desarrollo del Trabajo}
 
-El desarrollo se centra en la implementación de un sistema modular que integra el cálculo cuántico con una representación geométrica. A continuación, se detalla la arquitectura del simulador y la lógica de manipulación del cúbit.
+El desarrollo se centra en la implementación de un sistema modular que integra el cálculo cuántico con una representación geométrica.
 
-\section{Arquitectura del Simulador}
-El sistema se divide en dos bloques:
-\begin{itemize}
-    \item \textbf{Motor Cuántico (Qiskit):} Gestiona la creación de circuitos y la evolución del vector de estado mediante la aplicación de operadores.
-    \item \textbf{Motor Gráfico (Matplotlib):} Renderiza manualmente la Esfera de Bloch y proyecta las amplitudes complejas en coordenadas cartesianas reales $(x, y, z)$.
-\end{itemize}
-
-\section{Manipulación mediante Puertas Cuánticas}
-La parte central del desarrollo es la implementación de operadores unitarios que transforman el estado del cúbit. Se han integrado las siguientes familias de puertas:
+\section{Flujo de Operación y Componentes}
+Para garantizar la precisión y la escalabilidad del simulador, el diseño se ha dividido en dos capas funcionales que operan en secuencia:
 
 \begin{itemize}
-    \item \textbf{Puertas de Pauli (X, Y, Z):} Actúan como rotaciones de $\pi$ radianes sobre sus respectivos ejes. La puerta $X$ (NOT cuántico) realiza una inversión del bit, mientras que $Z$ modifica la fase relativa.
-    \item \textbf{Puerta de Hadamard (H):} Es fundamental para la creación de superposición, transformando los estados base en estados de la base diagonal.
-    \item \textbf{Puertas de Fase (S, T, Sdg):} Introducen rotaciones específicas en el eje $Z$ ($\pi/2$ y $\pi/4$ respectivamente), permitiendo ajustar la fase relativa del cúbit.
-    \item \textbf{Puerta V (Raíz cuadrada de X):} Realiza una rotación de $\pi/2$ en el eje $X$, permitiendo situar el vector en posiciones intermedias entre los polos y el ecuador.
+    \item \textbf{Capa de Computación Lógica (Qiskit):} Se utiliza el motor de Qiskit para gestionar el formalismo cuántico. Esta capa se encarga de aplicar los operadores unitarios sobre el estado inicial y extraer el vector de estado (\textit{statevector}) final, el cual contiene la información de probabilidad y fase del cúbit \citep{qiskit2023}.
+    \item \textbf{Capa de Traducción Geométrica (Matplotlib):} Este componente actúa como el puente visual del sistema. Recibe el vector complejo y lo proyecta en el espacio euclídeo mediante el cálculo de las coordenadas cartesianas $(x, y, z)$ \citep{hunter2007}. El renderizado de la Esfera de Bloch se realiza de forma manual, evitando funciones predefinidas de visualización para permitir un control total sobre la estética y la claridad de los ejes, basándose en la construcción geométrica original de \citet{bloch1946}.
 \end{itemize}
 
-\section{Procesamiento y Proyección}
-Tras la aplicación de las puertas, el sistema extrae el vector de estado resultante. Mediante la normalización de las amplitudes complejas, se calculan los componentes del vector de Bloch. Este proceso asegura que, independientemente de la secuencia de puertas aplicadas, el estado final sea representado con precisión geométrica sobre la superficie de la esfera, facilitando la interpretación visual de la computación cuántica.
+\section{Mapeo del Estado Cuántico a la Esfera}
+La precisión visual del simulador depende directamente de la correcta interpretación del estado del cúbit. Matemáticamente, cualquier estado cuántico puro puede expresarse mediante la siguiente ecuación en coordenadas esféricas \citep{nielsen2010}:
+
+\begin{equation}
+|\psi\rangle = \cos\left(\frac{\theta}{2}\right)|0\rangle + e^{i\phi}\sin\left(\frac{\theta}{2}\right)|1\rangle
+\end{equation}
+
+Donde $\theta \in [0, \pi]$ representa la latitud (probabilidad de medir $|0\rangle$ o $|1\rangle$) y $\phi \in [0, 2\pi]$ representa la fase relativa. Es fundamental notar que cualquier factor multiplicativo de la forma $e^{i\gamma}$ (fase global) no afecta a los valores esperados de los observables ni a la posición en la esfera, razón por la cual la ecuación estándar se define omitiendo dicho término, siguiendo el principio de indistinguibilidad física de los estados que difieren solo en una fase global \citep{dirac1981, sakurai2017}.
+
+Para la representación tridimensional, el sistema procesa las amplitudes complejas $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ mediante las proyecciones de los valores esperados de los operadores de Pauli \citep{pauli1927}:
+
+\begin{equation}
+x = 2 \cdot \text{Re}(\alpha\bar{\beta}), \quad y = 2 \cdot \text{Im}(\bar{\alpha}\beta), \quad z = |\alpha|^2 - |\beta|^2
+\end{equation}
+
+Este proceso de normalización garantiza que el vector de estado se sitúe siempre sobre la superficie de la esfera (radio unidad), permitiendo que cualquier secuencia de puertas resulte en una posición geométrica coherente. Esta arquitectura permite que el usuario no solo vea el resultado final, sino que pueda corroborar visualmente la diferencia entre la manipulación de la probabilidad ($\theta$) y la manipulación de la fase ($\phi$), fundamentada en la rotación de operadores unitarios sobre el espacio de Hilbert \citep{kaye2007}.
+
+\section{Análisis de Resultados}
+A continuación, se describen los 13 escenarios de prueba ejecutados, diseñados para validar la implementación frente a los casos estándar de computación cuántica \citep{nielsen2010}.
+
+\begin{itemize}
+    \item \textbf{Caso 1: Operador Identidad (I).} Test de control con estado arbitrario ($\theta=45^\circ, \phi=45^\circ$). Como se aprecia en la Figura \ref{fig:caso1}, el sistema garantiza que no se alteren las amplitudes ni la posición del vector.
+    \begin{figure}[h]
+        \centerline{\includegraphics[scale=0.4]{figuras/caso1.png}}
+        \caption[Operador Identidad]{Estado inicial y final tras aplicar la puerta Identidad. Se observa la preservación total del estado. Fuente: elaboración propia}
+        \label{fig:caso1}
+    \end{figure}
+
+    \item \textbf{Caso 2: Puerta Pauli-X.} Validación del bit-flip cuántico. En la Figura \ref{fig:caso2} se observa la transición completa del polo norte $|0\rangle$ al polo sur $|1\rangle$.
+    \begin{figure}[h]
+        \centerline{\includegraphics[scale=0.4]{figuras/caso2.png}}
+        \caption[Puerta Pauli-X]{Transición de $|0\rangle$ a $|1\rangle$ mediante una rotación de $\pi$ sobre el eje X. Fuente: elaboración propia}
+        \label{fig:caso2}
+    \end{figure}
+
+    \item \textbf{Caso 3: Puerta de Hadamard (H).} Transformación del estado base en una superposición equiprobable. La Figura \ref{fig:caso3} muestra cómo el vector se sitúa exactamente sobre el eje X+.
+    \begin{figure}[h]
+        \centerline{\includegraphics[scale=0.4]{figuras/caso3.png}}
+        \caption[Puerta de Hadamard]{Creación de superposición a partir del estado fundamental. Fuente: elaboración propia}
+        \label{fig:caso3}
+    \end{figure}
+
+    \item \textbf{Caso 4: Puerta T.} Rotación de fase de $\pi/4$ sobre el ecuador. La Figura \ref{fig:caso4} permite validar el desplazamiento azimutal del vector en el ángulo $\phi$.
+    \begin{figure}[h]
+        \centerline{\includegraphics[scale=0.4]{figuras/caso4.png}}
+        \caption[Puerta T en el ecuador]{Desplazamiento del ángulo $\phi$ tras aplicar una rotación de 45°. Fuente: elaboración propia}
+        \label{fig:caso4}
+    \end{figure}
+
+    \item \textbf{Caso 5: Puerta V.} Rotación de 90° sobre el eje X. En la Figura \ref{fig:caso5} se observa cómo el vector se sitúa en el eje Y+ partiendo desde el estado $|0\rangle$.
+    \begin{figure}[h]
+        \centerline{\includegraphics[scale=0.4]{figuras/caso5.png}}
+        \caption[Puerta V]{Efecto de la raíz cuadrada de X sobre el estado base. Fuente: elaboración propia}
+        \label{fig:caso5}
+    \end{figure}
+
+    \item \textbf{Caso 6: Puerta Pauli-Y.} Rotación de $\pi$ sobre el eje Y. La Figura \ref{fig:caso6} ilustra la inversión del vector cuando este se encuentra inicialmente en el eje X.
+    \begin{figure}[h]
+        \centerline{\includegraphics[scale=0.4]{figuras/caso6.png}}
+        \caption[Puerta Pauli-Y]{Inversión del vector sobre el eje Y. Fuente: elaboración propia}
+        \label{fig:caso6}
+    \end{figure}
+
+    \item \textbf{Caso 7: Puerta Sdg.} Validación de la puerta S adjunta. La Figura \ref{fig:caso7} muestra una rotación antihoraria de 90° (o 270° horaria) sobre el eje Z.
+    \begin{figure}[h]
+        \centerline{\includegraphics[scale=0.4]{figuras/caso7.png}}
+        \caption[Puerta Sdg]{Rotación antihoraria en el plano ecuatorial. Fuente: elaboración propia}
+        \label{fig:caso7}
+    \end{figure}
+
+    \item \textbf{Caso 8: Fase Global en $|0\rangle$ (Puerta Z).} Este caso demuestra que la aplicación de una fase sobre el polo norte no produce un cambio geométrico. Como se observa en la Figura \ref{fig:caso8}, el vector permanece estático debido a que la fase global no tiene representación física en la esfera de Bloch \citep{bloch1946, sakurai2017}, validando la fidelidad del renderizado.
+    \begin{figure}[h]
+        \centerline{\includegraphics[scale=0.4]{figuras/caso8.png}}
+        \caption[Fase global en el polo norte]{Invarianza del vector $|0\rangle$ ante el operador Z. Fuente: elaboración propia}
+        \label{fig:caso8}
+    \end{figure}
+
+    \item \textbf{Caso 9: Puerta S sobre superposición.} Evolución de un estado generado por Hadamard. La Figura \ref{fig:caso9} muestra la transformación del estado X+ al estado Y+ mediante una rotación de fase relativa.
+    \begin{figure}[h]
+        \centerline{\includegraphics[scale=0.4]{figuras/caso9.png}}
+        \caption[Puerta S]{Transformación de fase relativa en el ecuador. Fuente: elaboración propia}
+        \label{fig:caso9}
+    \end{figure}
+
+    \item \textbf{Caso 10: Inversión de Fase (Puerta Z).} Efecto sobre la superposición. En la Figura \ref{fig:caso10} se aprecia el cambio de posición del vector de X+ a X-, evidenciando el papel de la fase relativa.
+    \begin{figure}[h]
+        \centerline{\includegraphics[scale=0.4]{figuras/caso10.png}}
+        \caption[Inversión de fase Z]{Efecto del operador Z sobre un estado en superposición. Fuente: elaboración propia}
+        \label{fig:caso10}
+    \end{figure}
+
+    \item \textbf{Caso 11: Fase Global en $|1\rangle$ (Puerta T).} Validación de invarianza en el estado excitado. La Figura \ref{fig:caso11} confirma que la fase aplicada sobre el polo sur no produce rotación visible, reforzando la distinción entre fase global y relativa tratada matemáticamente \citep{sakurai2017}.
+    \begin{figure}[h]
+        \centerline{\includegraphics[scale=0.4]{figuras/caso11.png}}
+        \caption[Fase global en el polo sur]{Estado $|1\rangle$ tras la aplicación de la puerta T. Fuente: elaboración propia}
+        \label{fig:caso11}
+    \end{figure}
+
+    \item \textbf{Caso 12: Hadamard en ángulo intermedio.} Test de robustez geométrica. La Figura \ref{fig:caso12} muestra el efecto del operador sobre un estado con inclinación de $\theta=135^\circ$ y $\phi=90^\circ$.
+    \begin{figure}[h]
+        \centerline{\includegraphics[scale=0.4]{figuras/caso12.png}}
+        \caption[Hadamard generalizada]{Rotación compleja sobre un estado en el hemisferio sur. Fuente: elaboración propia}
+        \label{fig:caso12}
+    \end{figure}
+
+    \item \textbf{Caso 13: Puerta V sobre el eje Y.} Interacción de rotaciones. La Figura \ref{fig:caso13} presenta la aplicación de una rotación en el eje X sobre un vector situado previamente en el eje Y.
+    \begin{figure}[h]
+        \centerline{\includegraphics[scale=0.4]{figuras/caso13.png}}
+        \caption[Puerta V sobre eje Y]{Interacción de rotaciones ortogonales. Fuente: elaboración propia}
+        \label{fig:caso13}
+    \end{figure}
+\end{itemize}
 
 \chapter{Conclusiones}
 
 Tras el desarrollo e implementación del simulador de la Esfera de Bloch, se han alcanzado las siguientes conclusiones basadas en los objetivos planteados:
 
 \begin{itemize}
-    \item \textbf{Comprensión del estado cuántico:} El proceso de codificación manual del mapeo de amplitudes complejas a coordenadas reales ha permitido consolidar el entendimiento de la superposición y la fase. Se ha comprobado que la fase global no altera la posición del vector, mientras que la fase relativa determina su ubicación en el ecuador de la esfera.
+    \item \textbf{Comprensión del estado cuántico:} El proceso de codificación del mapeo de amplitudes complejas a coordenadas reales ha permitido consolidar el entendimiento de la superposición y la fase. Se ha comprobado que la fase global no altera la posición del vector, mientras que la fase relativa determina su ubicación en el ecuador de la esfera.
 
     \item \textbf{Eficacia de la visualización geométrica:} La representación tridimensional mediante Matplotlib ha demostrado ser una herramienta indispensable para desmitificar el carácter abstracto de los operadores unitarios. Observar las rotaciones físicas ayuda a asimilar cómo las puertas cuánticas manipulan la información sin necesidad de recurrir únicamente al álgebra matricial.
 
@@ -138,16 +238,33 @@ Tras el desarrollo e implementación del simulador de la Esfera de Bloch, se han
 En conclusión, este Trabajo ha servido para profundizar en la comprensión de los cúbits de manera intuitiva a través de un desarrollo que permite visualizar geométricamente sus distintos estados y cómo las puertas lógicas interactúan con ellos.
 
 
-\begin{thebibliography}{99}
-\bibitem[Lamport(1994)]{lamport1994} Lamport, L. (1994) \emph{\LaTeX: a document preparation system}, Addison
-Wesley, Massachusetts, 2nd ed.
-\bibitem[Ackerman(2017)]{ackerman2017} Ackerman, E. (2017) Why the English Premier League Should Have Playoffs.  McGraw Hill. London. 
-\bibitem[Lund(2017)]{lund2017} Lund, A. P. and Bremner, Michael J. and Ralph, T. C. (2017) Quantum sampling problems, BosonSampling and quantum supremacy, npj Quantum Information 3: 15
+\begin{thebibliography}{}
+
+\bibitem[Bloch(1946)]{bloch1946} 
+Bloch, F. (1946). Nuclear Induction. \emph{Physical Review}, 70(7-8), 460-474.
+
+\bibitem[Dirac(1981)]{dirac1981} 
+Dirac, P. A. M. (1981). \emph{The Principles of Quantum Mechanics} (4th ed.). Oxford University Press. (Obra original publicada en 1930).
+
+\bibitem[Hunter(2007)]{hunter2007} 
+Hunter, J. D. (2007). Matplotlib: A 2D graphics environment. \emph{Computing in Science \& Engineering}, 9(3), 90-95.
+
+\bibitem[Nielsen \& Chuang(2010)]{nielsen2010} 
+Nielsen, M. A., \& Chuang, I. L. (2010). \emph{Quantum Computation and Quantum Information}. Cambridge University Press.
+
+\bibitem[Qiskit contributors(2023)]{qiskit2023} 
+Qiskit contributors. (2023). \emph{Qiskit: An Open-source Framework for Quantum Computing}. \url{https://qiskit.org/}
+
+\bibitem[Wootters \& Zurek(1982)]{wootters1982} 
+Wootters, W. K., \& Zurek, W. H. (1982). A single quantum cannot be cloned. \emph{Nature}, 299, 802-803. (Para fundamentar la manipulación de estados unitarios).
+
+\bibitem[Pauli(1927)]{pauli1927} 
+Pauli, W. (1927). Zur Quantenmechanik des magnetischen Elektrons. \emph{Zeitschrift für Physik}, 43(9-10), 601-623.
+
+\bibitem[Sakurai \& Napolitano(2017)]{sakurai2017} 
+Sakurai, J. J., \& Napolitano, J. (2017). \emph{Modern Quantum Mechanics} (2nd ed.). Cambridge University Press.
+
 \end{thebibliography}
-
-\vspace{2cm}
-Aún a riesgo de ser redundante, repito aquí que para consultar detenidamente la formas de referenciar, debéis seguir el formato APA del siguiente documento: \url{https://bibliografiaycitas.unir.net/documentos/APA_7ed_UNIR.pdf}
-
 %\bibliographystyle{plain} 
 %\bibliography{bibliografia}
 

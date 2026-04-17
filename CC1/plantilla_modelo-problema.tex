@@ -1,0 +1,152 @@
+\documentclass[11pt,a4paper,spanish]{book}
+\usepackage{estilo_unir-1}
+\hypersetup{
+	colorlinks   = true, %Colours links instead of ugly boxes
+	urlcolor     = blue, %Colour for external hyperlinks
+	linkcolor    = black, %Colour of internal links
+	citecolor   = red %Colour of citations
+}
+\usepackage[nottoc]{tocbibind}
+
+%---------------------------
+%título de la asignatura, trabajo y autor
+%---------------------------
+\subject{Nombre de la asignatura}
+\title{Escribir el título del documento}
+\author{Nombre y Apellidos de los autores}
+\profesor{Nombre del profesor}
+\date{introducir fecha}
+
+%---------------------------
+%marges
+%---------------------------
+%\usepackage[margin=1.9cm]{geometry}
+%---------------------------
+%---------------------------
+%---------------------------
+%---------------------------
+\begin{document}
+\renewcommand{\listfigurename}{Índice de figuras}
+\renewcommand{\listtablename}{Índice de tablas}
+\renewcommand{\contentsname}{Índice de contenidos}
+\renewcommand{\figurename}{Figura}
+\renewcommand{\tablename}{Tabla} 
+
+\maketitle
+\frontmatter
+\tableofcontents
+\listoffigures
+Fijaos que SOLO aparece el título de cada figura, no aparece toda la leyenda ni la fuente. \\
+(QUITAR ESTA PÁGINA SI NO HAY FIGURAS) 
+\listoftables
+Fijaos que SOLO aparece el título de cada tabla, no aparece toda la leyenda ni la fuente. \\
+(QUITAR ESTA PÁGINA SI NO HAY TABLAS)
+
+\chapter{Resumen}
+Este Trabajo presenta una simulación interactiva que visualiza estados cuánticos en la Esfera de Bloch. Utilizando la librería Qiskit para el motor de cálculo y Matplotlib para el renderizado gráfico, se ha construido una herramienta modular que representa la evolución de un cúbit ante diversas puertas lógicas. El Trabajo se centra en el mapeo de vectores de estado complejos a coordenadas cartesianas reales, permitiendo observar fenómenos de superposición y fase de manera intuitiva. Los resultados visualizan el comportamiento de operadores unitarios fundamentales, tales como la puerta de Hadamard y las puertas de Pauli.
+\vspace{0.5cm}
+{\bf Palabras clave:} computación cuántica, esfera de bloch, qiskit, cúbit, visualización de datos, mecánica cuántica.
+
+\chapter{Abstract}
+This Work presents an interactive simulation that visualizes quantum states on the Bloch Sphere. By utilizing the Qiskit library for the computational engine and Matplotlib for graphical rendering, a modular tool has been developed to represent the evolution of a qubit under various logic gates. This Work focuses on the mapping of complex state vectors to real Cartesian coordinates, allowing the observation of superposition and phase phenomena in an intuitive manner. The results visualize the behavior of fundamental unitary operators, such as the Hadamard gate and the Pauli gates.
+\vspace{0.5cm}
+{\bf Keywords:} quantum computing, bloch sphere, qiskit, qubit, data visualization, quantum mechanics.
+
+\mainmatter
+
+\chapter{Introducción}
+
+El presente Trabajo aborda la simulación cúbits usando la representación geométrica de la Esfera de Bloch. La herramienta integra el cálculo de estados cuánticos mediante la librería Qiskit y una interfaz de visualización 3D programada en Matplotlib.
+
+\section{Motivación y justificación}
+El Trabajo se justifica como un ejercicio práctico para entender la manipulación de estados cuánticos y su representación geométrica, permitiendo asimilar conceptos como la superposición y la fase a través de la implementación directa del código.
+
+\section{Planteamiento del Trabajo}
+La implementación se basa en un diseño modular que separa la lógica de computación cuántica del renderizado gráfico. Se implementan funciones específicas para la preparación del estado, la aplicación de operadores unitarios mediante Qiskit y la proyección geométrica manual en un entorno tridimensional utilizando Matplotlib.
+
+\section{Estructura del Trabajo}
+La memoria se organiza en los siguientes apartados:
+\begin{itemize}
+    \item \textbf{Objetivos:} Detalle de las metas técnicas y específicas de la simulación.
+    \item \textbf{Enunciado del problema:} Descripción de los requisitos y operaciones a implementar.
+    \item \textbf{Desarrollo del Trabajo:} Explicación de la arquitectura del código, la conexión con Qiskit y el motor de visualización.
+    \item \textbf{Resultados:} Ejecución y validación de la herramienta mediante casos de prueba estándar.
+    \item \textbf{Conclusiones:} Resumen de los logros alcanzados y la funcionalidad del sistema.
+\end{itemize}
+\chapter{Objetivos}
+
+\section{Objetivos generales}
+El objetivo principal de este Trabajo es comprender las propiedades fundamentales del cúbit y su comportamiento dinámico mediante el desarrollo de una herramienta de simulación y visualización geométrica.
+
+\section{Objetivos específicos}
+\begin{itemize}
+    \item Visualizar el impacto de las puertas cuánticas en la manipulación del vector de estado.
+    \item Implementar un motor gráfico manual para proyectar estas propiedades físicas en la Esfera de Bloch.
+    \item Validar el funcionamiento de los operadores unitarios mediante la observación de rotaciones en el espacio tridimensional.
+\end{itemize}
+
+\chapter{Enunciado del problema}
+
+El problema central de este Trabajo consiste en la implementación de un sistema capaz de traducir el estado de un cúbit a una representación geométrica. Para ello, se deben resolver las siguientes cuestiones técnicas:
+
+\begin{itemize}
+    \item \textbf{Cálculo de la evolución cuántica:} Se requiere aplicar puertas lógicas sobre el vector de estado inicial, devolviendo el estado final resultante tras la operación.
+    \item \textbf{Mapeo de coordenadas:} Transformar las amplitudes de probabilidad complejas $\alpha$ y $\beta$ del vector de estado en coordenadas reales $(x, y, z)$ dentro de un espacio euclídeo.
+    \item \textbf{Renderizado manual:} Creación de un entorno gráfico tridimensional donde se visualice tanto la estructura de la Esfera de Bloch como el vector de estado y su orientación.
+    \item \textbf{Representación de estados:} Con el fin de parametrizar el espacio de estados completo, el sistema debe permitir la entrada de parámetros $(\theta, \phi)$ para definir cualquier estado en la superficie de la esfera, gestionando correctamente la superposición y la fase.
+\end{itemize}
+
+En definitiva, se busca demostrar que mediante el uso de Qiskit y Matplotlib es posible construir un pipeline completo que ilustre la manipulación física de la información cuántica.
+
+\chapter{Desarrollo del Trabajo}
+
+El desarrollo del sistema se ha estructurado de forma modular para separar el procesamiento de datos cuánticos de la representación gráfica. A continuación, se detallan los componentes principales del diseño.
+
+\section{Conexión con Qiskit y lógica cuántica}
+El núcleo computacional utiliza la librería Qiskit para gestionar el estado del sistema. El proceso se divide en tres etapas:
+\begin{itemize}
+    \item \textbf{Inicialización:} Se define el estado inicial del cúbit a partir de los ángulos $\theta$ y $\phi$ proporcionados, calculando las amplitudes de probabilidad complejas $\alpha$ y $\beta$.
+    \item \textbf{Aplicación de operadores:} Se instancia un circuito cuántico donde se cargan las puertas lógicas seleccionadas (X, Y, Z, H, S, T, V o Sdg).
+    \item \textbf{Extracción del vector de estado:} Mediante el simulador de vectores de estado, se obtiene la representación matemática final tras la evolución cuántica.
+\end{itemize}
+
+\section{Mapeo de coordenadas y proyección geométrica}
+Para visualizar el estado en un entorno tridimensional, se realiza una conversión de las amplitudes complejas a coordenadas cartesianas reales $(x, y, z)$. Este mapeo se fundamenta en los valores esperados de los operadores de Pauli, asegurando que el vector resultante tenga siempre norma unidad y se sitúe sobre la superficie de la esfera.
+
+\section{Motor de visualización manual}
+El renderizado gráfico se ha implementado desde cero utilizando Matplotlib, sin recurrir a funciones de visualización automáticas. Los elementos clave del diseño son:
+\begin{itemize}
+    \item \textbf{Superficie de Bloch:} Generada mediante ecuaciones paramétricas esféricas para crear una malla (*wireframe*) traslúcida.
+    \item \textbf{Ejes de referencia:} Representación de los ejes ortogonales con etiquetas en notación de Dirac ($|0\rangle$, $|1\rangle$) para facilitar la interpretación física.
+    \item \textbf{Vector de estado:} Visualización dinámica del estado final mediante un vector direccional y un marcador de posición en la punta del mismo.
+\end{itemize}
+
+\section{Interfaz y orquestación}
+Finalmente, una función de orquestación central vincula ambos módulos, permitiendo que cualquier cambio en los parámetros de entrada se traduzca de forma inmediata en una actualización de la Esfera de Bloch, garantizando así una experiencia de simulación fluida.
+
+\chapter{Conclusiones}
+
+Las conclusiones es otra parte muy IMPORTANTE de la memoria. Deben ser muy claras. Si es posible se pueden itemizar o, mejor, poner un párrafo por idea con un pequeño título ilustrativo. En cualquier caso debe incluir los logros conseguidos y la importancia de los mismos, siempre desde un punto de vista crítico y resaltando las partes importantes.
+
+\vspace{1cm}
+{\bf{SOBRE LA EXTENSIÓN DEL TRABAJO}}
+\newline
+
+El Trabajo debe tener una extensión de $\sim$10 páginas. Los trabajos que se alejen de forma significativa de esta condición NO SE ACEPTARÁN. Las páginas que cuentan son las que van de la Introducción hasta estas Conclusiones. NO CUENTAN aquellas dedicadas a apéndices o a la Bibliografía.
+
+
+\begin{thebibliography}{99}
+\bibitem[Lamport(1994)]{lamport1994} Lamport, L. (1994) \emph{\LaTeX: a document preparation system}, Addison
+Wesley, Massachusetts, 2nd ed.
+\bibitem[Ackerman(2017)]{ackerman2017} Ackerman, E. (2017) Why the English Premier League Should Have Playoffs.  McGraw Hill. London. 
+\bibitem[Lund(2017)]{lund2017} Lund, A. P. and Bremner, Michael J. and Ralph, T. C. (2017) Quantum sampling problems, BosonSampling and quantum supremacy, npj Quantum Information 3: 15
+\end{thebibliography}
+
+\vspace{2cm}
+Aún a riesgo de ser redundante, repito aquí que para consultar detenidamente la formas de referenciar, debéis seguir el formato APA del siguiente documento: \url{https://bibliografiaycitas.unir.net/documentos/APA_7ed_UNIR.pdf}
+
+%\bibliographystyle{plain} 
+%\bibliography{bibliografia}
+
+\end{document}
+

@@ -11,11 +11,11 @@
 %---------------------------
 %título de la asignatura, trabajo y autor
 %---------------------------
-\subject{Nombre de la asignatura}
-\title{Escribir el título del documento}
-\author{Nombre y Apellidos de los autores}
-\profesor{Nombre del profesor}
-\date{introducir fecha}
+\subject{Matemáticas de la Información}
+\title{Revisión de la entropía, capacidad de canal y modulación en la obra de Shannon}
+\author{Enrique Prada Vázquez}
+\profesor{Noelia Viles Cuadros}
+\date{20-04-2026}
 
 %---------------------------
 %marges
@@ -35,119 +35,111 @@
 \maketitle
 \frontmatter
 \tableofcontents
-\listoffigures
-Fijaos que SOLO aparece el título de cada figura, no aparece toda la leyenda ni la fuente. \\
-(QUITAR ESTA PÁGINA SI NO HAY FIGURAS) 
-\listoftables
-Fijaos que SOLO aparece el título de cada tabla, no aparece toda la leyenda ni la fuente. \\
-(QUITAR ESTA PÁGINA SI NO HAY TABLAS)
 
 \chapter{Resumen}
-En esta Sección se introducirá un breve resumen en español del trabajo realizado (extensión máxima: esta página). 
-\newline
-
-Este resumen debe incluir el propósito de la investigación, la metodología, los resultados y las conclusiones (obviamente, todo muy resumido, pero así se sabe de un vistazo lo que se va uno a encontrar a continuación). 
-\newline
-
-En general, los conceptos deben estar claramente explicados (de forma resumida, repito) para que el propio resumen sea autoconsistente.
+Este Trabajo recoge un comentario sobre algunos puntos del artículo <<A Mathematical Theory of Communication>> de Claude Shannon, siguiendo las pautas de un análisis guiado. El propósito del trabajo es explicar conceptos seleccionados del texto original, comenzando por la relación entre el ancho de banda y el ruido en sistemas de modulación y la justificación del uso de funciones logarítmicas. Se analiza también la representación gráfica de la entropía en fuentes binarias para entender la incertidumbre y el límite teórico de transmisión que establece. Finalmente, se revisa cómo la redundancia permite mantener la comunicación en canales con ruido sin perder velocidad de transmisión útil. A través de este ejercicio, se concluye que estos principios básicos de Shannon permiten entender la información como una magnitud medible sujeta a límites físicos definidos por la capacidad del canal.
 
 \vspace{0.5cm}
-{\bf Palabras clave:} se deben incluir de 4 a 6 conceptos clave en español, significativos para el contenido del Trabajo (pueden ser conceptos formados por más de una palabra, pero DEBEN ser significativos). Por favor no incluir siglas, y todas las palabras en minúsculas
+{\bf Palabras clave:} teoría de la comunicación, entropía, capacidad del canal, redundancia, incertidumbre, transmisión de datos.
 
 \chapter{Abstract}
-This Section should include the english version of the previous Resumen.
+This report provides a commentary on some points from Claude Shannon's paper <<A Mathematical Theory of Communication>>, following the guidelines of a guided analysis. The purpose of the work is to explain selected concepts from the original text, starting with the relationship between bandwidth and noise in modulation systems and the justification for the use of logarithmic functions. It also analyzes the graphical representation of entropy in binary sources to understand uncertainty and the resulting theoretical transmission limits. Finally, it reviews how redundancy allows communication to be maintained in noisy channels without losing useful transmission speed. Through this exercise, it is concluded that these basic principles of Shannon's work allow for the understanding of information as a measurable quantity subject to physical limits defined by channel capacity.
 
 \vspace{0.5cm}
-{\bf Keywords:} please include between 4 to 6 key concepts in english, relevant to the content of this report (each concept might include multiple words). Please, do not include acronims and all words should be lower letters.
-
+{\bf Keywords:} communication theory, entropy, channel capacity, redundancy, uncertainty, data transmission.
 \mainmatter
 
 \chapter{Introducción}
 
-En la Introducción se debe resumir de forma esquemática pero suficientemente clara lo esencial de cada una de las partes del trabajo y, sobre todo, aprovechar para explicar conceptos que puedan ser de utilidad después. 
-\newline
+La comunicación electrónica moderna se fundamenta en un marco teórico consolidado a mediados del siglo XX, partiendo de los estudios sobre la velocidad de transmisión de \citet{nyquist1928} y la medición de la información de \citet{hartley1928}. Estas bases permitieron que \citet{shannon1948} transformara el diseño de sistemas de una disciplina empírica a una ciencia matemática exacta.
 
-La lectura de esta parte debe contextualizar perfectamente todo el Trabajo y debe estar PLAGADA DE REFERENCIAS (más adelante se describe cómo hacerlo).
-\newline
+\section{Motivación y justificación}
 
-Es una parte muy importante de la memoria. Las ideas principales a transmitir son la identificación del problema a tratar, la justificación de su importancia, esbozo de los objetivos generales a grandes rasgos y un adelanto de la contribución que esperas hacer.
+La necesidad de una teoría unificada surgió con la aparición de sistemas de modulación avanzados. El desarrollo de la modulación por impulsos codificados o PCM \citep{reeves1942} y la modulación por posición de pulsos o PPM \citep{deloraine1941} planteó un desafío técnico: cómo intercambiar de manera eficiente el ancho de banda por la relación señal-ruido. 
 
-A modo de guía, la Introducción debe contener estos tres apartados:
+Este problema es el núcleo del Trabajo, ya que, antes de la propuesta de \citet{shannon1948}, no existía una métrica universal para cuantificar la información. La importancia de este tema radica en que la capacidad de cualquier canal de comunicación actual, desde la fibra óptica hasta las redes inalámbricas, sigue estando limitada por los principios de entropía y capacidad definidos en aquel periodo fundacional.
+
+\section{Planteamiento del Trabajo}
+
+El objetivo principal de este Trabajo es realizar una revisión guiada de los conceptos fundamentales presentados en el artículo <<A Mathematical Theory of Communication>>. Se pretende desglosar la lógica detrás de la medición logarítmica de la información y la definición matemática de la entropía. 
+
+A través de la revisión de secciones específicas del texto de \citet{shannon1948}, el Trabajo busca clarificar cómo la incertidumbre de una fuente puede ser medida y de qué manera la redundancia actúa como un mecanismo de protección en canales ruidosos.
+
+\section{Estructura del Trabajo}
+
+El contenido de esta memoria se organiza de la siguiente manera:
+
 \begin{itemize}
-\item Motivación / justificación del tema a tratar
-\item Planteamiento del Trabajo (atención a la mayúscula de "Trabajo": cuando nos referimos a nuestro documento, ese Trabajo va en mayúscula)
-\item Estructura del Trabajo
+    \item En los capítulos de \textbf{Objetivos} y \textbf{Enunciado}, se definen las metas de la revisión y se esquematizan las preguntas clave del artículo original.
+    \item El capítulo de \textbf{Desarrollo} se divide en tres bloques: el primero dedicado a la modulación y la medición logarítmica; el segundo al análisis de la entropía en canales sin ruido; y el tercero al estudio de la redundancia en canales ruidosos.
+    \item Finalmente, en las \textbf{Conclusiones} se resumen los aprendizajes obtenidos y se valora la vigencia de los límites establecidos por Shannon.
 \end{itemize}
-
-\vspace{1cm}
-{\bf{ATENCIÓN, CÓMO REFERENCIAR.}}
-
-A continuación vamos a ver qué son, qué no son y para qué  sirven las referencias bibliográficas:
-\begin{itemize}
-	\item las referencias NO están para rellenar
-	\item las referencias SÍ son un TRIBUTO a las personas que hicieron en primer lugar una investigación o aportaron una idea
-	\item la referencias citan trabajo que acompaña una idea o un concepto, NO se usa UNA referencia para todo un párrafo que aglutina diferentes conceptos
-	\item deben citarse LOS TRABAJOS ORIGINALES DE LOS AUTORES, y no un libro de texto donde he visto que hablan de algo
-	\item os libros de texto se pueden referencial excepcionalmente, porque el libro es sobresaliente y conocido en el campo y/o porque quiero apoyarme en una explicación conocida para un determinado concepto o cuestión, pero no como origen del concepto del que se habla
-\end{itemize}
-
-\vspace{1cm}
-{\bf{VEAMOS EJEMPLOS DE CITAS.}}
-
-Vamos a ver los dos tipos de citas que vamos a utilizar normalmente en los trabajos y actividades:
-\begin{itemize}
-	\item CITA INDIRECTA: estamos hablando de algo e introcimos la referencia sobre la que apoyamos esa idea. Por ejemplo, hablado de los procesadores de texto, LATEX  \citep{lamport1994} es tipo de editor con el que se consiguen resultados de gran calidad
-	\item CITA DIRECTA: nos referimos directamente a un trabajo y lo citamos. Por ejemplo, según \cite{ackerman2017}, la liga de fútbol inglesa debe tener torneos de desempate
-\end{itemize}
-\newline
-
-Según el párrafo anterior con la cita indirecta aparecerá entre paréntesis el apellido y el año, separados por una coma; en el caso de varios autores, podrán aparecer hasta tres apellidos y, cuando son más, aparecerá el primero seguido de "et al." (y después el año separado con una coma). Con la cita directa solo va entre paréntesis el año, pero no los autores. Podéis mirar el apartado de Bibliografía para ver cómo han quedado estas citas.
-\newline
-
-En esta Actividad, cuando vamos a resolver problemas, PUEDE utilizarse libros de texto como referencias de procedimientos matemáticos que vamos a utilizar, pero sin olvidar el párrafo anterior. Es decir, sería conveniente citar ARTÍCULOS ORIGINALES de donde surgieron esos desarrollos.
-\newline
-
-Para consultar detenidamente la formas de referenciar, debéis seguir el formato APA del siguiente documento: \url{https://bibliografiaycitas.unir.net/documentos/APA_7ed_UNIR.pdf}
-
 
 \chapter{Objetivos}
 
-Esquematizar claramente los objetivos del trabajo, las ideas que queremos demostrar. Podemos tener varios tipos de objetivos. Por ejemplo, podemos tener un número de objetivos generales y otro de objetivos específicos. Deben ordenarse claramente.
+El presente capítulo detalla las metas que se pretenden alcanzar mediante el desarrollo de este Trabajo, estructuradas según su alcance.
 
 \section{Objetivos generales}
-Aquí vamos a exponer los objetivos generales. Es una forma de dar perspectiva al Trabajo. Debemos ser ambiciosos en esta exposición
+
+El objetivo principal de este Trabajo es familiarizarse con los conceptos fundamentales de la teoría de la información a través de la fuente original. Para ello, se plantean los siguientes objetivos generales:
+
+\begin{itemize}
+    \item \textbf{Contextualizar el origen de la teoría:} Entender los problemas técnicos que motivaron a \citet{shannon1948} a desarrollar un marco matemático para la comunicación.
+    \item \textbf{Interpretar la información como magnitud física:} Asimilar que la información se puede medir y que dicha medida está sujeta a límites impuestos por la naturaleza del canal.
+\end{itemize}
 
 \section{Objetivos específicos}
-En esta Sección vamos a dar detalles concretos de lo que queremos conseguir. Por tanto, estos objetivos van al detalle.
 
+Para cumplir con la revisión guiada del artículo, se establecen los siguientes hitos concretos:
+
+\begin{itemize}
+    \item Explicar por qué la \textbf{función logarítmica} es la más adecuada para medir la información desde un punto de vista técnico y matemático.
+    \item Comprender el concepto de \textbf{entropía} a través del análisis de una fuente binaria y su representación gráfica
+    \item Identificar el límite máximo de transmisión en \textbf{canales ideales} según el Teorema 9 del autor.
+    \item Describir cómo la \textbf{redundancia} y la codificación permiten combatir el ruido en un canal sin sacrificar la velocidad de transmisión.
+\end{itemize}
 
 \chapter{Enunciado del problema}
 
-Esquematizar claramente los enunciados de los problemas, cuestiones o las ideas que queremos demostrar. Podemos extender el enunciado de la Actividad para mejorarlo o para dejar más claro aquello que vamos a solucionar.
+El presente Trabajo aborda los siguientes puntos de análisis basados en la lectura del artículo de \citet{shannon1948}:
+
+\begin{itemize}
+    \item \textbf{Estudio de la modulación:} Definición de los métodos PCM y PPM, y explicación de por qué permiten el intercambio entre ancho de banda y la relación señal/ruido.
+    \item \textbf{Justificación de la medida logarítmica:} Valoración de los tres motivos expuestos por Shannon para utilizar logaritmos al cuantificar la información.
+    \item \textbf{Análisis de la entropía binaria:} Interpretación de la relación entre probabilidad e incertidumbre.
+    \item \textbf{Capacidad en canales sin ruido:} Descripción de la relación matemática y conceptual que existe entre la entropía de la fuente y la capacidad del canal.
+    \item \textbf{Transmisión con ruido y redundancia:} Análisis del uso de la redundancia para reducir errores y su impacto en la velocidad de transmisión frente a la capacidad máxima del canal.
+\end{itemize}
 
 \chapter{Desarrollo del Trabajo}
 
 \section{Modulación y Medición Logarítmica}
 
-El artículo de Shannon señala que el desarrollo de métodos como PCM (\textit{Pulse Code Modulation}) y PPM (\textit{Pulse Position Modulation}) ha intensificado la necesidad de una teoría general de la comunicación. El autor menciona que estos sistemas permiten intercambiar ancho de banda por relación señal/ruido, aunque no detalla en esta sección el mecanismo físico de dicho intercambio. El PCM implica la digitalización de señales mediante muestreo \cite{reeves1942}, mientras que el PPM utiliza la posición temporal de los pulsos \cite{deloraine1941}. La mención de Shannon a este "intercambio" sugiere que la ingeniería de la época ya manipulaba estas variables para combatir el ruido, pero carecía de una estructura matemática que unificara estos fenómenos, tarea que el autor se propone resolver extendiendo los trabajos previos de Nyquist y Hartley.
+El artículo de \cite{shannon1948} señala que el desarrollo de métodos como PCM (\textit{Pulse Code Modulation}) y PPM (\textit{Pulse Position Modulation}) ha intensificado la necesidad de una teoría general de la comunicación. El autor menciona que estos sistemas permiten intercambiar ancho de banda por relación señal/ruido, aunque no detalla en esta sección el mecanismo físico de dicho intercambio. El PCM implica la digitalización de señales mediante muestreo \cite{reeves1942}, mientras que el PPM utiliza la posición temporal de los pulsos \cite{deloraine1941}. La mención de Shannon a este <<intercambio>> sugiere que la ingeniería de la época ya manipulaba estas variables para combatir el ruido, pero carecía de una estructura matemática que unificara estos fenómenos, tarea que el autor se propone resolver extendiendo los trabajos previos de Nyquist y Hartley.
 
 En cuanto a la cuantificación de la información, Shannon justifica el uso de una función logarítmica basándose en tres argumentos fundamentales. Primero, destaca su utilidad práctica, ya que los parámetros de ingeniería suelen variar de forma lineal con el logaritmo de las posibilidades. Segundo, argumenta que es una medida más cercana a la intuición, pues se percibe la capacidad de almacenamiento de forma aditiva y no multiplicativa. Finalmente, señala su idoneidad matemática, dado que simplifica operaciones de cálculo y análisis estadístico. Se considera que estos motivos son plenamente válidos: el uso del logaritmo no solo facilita la manipulación técnica de los datos al introducir unidades como el \textit{bit}, sino que establece un marco proporcional donde la complejidad del sistema se traduce en una métrica manejable y coherente con la realidad física de los dispositivos de comunicación.
 
 \section{La Medida de la Incertidumbre y el Teorema Fundamental de Codificación}
 
-En el apartado sexto, Shannon introduce el Teorema 2 para definir la entropía $H$ como la medida única de incertidumbre. Al analizar la Figura 7, que representa la función $H = -(p \log p + q \log q)$, se extraen conclusiones fundamentales sobre la naturaleza de la información. En el caso $p=0.5$, la entropía alcanza su valor máximo de $1$ bit; esto indica que, ante la equiprobabilidad de dos eventos, la incertidumbre es total y la elección es máxima. Por el contrario, en los casos extremos $p=0$ y $p=1$, la entropía desaparece ($H=0$). Esto se debe a que el resultado es predecible: un evento es imposible o seguro, respectivamente. En consecuencia, se concluye que la entropía no cuantifica el mensaje en sí, sino la "sorpresa" o libertad de elección: la información solo se produce cuando existe incertidumbre previa sobre el resultado.
+En el apartado sexto, \cite{shannon1948} introduce el Teorema 2 para definir la entropía $H$ como la medida única de incertidumbre. Al analizar la Figura 7, que representa la función $H = -(p \log p + q \log q)$, se extraen conclusiones fundamentales sobre la naturaleza de la información. En el caso $p=0.5$, la entropía alcanza su valor máximo de $1$ bit; esto indica que, ante la equiprobabilidad de dos eventos, la incertidumbre es total y la elección es máxima. Por el contrario, en los casos extremos $p=0$ y $p=1$, la entropía desaparece ($H=0$). Esto se debe a que el resultado es predecible: un evento es imposible o seguro, respectivamente. En consecuencia, se concluye que la entropía no cuantifica el mensaje en sí, sino la <<sorpresa>> o libertad de elección: la información solo se produce cuando existe incertidumbre previa sobre el resultado.
 
 El Teorema 9 de Shannon establece la relación definitiva entre la entropía de la fuente ($H$) y la capacidad del canal ($C$). La conclusión principal es que es posible transmitir información a una tasa promedio de $C/H$ símbolos por segundo, pero es físicamente imposible superar dicho límite. Este teorema demuestra que la entropía no es solo un concepto abstracto, sino que determina el límite práctico de compresión de datos: mediante un código eficiente, el mensaje puede compactarse hasta que cada símbolo transporte, en promedio, una cantidad de información cercana a su entropía. Se deduce que la capacidad del canal actúa como un cuello de botella físico; si la fuente genera información a un ritmo superior a lo que el canal puede procesar ($H > C$), la transmisión íntegra se vuelve imposible. Así, el éxito de la comunicación depende de equilibrar la riqueza estadística del mensaje con los recursos del medio.
 
 \section{El Canal Discreto con Ruido}
 
-En el apartado 13, Shannon analiza cómo la redundancia permite combatir el ruido en un canal. Inicialmente, se podría deducir que repetir el mensaje reduciría la velocidad de transmisión hacia cero a medida que buscamos un error inexistente. Sin embargo, el Teorema 11 demuestra que es posible transmitir información a una tasa $R < C$ con una probabilidad de error arbitrariamente pequeña mediante una codificación adecuada. El envío redundante, por tanto, no implica necesariamente una caída en la velocidad real de comunicación, sino que es la herramienta para alcanzar la capacidad $C$. Como conclusión, se extrae que la capacidad del canal con ruido no es un límite de velocidad "sucia", sino el límite máximo de información "limpia" que el medio puede sostener; cualquier intento de transmitir por encima de $C$ resultará inevitablemente en una pérdida de información o equívoco proporcional al exceso.
+En el apartado 13, \cite{shannon1948} analiza cómo la redundancia permite combatir el ruido en un canal. Inicialmente, se podría deducir que repetir el mensaje reduciría la velocidad de transmisión hacia cero a medida que buscamos un error inexistente. Sin embargo, el Teorema 11 demuestra que es posible transmitir información a una tasa $R < C$ con una probabilidad de error arbitrariamente pequeña mediante una codificación adecuada. El envío redundante, por tanto, no implica necesariamente una caída en la velocidad real de comunicación, sino que es la herramienta para alcanzar la capacidad $C$. Como conclusión, se extrae que la capacidad del canal con ruido no es un límite de velocidad <<sucia>>, sino el límite máximo de información <<limpia>> que el medio puede sostener; cualquier intento de transmitir por encima de $C$ resultará inevitablemente en una pérdida de información o equívoco proporcional al exceso.
 
 \chapter{Conclusiones}
 
-Las conclusiones es otra parte muy IMPORTANTE de la memoria. Deben ser muy claras. Si es posible se pueden itemizar o, mejor, poner un párrafo por idea con un pequeño título ilustrativo. En cualquier caso debe incluir los logros conseguidos y la importancia de los mismos, siempre desde un punto de vista crítico y resaltando las partes importantes.
+Tras completar la revisión de los puntos seleccionados del artículo de Shannon, se han alcanzado las siguientes conclusiones:
 
-\begin{thebibliography}{99}
+\begin{itemize}
+    \item Se ha comprendido el origen de la teoría de la información como una solución a problemas prácticos de la época, específicamente la necesidad de medir la eficiencia en sistemas de modulación como PCM y PPM.
+    \item Se ha verificado que el uso de logaritmos no es una elección arbitraria, sino una herramienta matemática que facilita el manejo de los datos al permitir que las capacidades de los sistemas se sumen de forma lineal.
+    \item El análisis de la fuente binaria ha permitido observar que la información está ligada a la incertidumbre; cuando conocemos el resultado de antemano, la información desaparece, siendo máxima solo cuando existe total libertad de elección.
+    \item Se ha clarificado que el límite de transmisión de un canal no es algo que se pueda superar simplemente aumentando la potencia, sino que viene determinado por la entropía de la fuente y la capacidad física del medio.
+    \item Finalmente, se ha comprendido que la redundancia es la clave para combatir el ruido. Aunque introducir repeticiones o códigos de control pueda parecer que ralentiza la comunicación, es el único método para asegurar que el mensaje llegue sin errores cuando el canal no es ideal.
+\end{itemize}\begin{thebibliography}{99}
 
 \bibitem[Shannon(1948)]{shannon1948} 
 Shannon, C. E. (1948). A Mathematical Theory of Communication. \emph{The Bell System Technical Journal}, 27(3), 379-423; 27(4), 623-656. Reimpreso con correcciones.
@@ -158,30 +150,16 @@ Deloraine, E. M. y Labin, E. (1941). Pulse time modulation. \emph{Electrical Com
 \bibitem[Reeves(1942)]{reeves1942} 
 Reeves, A. H. (1942). \emph{Electric signaling system} (U.S. Patent No. 2,272,070). U.S. Patent and Trademark Office.
 
+\bibitem[Nyquist(1928)]{nyquist1928} 
+Nyquist, H. (1928). Certain topics in telegraph transmission theory. \emph{Transactions of the American Institute of Electrical Engineers}, 47(2), 617-644.
+
+\bibitem[Hartley(1928)]{hartley1928} 
+Hartley, R. V. (1928). Transmission of information. \emph{Bell System Technical Journal}, 7(3), 535-563.
+
 \end{thebibliography}
 
 %\bibliographystyle{plain} 
 %\bibliography{bibliografia}
 
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -1,0 +1,347 @@
+\documentclass[11pt,a4paper,spanish]{book}
+\usepackage{estilo_unir-1}
+\hypersetup{
+	colorlinks   = true, %Colours links instead of ugly boxes
+	urlcolor     = blue, %Colour for external hyperlinks
+	linkcolor    = black, %Colour of internal links
+	citecolor   = red %Colour of citations
+}
+\usepackage[nottoc]{tocbibind}
+
+%---------------------------
+%título de la asignatura, trabajo y autor
+%---------------------------
+\subject{Información Cuántica}
+\title{Comparativa de las teorías de información clásica y cuántica}
+\author{Enrique Prada Vázquez}
+\profesor{Jenaro Gallego Gómez}
+\date{25/04/2026}
+
+%---------------------------
+%marges
+%---------------------------
+%\usepackage[margin=1.9cm]{geometry}
+%---------------------------
+%---------------------------
+%---------------------------
+%---------------------------
+\begin{document}
+\renewcommand{\listfigurename}{Índice de figuras}
+\renewcommand{\listtablename}{Índice de tablas}
+\renewcommand{\contentsname}{Índice de contenidos}
+\renewcommand{\figurename}{Figura}
+\renewcommand{\tablename}{Tabla} 
+
+\maketitle
+\frontmatter
+\tableofcontents
+
+\chapter{Resumen}
+
+Este Trabajo consiste en un estudio comparativo entre los pilares de la Teoría de la Información Clásica y su extensión al dominio cuántico. El objetivo es describir cómo los conceptos fundamentales de comunicación establecidos por Claude Shannon se transforman cuando el soporte físico de la información obedece a las leyes de la mecánica cuántica.
+
+El trabajo se desarrolla mediante una revisión descriptiva de los teoremas de referencia, examinando la transición de la unidad de información binaria (bit) hacia el sistema de dos niveles cuánticos (cúbit). En el desarrollo se contrastan las métricas de incertidumbre, como las entropías de Shannon y Von Neumann, y se exponen los límites de eficiencia en la codificación de fuente y canal a través de las propuestas de Schumacher y Holevo.
+
+La comparativa permite identificar que la diferencia fundamental entre ambos marcos teóricos reside en la naturaleza de las correlaciones y no en una capacidad de almacenamiento superior. El texto concluye señalando que, mientras la teoría cuántica ofrece herramientas nuevas como el entrelazamiento, también introduce limitaciones propias de su naturaleza física, como la imposibilidad de clonación o la sensibilidad al ruido ambiental. En definitiva, este trabajo ofrece una síntesis de las reglas que rigen la información al pasar de un modelo estadístico a uno basado en estados cuánticos.
+
+\vspace{0.5cm}
+{\bf Palabras clave:} teoría de la información, entropía de von neumann, entrelazamiento cuántico, capacidad de canal, fidelidad de estado, compresión de datos
+
+\chapter{Abstract}
+
+This Work consists of a comparative study between the pillars of Classical Information Theory and its extension to the quantum domain. The objective is to describe how the fundamental communication concepts established by Claude Shannon are transformed when the physical carrier of information obeys the laws of quantum mechanics.
+
+The report is developed through a descriptive review of the reference theorems, examining the transition from the binary information unit (bit) to the two-level quantum system (qubit). Throughout the development, uncertainty metrics such as Shannon and Von Neumann entropies are contrasted, and the efficiency limits in source and channel coding are presented through the proposals of Schumacher and Holevo.
+
+The comparison allows for the identification that the fundamental difference between both theoretical frameworks lies in the nature of correlations rather than in a superior storage capacity. The text concludes by noting that, while quantum theory offers new tools such as entanglement, it also introduces limitations inherent to its physical nature, such as the impossibility of cloning or sensitivity to environmental noise. Ultimately, this work offers a synthesis of the rules governing information when moving from a statistical model to one based on quantum states.
+
+\vspace{0.5cm}
+{\bf Keywords:} information theory, von neumann entropy, quantum entanglement, channel capacity, state fidelity, data compression
+\mainmatter
+
+\chapter{Introducción}
+
+La Teoría de la Información, desde su formalización por Claude Shannon en 1948, ha sido el pilar fundamental sobre el que se ha construido la era digital \citep{shannon1948}. Durante décadas, siguiendo el enfoque funcionalista de la comunicación, la información se ha tratado predominantemente como una entidad matemática abstracta y simbólica, cuya manipulación se consideraba independiente de las limitaciones del soporte físico que la sustenta \citep{shannon1948, cherry1952}. Sin embargo, el avance de la computación y la física experimental ha revelado que la información es intrínsecamente física \citep{landauer1991}, y que las leyes que rigen los soportes a escala microscópica alteran radicalmente las reglas del juego en el procesamiento de datos \citep{deutsch1985}.
+
+En este contexto, la Teoría de la Información Cuántica (TICu) emerge no como una alternativa, sino como una generalización de la Teoría de la Información Clásica (TIC) \citep{nielsen2010}. Mientras que la TIC se basa en la manipulación de estados discretos y deterministas bajo una lógica booleana, la TICu aprovecha propiedades fundamentales como la superposición, el entrelazamiento y la interferencia para redefinir los límites de la comunicación, la compresión de datos y la criptografía \citep{bennett1993, schumacher1995}.
+
+\section{Motivación y contexto}
+
+El interés de este Trabajo radica en la necesidad de exponer una comparativa entre la TIC y la TICu. En un escenario donde la miniaturización de los componentes electrónicos se aproxima a los límites atómicos previstos por la Ley de Moore, entender cómo la física cuántica afecta al procesamiento de datos ya no es una cuestión teórica, sino una necesidad tecnológica ineludible \citep{lloyd2000}. 
+
+La principal motivación de este análisis es contrastar cómo los teoremas fundamentales de la comunicación de \citet{shannon1948} encuentran su análogo en el mundo cuántico a través de las contribuciones de figuras como \citet{schumacher1995} o \citet{holevo1973}. Se busca identificar si los beneficios de la computación cuántica residen en una mayor capacidad de almacenamiento o, por el contrario, en una forma cualitativamente distinta de procesar y proteger la información mediante principios como el de no clonación \citep{wootters1982}.
+
+\chapter{Objetivos}
+
+\section{Objetivos generales}
+
+El presente Trabajo tiene como finalidad realizar una comparativa de los principios fundamentales que rigen la Teoría de la Información Clásica (TIC) y la Teoría de la Información Cuántica (TICu)
+
+\section{Objetivos específicos}
+
+Para dar cumplimiento a la finalidad de este Trabajo, se establecen los siguientes objetivos:
+
+\begin{itemize}
+    \item \textbf{Describir la diferencia entre bit y cúbit:} Exponer la transición del estado discreto clásico a la superposición cuántica y mencionar las restricciones del teorema de no clonación.
+    \item \textbf{Contrastar las medidas de incertidumbre:} Presentar una comparativa básica entre la entropía de Shannon y la de Von Neumann en la caracterización de fuentes de información.
+    \item \textbf{Identificar los límites de los teoremas de codificación:} Exponer los principios de compresión de datos mediante la comparativa entre el primer teorema de Shannon y el teorema de Schumacher.
+    \item \textbf{Exponer la capacidad de los canales ruidosos:} Describir el comportamiento de la transmisión en ambos escenarios, contrastando el límite de Shannon con el límite de Holevo.
+    \item \textbf{Relacionar métricas de calidad:} Presentar la correspondencia entre las medidas de error clásicas y los conceptos de fidelidad y distancia de traza.
+\end{itemize}
+
+\chapter{Enunciado del problema}
+
+El problema central de este Trabajo consiste en exponer de forma comparativa cómo la naturaleza del soporte físico (clásico o cuántico) condiciona el tratamiento, la transmisión y la protección de la información. Tradicionalmente, la teoría de Shannon ha operado bajo un marco macroscópico donde la información es una entidad estadística. Sin embargo, la introducción de la mecánica cuántica obliga a revisar estos conceptos ante la aparición de fenómenos que no tienen un análogo directo en el mundo clásico.
+
+Para abordar esta comparativa, se plantean las siguientes cuestiones a resolver:
+
+\begin{enumerate}
+    \item \textbf{Representación de la información:} Describir cómo el paso de un sistema binario determinista (bit) a un sistema basado en vectores de estado (cúbit) altera la capacidad de manipular y copiar la información.
+    \item \textbf{Cuantificación del desorden:} Identificar en qué medida la entropía de Von Neumann generaliza la entropía de Shannon y cómo el entrelazamiento afecta a la incertidumbre de un sistema compuesto.
+    \item \textbf{Límites de eficiencia en la codificación:} Comparar los límites teóricos de compresión de datos cuando se trabaja con fuentes de estados cuánticos frente a fuentes de bits convencionales.
+    \item \textbf{Fiabilidad en canales con ruido:} Exponer cómo se gestionan las perturbaciones en la transmisión de datos, contrastando la capacidad de canal clásica con las restricciones impuestas por el límite de Holevo en el entorno cuántico.
+    \item \textbf{Medición de la calidad:} Establecer de qué manera se evalúa la similitud entre la información enviada y la recibida mediante el uso de métricas de fidelidad y distancia.
+\end{enumerate}
+
+En definitiva, se trata de presentar un análisis descriptivo que permita identificar el mismo fenómeno (la comunicación de un mensaje) bajo dos escenarios físicos distintos, subrayando sus similitudes operativas y sus diferencias fundamentales.
+
+\chapter{Desarrollo del Trabajo}
+
+En este capítulo se realiza un análisis comparativo y formal entre los pilares de la teoría de la información clásica y la teoría de la información cuántica. A diferencia del enfoque clásico, donde la información es una entidad puramente estadística \citep{shannon1948}, en el entorno cuántico la información está intrínsecamente ligada a las leyes de la mecánica cuántica \citep{landauer1991}.
+
+\section{Comparativa entre el bit clásico y el cúbit cuántico}
+
+La unidad mínima de información en la TIC es el bit, representado por un estado discreto $x \in \{0, 1\}$. Físicamente, el bit clásico es un sistema macroscópico y determinista; su estado es preexistente a la medida e independiente del observador \citep{cherry1952}. En contraste, el cúbit es un sistema mecánico-cuántico de dos niveles que se representa matemáticamente como un vector unitario en un espacio de Hilbert complejo de dos dimensiones $\mathcal{H}^2$ \citep{nielsen2010}:
+\begin{equation}
+    |\psi\rangle = \alpha|0\rangle + \beta|1\rangle
+\end{equation}
+donde $\alpha, \beta \in \mathbb{C}$ y satisfacen la condición de normalización $|\alpha|^2 + |\beta|^2 = 1$. 
+
+Mientras que un bit clásico solo puede estar en un estado definido a la vez, el cúbit permite la \textbf{superposición}, procesando combinaciones lineales de estados hasta el momento de la medida. Esta diferencia fundamental se extiende a la replicabilidad: según el \textbf{Teorema de No Clonación} \citep{wootters1982}, es físicamente imposible crear una copia idéntica de un estado cuántico desconocido. Mientras que en la TIC la información se puede duplicar sin límite para asegurar su transmisión mediante códigos de repetición, en la TICu la información es única y sensible al proceso de observación, lo que redefine las estrategias de redundancia y seguridad \citep{bennett1993}.
+
+\subsection{Cuantificación de la información: Entropía de Shannon y Entropía de Von Neumann}
+
+Para entender el comportamiento de estas unidades en sistemas complejos, es necesario introducir la métrica de incertidumbre o contenido de información: la entropía. Este fenómeno presenta descripciones y propiedades matemáticas distintas según el marco físico empleado, definiendo la <<cantidad de incertidumbre>> asociada a una fuente de datos \citep{fano1961}.
+
+\subsubsection{La Entropía de Shannon en el escenario clásico}
+
+En la TIC, la entropía de Shannon $H(X)$ cuantifica la incertidumbre promedio asociada a una variable aleatoria discreta $X$ con una distribución de probabilidad $P(X) = \{p_1, p_2, \dots, p_n\}$. Se define formalmente como \citep{shannon1948}:
+\begin{equation}
+    H(X) = -\sum_{i=1}^{n} p_i \log_2 p_i
+\end{equation}
+
+Desde una perspectiva puramente estadística, esta métrica es una función cóncava de la distribución de probabilidad. En un sistema compuesto $AB$, la entropía clásica cumple con propiedades fundamentales que rigen nuestra intuición sobre la información macroscópica \citep{nielsen2010}:
+\begin{itemize}
+    \item \textbf{Subaditividad:} $H(A,B) \leq H(A) + H(B)$.
+    \item \textbf{Monotonicidad:} $H(A,B) \geq H(A)$. Añadir un sistema a otro nunca reduce la incertidumbre global; el conocimiento del <<todo>> es siempre menor o igual al conocimiento de las partes.
+\end{itemize}
+
+\subsubsection{La Entropía de Von Neumann y el Operador Densidad}
+
+En el escenario cuántico, la incertidumbre no proviene únicamente de una distribución de probabilidad estadística, sino de la naturaleza intrínseca del estado físico. Para describir una fuente que emite estados cuánticos $\{|\psi_i\rangle\}$ con probabilidades $p_i$, es necesario emplear el \textbf{operador densidad} $\rho$ \citep{vonneumann1932}:
+\begin{equation}
+    \rho = \sum_i p_i |\psi_i\rangle \langle \psi_i |
+\end{equation}
+
+Este operador permite distinguir entre estados puros ($\text{Tr}(\rho^2) = 1$) y estados mezcla ($\text{Tr}(\rho^2) < 1$). Para extraer información de este operador recurrimos a la \textbf{operación traza} ($\text{Tr}$), que permite definir la entropía de Von Neumann $S(\rho)$ como la generalización cuántica de la entropía de Shannon \citep{vonneumann1932, nielsen2010}:
+\begin{equation}
+    S(\rho) = -\text{Tr}(\rho \log_2 \rho) = -\sum_j \lambda_j \log_2 \lambda_j
+\end{equation}
+donde $\lambda_j$ representan los autovalores de $\rho$. 
+
+La utilidad de la traza surge al analizar sistemas compuestos $AB$. Mediante la \textbf{traza parcial} ($\rho_A = \text{Tr}_B(\rho_{AB})$), podemos observar el estado efectivo de un subsistema. Este proceso revela la naturaleza no local de la TICu: si el sistema global está entrelazado, la traza parcial sobre $B$ incrementará inevitablemente la entropía local de $A$, un fenómeno derivado de las correlaciones cuánticas que no tienen equivalente en la teoría de Shannon \citep{schumacher1995}.
+
+\subsubsection{Propiedades distintivas y el impacto del entrelazamiento}
+
+La transición del escenario clásico al cuántico rompe la propiedad de monotonicidad. En la TICu, debido al entrelazamiento, un sistema global $AB$ puede encontrarse en un estado puro ($S(A,B) = 0$), mientras que sus subsistemas individuales, descritos por operadores densidad reducidos ($\rho_A = \text{Tr}_B(\rho_{AB})$), presentan una entropía positiva ($S(A) > 0$) \citep{nielsen2010}.
+
+Esta inversión de la lógica clásica ($S(A,B) < S(A)$) permite la introducción de la \textbf{Entropía Condicional Cuántica}, definida como $S(A|B) = S(A,B) - S(B)$. Mientras que en el mundo clásico $H(A|B)$ es siempre no negativa, en el mundo cuántico puede tomar valores negativos \citep{cerf1997}. Físicamente, una entropía condicional negativa indica que existe más información en las correlaciones cuánticas entre las partes que en las partes mismas, siendo un indicador fundamental del entrelazamiento que fundamenta las diferencias en el tratamiento de la información analizadas en los capítulos posteriores \citep{schumacher1995}.
+
+\section{El Primer Teorema de Shannon y el Teorema de Schumacher}
+
+Una vez cuantificada la incertidumbre mediante la entropía, el análisis debe desplazarse hacia la eficiencia en el uso de los recursos físicos. Este capítulo aborda los límites fundamentales de la compresión de datos, determinando la cantidad mínima de soporte (bits o cúbits) necesaria para representar una fuente de información de manera asintóticamente fiel \citep{shannon1948, schumacher1995}.
+
+\subsection{Codificación de fuente clásica: La partición del espacio de secuencias}
+
+El Primer Teorema de Shannon no es simplemente una cota teórica; es una afirmación sobre la estructura estadística de la información. Para profundizar en su funcionamiento, debemos analizar cómo Shannon segmenta el universo de posibles mensajes mediante la \textbf{Propiedad de Equipartición Asintótica (AEP)} \citep{shannon1948, nielsen2010}.
+
+Consideremos una fuente que genera una secuencia de $n$ variables aleatorias independientes e idénticamente distribuidas (i.i.d.). El número total de secuencias posibles crece exponencialmente como $2^n$. Sin embargo, Shannon demostró que, a medida que $n$ aumenta, la probabilidad se concentra casi en su totalidad en un subconjunto extremadamente pequeño de secuencias, denominadas \textbf{secuencias típicas}.
+
+\textbf{El Conjunto Típico ($A_\epsilon^{(n)}$)} se define como el conjunto de secuencias $(x_1, \dots, x_n)$ cuya entropía empírica está cerca de la entropía teórica de la fuente \citep{shannon1948}:
+\begin{equation}
+    2^{-n(H(X) + \epsilon)} \leq P(x_1, \dots, x_n) \leq 2^{-n(H(X) - \epsilon)}
+\end{equation}
+El tamaño de este conjunto típico es aproximadamente $2^{nH(X)}$. Esto implica que, aunque el espacio total de mensajes es $2^n$, solo necesitamos asignar índices (codificar) a las secuencias típicas para reconstruir el mensaje con una probabilidad de error que tiende a cero cuando $n \to \infty$ \citep{fano1961}.
+
+\subsection{Codificación de fuente cuántica: El Teorema de Schumacher}
+
+La extensión de los principios de Shannon al dominio cuántico requiere trasladar la noción de partición estadística al formalismo geométrico de la mecánica cuántica. Mientras que en el escenario clásico la compresión se fundamenta en la selección de un subconjunto de secuencias típicas, el Teorema de Schumacher opera mediante la identificación de un \textbf{subespacio típico} dentro del espacio de Hilbert global \citep{schumacher1995}.
+
+En este contexto, la fuente no se describe mediante cadenas de bits, sino mediante productos tensoriales de estados: $|\Psi\rangle = |\psi_1\rangle \otimes |\psi_2\rangle \otimes \dots \otimes |\psi_n\rangle$. El avance fundamental de \citet{schumacher1995} consistió en aplicar la lógica de la Equipartición Asintótica al espectro del operador densidad $\rho$. Dado que $\rho$ es un operador hermítico, su diagonalización permite obtener un conjunto de autovalores $\{\lambda_i\}$ que se comportan como una distribución de probabilidad clásica sujeta a las leyes de Shannon \citep{vonneumann1932}.
+
+La profundidad de esta analogía reside en que el subespacio típico de Schumacher está definido por los autovectores de $\rho$ cuyos autovalores asociados satisfacen las condiciones del conjunto típico clásico. Por tanto, la compresión se ejecuta mediante la proyección del estado global sobre este subespacio de dimensión $2^{nS(\rho)}$. Al descartar el subespacio ortogonal, se logra una reducción masiva de la dimensionalidad del soporte físico, incurriendo en una pérdida de fidelidad que tiende a cero en el límite asintótico \citep{schumacher1995, jozsa1994}.
+
+\subsection{Fidelidad frente a exactitud binaria}
+
+La diferencia operativa más profunda entre ambos teoremas es el criterio de éxito. En la TIC, el éxito se define por la identidad entre los bits originales y los reconstruidos. Por el contrario, en la TICu, el principio de superposición obliga a emplear la \textbf{fidelidad promedio} ($F$) como métrica de calidad \citep{jozsa1994}. 
+
+La fidelidad mide el <<solapamiento>> entre el estado original $\rho$ y el estado recuperado $\tilde{\rho}$: $F(\rho, \tilde{\rho}) = [\text{Tr}(\sqrt{\sqrt{\rho}\tilde{\rho}\sqrt{\rho}})]^2$. El Teorema de \citet{schumacher1995} garantiza que existe un esquema de codificación tal que, en el límite asintótico, la fidelidad tiende a la unidad. Esto implica que no solo se recuperan los valores estadísticos, sino que se preservan las relaciones de fase y la coherencia del estado \citep{nielsen2010}.
+
+\textbf{Transición al canal ruidoso:} Sin embargo, esta economía de recursos presupone un entorno ideal. En la práctica, la eficacia de la codificación de fuente es vulnerable a las perturbaciones externas. Por ello, resulta imperativo cuantificar cuánta información sobrevive al tránsito por un canal ruidoso, problema abordado mediante el Segundo Teorema de Shannon \citep{shannon1948} y el límite de \citet{holevo1973}.
+
+\section{El Segundo Teorema de Shannon y el Teorema de Holevo-Schumacher-Westmoreland (HSW)}
+
+Tras determinar los límites de compresión de la fuente, es imperativo analizar el comportamiento de la información durante su tránsito por medios físicos no ideales. Mientras que la codificación de fuente busca eliminar la redundancia para optimizar el espacio, la codificación de canal introduce redundancia estructurada para proteger el mensaje frente al ruido inevitable de los sistemas físicos \citep{shannon1948}.
+
+\subsection{Capacidad de canal clásica: El límite de Shannon}
+
+En el marco de la TIC, el Segundo Teorema de Shannon define la \textbf{capacidad de canal} ($C$) como el límite superior de la tasa de información que puede transmitirse de forma fiable. Matemáticamente, se expresa como el máximo de la información mutua $I(X;Y)$ sobre todas las distribuciones de entrada posibles \citep{shannon1948}:
+\begin{equation}
+    C = \max_{P(X)} I(X;Y)
+\end{equation}
+
+La implicación fundamental de este teorema es que, para cualquier tasa de transmisión $R < C$, existe un esquema de codificación que permite alcanzar una probabilidad de error arbitrariamente pequeña \citep{fano1961}. Este resultado separa la calidad de la comunicación de la potencia de la señal: la comunicación fiable es posible siempre que no se supere la capacidad máxima permitida por la estadística del ruido.
+
+\subsection{El canal cuántico y el Teorema HSW}
+
+En la TICu, la problemática se vuelve multidimensional. El ruido, manifestado como \textbf{decoherencia}, no solo altera valores binarios, sino que degrada la fase y la pureza de los estados \citep{nielsen2010}. El teorema HSW, propuesto de forma independiente por \citet{holevo1973} y por \citet{schumacher1997}, establece el límite de la capacidad de un canal cuántico $\mathcal{E}$ para transmitir información clásica.
+
+A diferencia del caso clásico, la capacidad HSW considera que la información se codifica en un conjunto de estados cuánticos $\{p_i, \rho_i\}$. La capacidad viene dada por la máxima cantidad de información que puede sobrevivir a la acción del mapa completamente positivo y de traza preservativa (CPTP) que define al canal \citep{schumacher1997}:
+\begin{equation}
+    C(\mathcal{E}) = \max_{\{p_i, \rho_i\}} \left[ S\left( \mathcal{E}\left( \sum_i p_i \rho_i \right) \right) - \sum_i p_i S(\mathcal{E}(\rho_i)) \right]
+\end{equation}
+
+Esta expresión, conocida como la \textbf{información de Holevo} ($\chi$), representa un equilibrio entre la entropía del estado promedio a la salida y el promedio de las entropías de cada estado individual tras pasar por el canal. Si el canal es puramente ruidoso, los estados tienden a confundirse en la mezcla máxima, reduciendo $\chi$ y la capacidad de comunicación \citep{holevo1973}.
+
+\subsection{El Límite de Holevo y la paradoja de la extracción}
+
+El punto de ruptura conceptual más relevante para este Trabajo se manifiesta en el \textbf{Límite de Holevo}. Existe una asimetría fundamental en la TICu: aunque se requiere una cantidad infinita de información clásica para describir completamente un estado cuántico, la cantidad de información clásica que un receptor puede extraer mediante una medición física está limitada estrictamente a $1$ bit por cúbit \citep{holevo1973}.
+
+Esta restricción subraya una conclusión central de nuestra comparativa: la superioridad de la TICu no reside en la capacidad bruta de almacenamiento de datos clásicos, sino en la arquitectura de sus correlaciones. Mientras que Shannon asume que el ruido es un obstáculo externo \citep{shannon1948}, el teorema HSW demuestra que en el mundo cuántico, el ruido y la medición son procesos intrínsecamente ligados a la naturaleza del dato. La ventaja cuántica emerge en protocolos donde el entrelazamiento permite que la capacidad del canal supere los límites clásicos mediante técnicas como el entrelazamiento asistido \citep{bennett1993}, algo que carece de equivalente en la teoría de Shannon.
+
+\section{Relaciones importantes en la Teoría de la Información}
+
+Para consolidar la comparativa técnica de este Trabajo, es fundamental analizar las métricas de calidad y las desigualdades fundamentales que operan en ambos escenarios. Estas herramientas no solo cuantifican la presencia de errores, sino que definen la geometría de la información tanto en espacios probabilísticos como en espacios de Hilbert \citep{nielsen2010}.
+
+\subsection{Distinción de estados: Distancia de Variación y Distancia de Traza}
+
+En la TIC, la capacidad de distinguir entre dos fuentes de información $P$ y $Q$ se formaliza mediante la \textbf{Distancia de Variación Total} \citep{shannon1948}:
+\begin{equation}
+    D_{TV}(P, Q) = \frac{1}{2} \sum_x |P(x) - Q(x)|
+\end{equation}
+Esta métrica representa la cota superior de la ventaja que un observador puede obtener al intentar identificar la fuente mediante una única observación. En el dominio cuántico, esta noción se generaliza a través de la \textbf{Distancia de Traza} \citep{helstrom1969}:
+\begin{equation}
+    D(\rho, \sigma) = \frac{1}{2} \text{Tr} |\rho - \sigma|
+\end{equation}
+donde $|A| = \sqrt{A^\dagger A}$. La importancia de esta métrica reside en su interpretación operativa: así como la distancia clásica limita la capacidad de distinción mediante muestreo, la distancia de traza define la probabilidad máxima de éxito al distinguir dos estados cuánticos mediante la medición óptima, criterio conocido como el \textbf{límite de Helstrom} \citep{helstrom1969}. En consecuencia, esta distancia es el pilar sobre el cual se construye la seguridad demostrable en protocolos de comunicación, donde cualquier interceptación induce una divergencia detectable entre el estado enviado y el recibido \citep{bennett1993}.
+
+\subsection{Proximidad geométrica: Fidelidad frente al error binario}
+
+A diferencia del \textit{Bit Error Rate} (BER) clásico, que se limita a una métrica discreta de discrepancias entre cadenas de bits, la TICu requiere una medida de proximidad en el espacio de estados. La \textbf{Fidelidad} ($F$) cuantifica este solapamiento geométrico entre dos operadores densidad \citep{jozsa1994}:
+\begin{equation}
+    F(\rho, \sigma) = \left( \text{Tr} \sqrt{\sqrt{\rho} \sigma \sqrt{\rho}} \right)^2
+\end{equation}
+Mientras que en un canal clásico el ruido es una perturbación aditiva que invierte valores lógicos, en un canal cuántico el ruido se manifiesta como una pérdida de pureza o una rotación de fase (decoherencia). La fidelidad permite caracterizar estos procesos midiendo cuánto del carácter cuántico original sobrevive al tránsito por un canal ruidoso \citep{schumacher1995}. Un aspecto crítico es que la fidelidad es especialmente sensible a pequeñas divergencias en estados casi puros, lo que la convierte en el estándar para evaluar el rendimiento de memorias y repetidores cuánticos \citep{jozsa1994, nielsen2010}.
+
+\subsection{Límites del error: La Desigualdad de Fano}
+
+Para cerrar el marco comparativo, es preciso analizar cómo la incertidumbre residual limita la capacidad de recuperación de la información. En ambas teorías, la \textbf{Desigualdad de Fano} establece un puente entre la probabilidad de error ($P_e$) y la entropía condicional \citep{fano1961}. 
+
+En la TIC, Fano demuestra que si la entropía condicional $H(X|Y)$ es alta, es imposible recuperar el mensaje original con fiabilidad. En el escenario cuántico, la generalización de esta desigualdad vincula la fidelidad de un proceso con la entropía de intercambio \citep{nielsen2010}. El análisis revela que la recuperación de la información cuántica es intrínsecamente más compleja, ya que debe considerar si la extracción de datos se realiza mediante mediciones proyectivas o medidas generalizadas (POVM) \citep{helstrom1969}. 
+
+Esta estructura de desigualdades confirma que la TICu no solo hereda los límites de Shannon \citep{shannon1948}, sino que los refina bajo las restricciones de la mecánica cuántica. El análisis evidencia que la superioridad cuántica no reside en ignorar estos límites, sino en aprovechar la estructura del espacio de Hilbert para operar en regiones de fidelidad y seguridad que son inaccesibles para la teoría clásica.
+
+\chapter{Conclusiones}
+
+Tras el análisis comparativo detallado a lo largo de este Trabajo, se presentan las conclusiones finales sobre la transición del paradigma de la Teoría de la Información Clásica hacia la Teoría de la Información Cuántica. Este estudio permite sintetizar cómo las leyes de la física dictan, en última instancia, las capacidades lógicas y algorítmicas de la comunicación humana.
+
+\section{Recapitulación de hallazgos fundamentales}
+
+\begin{itemize}
+    \item \textbf{La ontología de la información:} Se ha verificado que la información no es una entidad puramente matemática o abstracta, sino que está intrínsecamente ligada al soporte físico que la sustenta. La transición del bit al cúbit no representa simplemente una mejora tecnológica de escala, sino una ruptura ontológica. Mientras que la TIC se apoya en la distinción de estados mutuamente excluyentes, la TICu aprovecha la superposición y el entrelazamiento para gestionar la incertidumbre y la correlación de formas que la teoría de Shannon no podía prever.
+    
+    \item \textbf{La dualidad entre capacidad y accesibilidad:} El análisis de los teoremas de Schumacher y el límite de Holevo-Schumacher-Westmoreland (HSW) revela una conclusión paradójica pero fundamental: aunque el espacio de Hilbert ofrece una dimensionalidad infinita para la preparación de estados, la naturaleza de la medición impone un límite. El límite de Holevo confirma que la ventaja cuántica no reside en la densidad de almacenamiento bruto de datos clásicos, sino en la eficiencia de los protocolos de procesamiento y la seguridad intrínseca que emana de los principios de no clonación y perturbación por medida.
+    
+    \item \textbf{Métricas y geometría del error:} Se ha expuesto que las métricas cuánticas, como la entropía de Von Neumann y la fidelidad, no son meros sustitutos de sus contrapartes clásicas, sino generalizaciones que capturan la riqueza del estado cuántico. La capacidad de la TICu para operar con entropías condicionales negativas es, quizá, la prueba más robusta de que el entrelazamiento permite una arquitectura de la información donde el <<todo>> contiene una estructura que desaparece completamente al analizar las partes de forma aislada.
+\end{itemize}
+
+\section{Líneas de trabajo futuro y reflexión final}
+
+Como reflexión final, es fundamental subrayar que la Teoría de la Información Cuántica no invalida los pilares establecidos por Shannon en 1948, sino que los integra como un caso límite aplicable cuando los efectos cuánticos son despreciables. La TIC continúa siendo la herramienta más eficiente y robusta para el diseño de redes de comunicación macroscópicas y sistemas de almacenamiento masivo actuales, mientras que la TICu establece los límites teóricos de lo que será posible a medida que el control sobre la materia alcance la escala individual de átomos y fotones.
+
+El futuro de la computación cuántica no depende ya únicamente del desarrollo de nuevos teoremas, sino de la capacidad de la ingeniería para aproximarse a las cotas matemáticas expuestas en este Trabajo. En particular, destacan dos líneas críticas:
+
+\begin{itemize}
+    \item \textbf{Control de la decoherencia:} La transición de las capacidades teóricas de canal (como el límite HSW) a sistemas reales exige técnicas de corrección de errores cuánticos ($QECC$) mucho más eficientes, capaces de preservar la fidelidad del estado frente al ruido ambiental sin un coste prohibitivo en el número de cúbits físicos.
+    \item \textbf{Hibridación de redes:} Es probable que el futuro de las comunicaciones no sea puramente cuántico, sino híbrido. Desarrollar interfaces que permitan traducir la información de forma transparente entre canales clásicos y cuánticos es esencial para aprovechar la seguridad de la TICu sin renunciar a la infraestructura y ancho de banda de la TIC.
+\end{itemize}
+
+En conclusión, este Trabajo demuestra que la frontera entre ambas teorías no es solo una cuestión de fórmulas, sino de hasta qué punto se puede manipular físicamente el soporte de la información. El paso del bit al cúbit obliga a aceptar que la eficiencia de una comunicación está limitada no solo por la estadística del mensaje, sino por la fragilidad del estado físico que lo transporta.
+
+\begin{thebibliography}{}
+
+% --- FUNDAMENTOS DE LA INFORMACIÓN CLÁSICA (TIC) ---
+
+\bibitem[Cherry(1952)]{cherry1952}
+Cherry, E. C. (1952). The history of the theory of information. \emph{Proceedings of the IEE - Part III: Radio and Communication Engineering}, 99(61), 383-387.
+
+\bibitem[Fano(1961)]{fano1961} 
+Fano, R. M. (1961). \emph{Transmission of Information: A Statistical Theory of Communications}. MIT Press.
+
+\bibitem[Shannon(1948)]{shannon1948} 
+Shannon, C. E. (1948). A Mathematical Theory of Communication. \emph{Bell System Technical Journal}, 27(3), 379-423.
+
+
+% --- NATURALEZA FÍSICA Y LÍMITES DE LA COMPUTACIÓN ---
+
+\bibitem[Deutsch(1985)]{deutsch1985}
+Deutsch, D. (1985). Quantum theory, the Church-Turing principle and the universal quantum computer. \emph{Proceedings of the Royal Society of London. A. Mathematical and Physical Sciences}, 400(1818), 97-117.
+
+\bibitem[Landauer(1991)]{landauer1991}
+Landauer, R. (1991). Information is Physical. \emph{Physics Today}, 44(5), 23-29.
+
+\bibitem[Lloyd(2000)]{lloyd2000}
+Lloyd, S. (2000). Ultimate physical limits to computation. \emph{Nature}, 406(6799), 1047-1054.
+
+
+% --- TEORÍAS Y TEOREMAS CUÁNTICOS (TICu) ---
+
+\bibitem[Bennett et al.(1993)]{bennett1993}
+Bennett, C. H., Brassard, G., Crépeau, C., Jozsa, R., Peres, A., \& Wootters, W. K. (1993). Teleporting an unknown quantum state via dual classical and Einstein-Podolsky-Rosen channels. \emph{Physical Review Letters}, 70(13), 1895.
+
+\bibitem[Helstrom(1969)]{helstrom1969} 
+Helstrom, C. W. (1969). Quantum detection and estimation theory. \emph{Journal of Statistical Physics}, 1(2), 231-252.
+
+\bibitem[Holevo(1973)]{holevo1973} 
+Holevo, A. S. (1973). Bounds for the quantity of information transmitted by a quantum communication channel. \emph{Problemy Peredachi Informatsii}, 9(3), 3-11.
+
+\bibitem[Jozsa(1994)]{jozsa1994} 
+Jozsa, R. (1994). Fidelity for mixed quantum states. \emph{Journal of Modern Optics}, 41(12), 2315-2323.
+
+\bibitem[Schumacher(1995)]{schumacher1995} 
+Schumacher, B. (1995). Quantum coding. \emph{Physical Review A}, 51(4), 2738-2747.
+
+\bibitem[Schumacher \& Westmoreland(1997)]{schumacher1997} 
+Schumacher, B., \& Westmoreland, M. D. (1997). Sending classical information via noisy quantum channels. \emph{Physical Review A}, 56(1), 131-138.
+
+\bibitem[Von Neumann(1932)]{vonneumann1932} 
+Von Neumann, J. (1932). \emph{Mathematische Grundlagen der Quantenmechanik}. Springer-Verlag.
+
+\bibitem[Wootters \& Zurek(1982)]{wootters1982} 
+Wootters, W. K., \& Zurek, W. H. (1982). A single quantum cannot be cloned. \emph{Nature}, 299(5886), 802-803.
+
+
+% --- TEXTOS DE REFERENCIA Y REVISIÓN ---
+
+\bibitem[Nielsen \& Chuang(2010)]{nielsen2010} 
+Nielsen, M. A., \& Chuang, I. L. (2010). \emph{Quantum Computation and Quantum Information}. Cambridge University Press.
+
+\bibitem[Cerf \& Adami(1997)]{cerf1997} 
+Cerf, N. J., \& Adami, C. (1997). Negative Entropy and Information in Quantum Mechanics. \emph{Physical Review Letters}, 79(26), 5194.
+
+\end{thebibliography}
+%\bibliographystyle{plain} 
+%\bibliography{bibliografia}
+
+\end{document}
+

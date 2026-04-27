@@ -15,7 +15,7 @@
 \title{Comparativa de las teorías de información clásica y cuántica}
 \author{Enrique Prada Vázquez}
 \profesor{Jenaro Gallego Gómez}
-\date{25/04/2026}
+\date{26/04/2026}
 
 %---------------------------
 %marges
@@ -67,7 +67,7 @@ En este contexto, la Teoría de la Información Cuántica (TICu) emerge no como 
 
 \section{Motivación y contexto}
 
-El interés de este Trabajo radica en la necesidad de exponer una comparativa entre la TIC y la TICu. En un escenario donde la miniaturización de los componentes electrónicos se aproxima a los límites atómicos previstos por la Ley de Moore, entender cómo la física cuántica afecta al procesamiento de datos ya no es una cuestión teórica, sino una necesidad tecnológica ineludible \citep{lloyd2000}. 
+El interés de este Trabajo radica en la necesidad de exponer una comparativa entre la TIC y la TICu. En un escenario donde la miniaturización de los componentes electrónicos se aproxima a los límites atómicos previstos por la Ley de \cite{moore1965}, entender cómo la física cuántica afecta al procesamiento de datos ya no es una cuestión teórica, sino una necesidad tecnológica ineludible \citep{lloyd2000}. 
 
 La principal motivación de este análisis es contrastar cómo los teoremas fundamentales de la comunicación de \citet{shannon1948} encuentran su análogo en el mundo cuántico a través de las contribuciones de figuras como \citet{schumacher1995} o \citet{holevo1973}. Se busca identificar si los beneficios de la computación cuántica residen en una mayor capacidad de almacenamiento o, por el contrario, en una forma cualitativamente distinta de procesar y proteger la información mediante principios como el de no clonación \citep{wootters1982}.
 
@@ -163,9 +163,9 @@ Una vez cuantificada la incertidumbre mediante la entropía, el análisis debe d
 
 \subsection{Codificación de fuente clásica: La partición del espacio de secuencias}
 
-El Primer Teorema de Shannon no es simplemente una cota teórica; es una afirmación sobre la estructura estadística de la información. Para profundizar en su funcionamiento, debemos analizar cómo Shannon segmenta el universo de posibles mensajes mediante la \textbf{Propiedad de Equipartición Asintótica (AEP)} \citep{shannon1948, nielsen2010}.
+El Primer Teorema de Shannon no es simplemente una cota teórica; es una afirmación sobre la estructura estadística de la información. Para profundizar en su funcionamiento, debemos analizar cómo Shannon segmenta el universo de posibles mensajes mediante la \textbf{Propiedad de Equipartición Asintótica} \citep{shannon1948, nielsen2010}.
 
-Consideremos una fuente que genera una secuencia de $n$ variables aleatorias independientes e idénticamente distribuidas (i.i.d.). El número total de secuencias posibles crece exponencialmente como $2^n$. Sin embargo, Shannon demostró que, a medida que $n$ aumenta, la probabilidad se concentra casi en su totalidad en un subconjunto extremadamente pequeño de secuencias, denominadas \textbf{secuencias típicas}.
+Consideremos una fuente que genera una secuencia de $n$ variables aleatorias independientes e idénticamente distribuidas. El número total de secuencias posibles crece exponencialmente como $2^n$. Sin embargo, Shannon demostró que, a medida que $n$ aumenta, la probabilidad se concentra casi en su totalidad en un subconjunto extremadamente pequeño de secuencias, denominadas \textbf{secuencias típicas}.
 
 \textbf{El Conjunto Típico ($A_\epsilon^{(n)}$)} se define como el conjunto de secuencias $(x_1, \dots, x_n)$ cuya entropía empírica está cerca de la entropía teórica de la fuente \citep{shannon1948}:
 \begin{equation}
@@ -260,7 +260,7 @@ Tras el análisis comparativo detallado a lo largo de este Trabajo, se presentan
 \begin{itemize}
     \item \textbf{La ontología de la información:} Se ha verificado que la información no es una entidad puramente matemática o abstracta, sino que está intrínsecamente ligada al soporte físico que la sustenta. La transición del bit al cúbit no representa simplemente una mejora tecnológica de escala, sino una ruptura ontológica. Mientras que la TIC se apoya en la distinción de estados mutuamente excluyentes, la TICu aprovecha la superposición y el entrelazamiento para gestionar la incertidumbre y la correlación de formas que la teoría de Shannon no podía prever.
     
-    \item \textbf{La dualidad entre capacidad y accesibilidad:} El análisis de los teoremas de Schumacher y el límite de Holevo-Schumacher-Westmoreland (HSW) revela una conclusión paradójica pero fundamental: aunque el espacio de Hilbert ofrece una dimensionalidad infinita para la preparación de estados, la naturaleza de la medición impone un límite. El límite de Holevo confirma que la ventaja cuántica no reside en la densidad de almacenamiento bruto de datos clásicos, sino en la eficiencia de los protocolos de procesamiento y la seguridad intrínseca que emana de los principios de no clonación y perturbación por medida.
+    \item \textbf{La dualidad entre capacidad y accesibilidad:} El análisis de los teoremas de Schumacher y el límite de Holevo-Schumacher-Westmoreland revela una conclusión paradójica pero fundamental: aunque el espacio de Hilbert ofrece una dimensionalidad infinita para la preparación de estados, la naturaleza de la medición impone un límite. El límite de Holevo confirma que la ventaja cuántica no reside en la densidad de almacenamiento bruto de datos clásicos, sino en la eficiencia de los protocolos de procesamiento y la seguridad intrínseca que emana de los principios de no clonación y perturbación por medida.
     
     \item \textbf{Métricas y geometría del error:} Se ha expuesto que las métricas cuánticas, como la entropía de Von Neumann y la fidelidad, no son meros sustitutos de sus contrapartes clásicas, sino generalizaciones que capturan la riqueza del estado cuántico. La capacidad de la TICu para operar con entropías condicionales negativas es, quizá, la prueba más robusta de que el entrelazamiento permite una arquitectura de la información donde el <<todo>> contiene una estructura que desaparece completamente al analizar las partes de forma aislada.
 \end{itemize}
@@ -303,6 +303,8 @@ Landauer, R. (1991). Information is Physical. \emph{Physics Today}, 44(5), 23-29
 \bibitem[Lloyd(2000)]{lloyd2000}
 Lloyd, S. (2000). Ultimate physical limits to computation. \emph{Nature}, 406(6799), 1047-1054.
 
+\bibitem[Moore(1965)]{moore1965}
+Moore, G. E. (1965). Cramming more components onto integrated circuits. \emph{Electronics}, 38(8), 114-117.
 
 % --- TEORÍAS Y TEOREMAS CUÁNTICOS (TICu) ---
 

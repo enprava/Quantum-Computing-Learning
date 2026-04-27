@@ -1,0 +1,255 @@
+\documentclass[11pt,a4paper,spanish]{book}
+\usepackage{estilo_unir-1}
+\hypersetup{
+	colorlinks   = true, %Colours links instead of ugly boxes
+	urlcolor     = blue, %Colour for external hyperlinks
+	linkcolor    = black, %Colour of internal links
+	citecolor   = red %Colour of citations
+}
+\usepackage[nottoc]{tocbibind}
+
+%---------------------------
+%título de la asignatura, trabajo y autor
+%---------------------------
+\subject{Álgebra Lineal en Computación Cuántica}
+\title{Operaciones con Matrices y Estados Cuánticos}
+\author{Enrique Prada Vázquez}
+\profesor{Francisco Costa Cano}
+\date{27/04/2026}
+
+%---------------------------
+%marges
+%---------------------------
+%\usepackage[margin=1.9cm]{geometry}
+%---------------------------
+%---------------------------
+%---------------------------
+%---------------------------
+\begin{document}
+\renewcommand{\listfigurename}{Índice de figuras}
+\renewcommand{\listtablename}{Índice de tablas}
+\renewcommand{\contentsname}{Índice de contenidos}
+\renewcommand{\figurename}{Figura}
+\renewcommand{\tablename}{Tabla} 
+
+\maketitle
+\frontmatter
+\tableofcontents
+\listoftables
+
+\chapter{Resumen}
+Este Trabajo presenta la resolución técnica de una serie de ejercicios prácticos centrados en el álgebra lineal computacional y su representación en el marco de la computación cuántica. Utilizando el lenguaje Python y las librerías NumPy y Qiskit, se han automatizado operaciones básicas como el cálculo de trazas y determinantes en el plano complejo, así como la evaluación de las propiedades estructurales de diversas matrices (hermiticidad, unitariedad y normalidad) mediante comparaciones numéricas. 
+
+En la segunda parte, se describe la construcción programática de vectores de estado en espacios de Hilbert de dimensiones crecientes ($\mathbb{C}^2$, $\mathbb{C}^4$ y $\mathbb{C}^8$). Se utiliza el producto tensorial para modelar la base computacional de sistemas de hasta tres qubits y se representan estados de superposición específicos. El Trabajo permite contrastar los resultados analíticos con la salida computacional, subrayando aspectos críticos como la normalización de los vectores y la visualización formal en notación de Dirac mediante herramientas de software.
+
+\vspace{0.5cm}
+{\bf Palabras clave:} computación cuántica, álgebra lineal, operaciones matriciales, qiskit, estados de superposición, producto tensorial.
+
+\chapter{Abstract}
+This report presents the technical resolution of a series of practical exercises focused on computational linear algebra and its representation within the framework of quantum computing. Using the Python programming language and the NumPy and Qiskit libraries, basic operations such as the calculation of traces and determinants in the complex plane have been automated, alongside the evaluation of the structural properties of various matrices (hermiticity, unitarity, and normality) through numerical comparisons.
+
+In the second part, the programmatic construction of state vectors in Hilbert spaces of increasing dimensions ($\mathbb{C}^2$, $\mathbb{C}^4$, and $\mathbb{C}^8$) is described. The Kronecker product is utilized to model the computational basis of systems up to three qubits and to represent specific superposition states. This work allows for the contrast of analytical results with computational output, highlighting critical aspects such as vector normalization and the formal visualization in Dirac notation using software tools.
+
+\vspace{0.5cm}
+{\bf Keywords:} quantum computing, linear algebra, matrix operations, qiskit, superposition states, tensor product.
+
+\mainmatter
+
+\chapter{Introducción}
+
+\section{Motivación y justificación}
+La computación cuántica se fundamenta en la capacidad de procesar información mediante principios de la mecánica cuántica que no tienen un análogo clásico, como la superposición y el entrelazamiento \citep{feynman1982, nielsen2010}. Estos fenómenos permiten que la información sea codificada en qubits, cuya evolución unitaria ofrece ventajas algorítmicas en la resolución de problemas computacionalmente costosos para arquitecturas tradicionales \citep{deutsch1985}. Para que estos fenómenos puedan ser tratados de forma rigurosa, se requiere un formalismo matemático basado en el álgebra lineal sobre espacios de Hilbert de dimensiones complejas \citep{nielsen2010}. La manipulación de estos espacios no es solo una necesidad teórica, sino la base operativa para el diseño de algoritmos de búsqueda y factorización \citep{shor1994}.
+
+El presente Trabajo se justifica en la necesidad de dominar la manipulación de estados cuánticos y operadores matriciales, herramientas que constituyen el núcleo de cualquier arquitectura de computación cuántica basada en puertas lógicas \citep{deutsch1985}. La representación de estos estados se realiza mediante la \textbf{notación bra-ket}, introducida originalmente por \cite{dirac1939}, la cual simplifica el cálculo de productos internos y externos en sistemas complejos y es el estándar adoptado en la literatura científica contemporánea. Asimismo, el estudio de estados de máxima correlación, conocidos como \textbf{estados de Bell} \citep{bell1964}, resulta esencial para comprender el entrelazamiento, un recurso crítico tanto en la computación como en los protocolos de teletransportación y distribución de claves cuánticas \citep{bennett1993}.
+
+\section{Planteamiento del Trabajo}
+El Trabajo aborda la resolución de una serie de problemas técnicos divididos en dos áreas principales de implementación computacional, vinculando el formalismo matemático con la ejecución práctica en un entorno de programación.
+
+En la primera etapa, se enfoca en el análisis de matrices complejas mediante la librería \textbf{NumPy} \citep{harris2020}, complementada con el uso del módulo \textbf{cmath} para el tratamiento escalar de las componentes imaginarias. El objetivo es automatizar la clasificación de operadores en categorías de matrices normales, hermitianas y unitarias. Esta distinción es fundamental en el marco teórico de la computación cuántica; los observables físicos deben ser hermitianos para garantizar valores propios reales, mientras que las puertas lógicas deben ser unitarias para asegurar la reversibilidad y la conservación de la norma de probabilidad \citep{nielsen2010}.
+
+En la segunda etapa, el planteamiento se traslada al entorno de desarrollo de código abierto \textbf{Qiskit} \citep{qiskit2023}. Aquí, el enfoque se centra en la construcción programática de vectores de estado en dimensiones crecientes ($\mathbb{C}^2$, $\mathbb{C}^4$ y $\mathbb{C}^8$). Mediante el uso del producto tensorial o producto de Kronecker, se modela la base computacional de sistemas multiqubit, permitiendo contrastar la teoría de la superposición con los resultados de simulación obtenidos mediante la clase \texttt{Statevector}.
+
+\section{Estructura del Trabajo}
+Para ofrecer una exposición clara y secuencial, el \textbf{Trabajo} se estructura en los siguientes capítulos:
+\begin{itemize}
+    \item \textbf{Objetivos:} Donde se enumeran las metas de aprendizaje y los hitos de ejecución técnica propuestos.
+    \item \textbf{Enunciado del problema:} Que detalla las matrices de dimensiones $n \times n$ y los estados específicos objeto de este laboratorio.
+    \item \textbf{Desarrollo del Trabajo:} El núcleo de la memoria, donde se documenta la implementación en Python, los resultados de las clasificaciones matriciales y la representación formal de los vectores de estado en notación de Dirac.
+    \item \textbf{Conclusiones:} Una síntesis de los hallazgos técnicos.
+\end{itemize}
+
+\chapter{Objetivos}
+
+El presente Trabajo tiene como finalidad principal realizar operaciones con matrices complejas y aplicar conceptos fundamentales de computación cuántica mediante herramientas computacionales.
+
+\section{Objetivos generales}
+\begin{itemize}
+    \item Operar con estructuras matriciales complejas para identificar algunas de sus propiedades algebraicas.
+    \item Aplicar los fundamentos de la computación cuántica en la representación y manipulación de estados.
+\end{itemize}
+
+\section{Objetivos específicos}
+\begin{itemize}
+    \item Automatizar el cálculo de trazas, determinantes y la clasificación de matrices (hermitianas, unitarias y normales) mediante NumPy.
+    \item Definir y transformar vectores de estado en el espacio de Hilbert utilizando Qiskit.
+    \item Construir la base computacional para sistemas de múltiples qubits mediante el uso del producto tensorial.
+\end{itemize}
+
+
+\chapter{Enunciado del problema}
+
+El presente Trabajo se divide en dos bloques operativos que cubren el análisis de operadores matriciales y el modelado de sistemas cuánticos, respectivamente.
+
+\section{Álgebra lineal compleja y análisis de matrices}
+Utilizando la librería NumPy, se requiere el análisis de las matrices complejas $A, B, C \in \mathbb{C}^{n \times n}$ y $D \in \mathbb{C}^{2 \times 2}$ definidas a continuación:
+
+$$A = \begin{pmatrix} 3+2i & 1-i & 4-3i \\ 2+i & -5+4i & 6 \\ -3+2i & 7-i & 8+3i \end{pmatrix}, \quad B = \begin{pmatrix} 2+3i & 4 & 1+2i \\ 3-2i & 5+i & 7-3i \\ 6+4i & -2 & 9+5i \end{pmatrix}$$
+
+$$C = \begin{pmatrix} 1+4i & 2-2i & 3+i & -5 \\ -2+3i & 6 & 4+7i & 2+i \\ -1+2i & -6+5i & -8i & 7+4i \\ -3-4i & 3-i & -5-3i & 5i \end{pmatrix}, \quad D = \begin{pmatrix} i & 2 \\ 2-3i & 4+5i \end{pmatrix}$$
+
+Sobre estas estructuras se deben realizar las siguientes tareas:
+\begin{itemize}
+    \item \textbf{Propiedades invariantes:} Calcular el determinante y la traza de cada matriz, presentando los resultados en formato polar (módulo y fase).
+    \item \textbf{Cálculo matricial:} Resolver la operación combinada:
+    $$2i(\det(D) + \text{tr}(C))AB - (1+i)\frac{\det(C)}{\text{tr}(D)}BA$$
+    \item \textbf{Clasificación de operadores:} Determinar de forma automática si las matrices cumplen las propiedades de hermiticidad, unitariedad o normalidad, y verificar la existencia de su inversa.
+\end{itemize}
+
+\section{Computación cuántica con Qiskit}
+Utilizando la clase \texttt{Statevector} de Qiskit, el problema plantea la construcción, manipulación y visualización en LaTeX de diversos estados cuánticos:
+\begin{itemize}
+    \item \textbf{Estados de un qubit:} Partiendo de la base computacional $\{|0\rangle, |1\rangle\}$, obtener los estados de las bases de Hadamard ($|+\rangle, |-\rangle$) y circular ($|i+\rangle, |i-\rangle$).
+    \item \textbf{Sistemas multiqubit:} Generar la base computacional completa para un sistema de dos qubits en $\mathbb{C}^4$ mediante el producto tensorial.
+    \item \textbf{Superposición en tres qubits:} Construir vectores de estado en un espacio de ocho dimensiones ($\mathbb{C}^8$) a partir de las combinaciones de $|000\rangle$ y $|111\rangle$ con los siguientes coeficientes:
+    \begin{enumerate}
+        \item $v_1 = \frac{1}{2}|000\rangle + \frac{1}{2}|111\rangle$
+        \item $v_2 = \frac{i}{2}|000\rangle - \frac{1}{2}|111\rangle$
+        \item $v_3 = \frac{1}{2}|000\rangle + \frac{i}{2}|111\rangle$
+    \end{enumerate}
+\end{itemize}
+
+\chapter{Desarrollo del Trabajo}
+
+En este capítulo se detalla la resolución técnica de los problemas planteados, integrando los resultados obtenidos mediante el uso de Python y contrastando las propiedades algebraicas con los fundamentos de la computación cuántica.
+
+\section{Análisis de operadores y álgebra matricial}
+El primer bloque del desarrollo se centra en la caracterización de las matrices $A, B, C$ y $D$ definidas en el enunciado. Para ello, se ha utilizado la librería NumPy \citep{harris2020}, la cual permite una manipulación eficiente de arreglos complejos y operaciones de álgebra lineal numérica.
+
+\subsection{Invariantes y operaciones combinadas}
+Se han calculado los determinantes y trazas de cada estructura. Estos valores son fundamentales, ya que la traza de un operador en mecánica cuántica está relacionada con el valor esperado y la normalización de estados densitarios \citep{nielsen2010}. Los resultados se presentan en la Tabla~\ref{tab:invariantes} expresados en forma polar (módulo y fase en radianes) para una mejor interpretación de su magnitud y su rotación en el plano complejo. Debido a la extensión de los resultados numéricos obtenidos en Python, los valores se han redondeado a cuatro decimales.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{l c c}
+        \hline\hline
+        Matriz & Determinante (Módulo, Fase) & Traza (Módulo, Fase) \\ [0.5ex] 
+        \hline 
+        A  & $248.0726, -3.1174$ & $10.8167, 0.9828$ \\
+        B  & $211.3575, 1.0563$ & $18.3576, 0.5124$ \\
+        C  & $5502.2332, 2.7459$ & $7.0711, 0.1419$ \\
+        D  & $13.4536, 2.3036$ & $7.2111, 0.9828$ \\
+        \hline
+    \end{tabular}
+    \caption[Resultados de invariantes matriciales]{Valores de determinante y traza calculados mediante \texttt{numpy.linalg} y redondeados a cuatro decimales para su presentación. Fuente: elaboración propia.}
+    \label{tab:invariantes}
+\end{table}
+
+\subsection{Resultado de la operación combinada}
+Tras realizar el cálculo computacional de la expresión definida en el bloque anterior, se obtuvo una matriz resultante con una alta precisión decimal. Por motivos de legibilidad y para facilitar su correcta visualización, los valores se presentan a continuación redondeados a dos cifras decimales:
+
+\begin{equation}
+\text{Resultado} = \begin{pmatrix}
+7945.77 + 10748.85i & 12546.00 + 30202.00i & 52329.92 - 3584.38i \\
+23914.00 + 21313.00i & 6051.08 - 27248.62i & 81557.54 - 75285.31i \\
+-13493.00 + 40279.00i & 88230.15 - 38881.23i & 109709.31 + 8150.54i
+\end{pmatrix}
+\end{equation}
+
+Es relevante observar la magnitud de los componentes de la matriz, los cuales resultan de la escala impuesta por los determinantes y trazas de las matrices $C$ y $D$ sobre los productos $AB$ y $BA$.
+
+\subsection{Clasificación estructural de las matrices}
+Para determinar la naturaleza de las matrices, se implementaron verificaciones basadas en el operador adjunto o transpuesto conjugado ($M^\dagger$). Tras evaluar las condiciones de hermiticidad ($M = M^\dagger$), unitariedad ($M^\dagger M = I$) y normalidad ($M M^\dagger = M^\dagger M$) , se ha constatado que ninguna de las matrices propuestas cumple con dichas propiedades bajo los valores proporcionados \citep{nielsen2010}.
+
+\begin{itemize}
+    \item Ninguna de las matrices ($A, B, C, D$) es hermitiana, unitaria ni normal.
+    \item No obstante, todas ellas poseen un determinante no nulo (ver Tabla~\ref{tab:invariantes}), lo que garantiza que son matrices invertibles. Esta característica es la que permite que la operación combinada planteada sea soluble y tenga una solución única en el espacio de matrices complejas correspondientes.
+\end{itemize}
+\section{Construcción de estados cuánticos con Qiskit}
+En esta sección se abandona el análisis matricial general para trabajar con vectores de estado en espacios de Hilbert específicos utilizando la clase \texttt{Statevector} de Qiskit \citep{qiskit2023}. Esta herramienta permite definir estados mediante etiquetas o combinaciones lineales de vectores, facilitando la transición del formalismo de Dirac a la implementación programática.
+
+\subsection{Estados de un qubit y superposiciones fundamentales}
+Partiendo de los estados fundamentales de la base computacional en $\mathbb{C}^2$ ($|0\rangle$ y $|1\rangle$), se ha explorado la capacidad de Qiskit para generar superposiciones mediante la suma de objetos \texttt{Statevector}. Se han generado los siguientes estados, esenciales para la construcción de algoritmos cuánticos básicos:
+\begin{itemize}
+    \item $|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$
+    \item $|-\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)$
+    \item $|i+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + i|1\rangle)$
+    \item $|i-\rangle = \frac{1}{\sqrt{2}}(|0\rangle - i|1\rangle)$
+\end{itemize}
+
+\subsection{Sistemas de dos qubits: Base computacional y estados de Bell}
+Para representar sistemas de dos qubits, el espacio de Hilbert se expande a $\mathbb{C}^4$. En el código, se ha utilizado el método \texttt{.tensor()} para realizar el producto tensorial ($\otimes$) entre estados individuales, permitiendo construir la base computacional completa \citep{dirac1939}: $\{|00\rangle, |01\rangle, |10\rangle, |11\rangle\}$.
+
+Sobre esta base, se han implementado los estados de Bell. Estos representan estados máximamente entrelazados \citep{bell1964} y se han obtenido programando la superposición de los vectores de la base de dos qubits generada anteriormente:
+\begin{equation}
+|\Phi^{\pm}\rangle = \frac{|00\rangle \pm |11\rangle}{\sqrt{2}}, \quad |\Psi^{\pm}\rangle = \frac{|01\rangle \pm |10\rangle}{\sqrt{2}}
+\end{equation}
+
+\subsection{Sistemas de tres qubits en $\mathbb{C}^8$}
+Finalmente, se ha expandido la dimensionalidad a tres qubits ($\mathbb{C}^8$) aplicando productos tensoriales sucesivos. Esta construcción permite observar cómo el espacio de Hilbert crece de forma exponencial con el número de partículas, una característica fundamental de los sistemas cuánticos multiqubit \citep{nielsen2010}. Los vectores se han definido empleando coeficientes complejos para alterar su posición en el espacio de estados, permitiendo el estudio de diferentes configuraciones de superposición:
+
+\begin{enumerate}
+    \item \textbf{Estado $v_1$:} $\frac{1}{\sqrt{2}}|000\rangle + \frac{1}{\sqrt{2}}|111\rangle$
+    \item \textbf{Estado $v_2$:} $\frac{i}{\sqrt{2}}|000\rangle - \frac{1}{\sqrt{2}}|111\rangle$
+    \item \textbf{Estado $v_3$:} $\frac{1}{\sqrt{2}}|000\rangle + \frac{i}{\sqrt{2}}|111\rangle$
+\end{enumerate}
+
+Este procedimiento demuestra cómo la manipulación programática de amplitudes permite definir estados personalizados mediante la aplicación del álgebra lineal sobre la base computacional. Este enfoque es la base para la preparación de estados iniciales en la simulación de algoritmos elementales \citep{dirac1939, qiskit2023}.
+
+\chapter{Conclusiones}
+
+Tras el desarrollo de los ejercicios de álgebra lineal y representación cuántica, se presentan las siguientes conclusiones sobre la estructura y el comportamiento de los sistemas analizados:
+
+\paragraph{Significado físico de la fase y la forma polar}
+El análisis de operadores matriciales mediante determinantes y trazas ha permitido profundizar en la importancia de la notación polar. En el contexto de la computación cuántica, la capacidad de aislar la fase ($\theta$) de la magnitud ($r$) es crítica, ya que las fases relativas son las responsables de los fenómenos de interferencia. Se concluye que la representación cartesiana es insuficiente para realizar una lectura intuitiva de las rotaciones y transformaciones que estos operadores inducen sobre los vectores de estado.
+
+\paragraph{Estructura de la base y entrelazamiento}
+La transición de la base computacional en $\mathbb{C}^2$ hacia los estados de Bell en $\mathbb{C}^4$ evidencia la diferencia fundamental entre estados producto y estados entrelazados. La implementación de la base de Bell demuestra cómo la manipulación de signos y coeficientes complejos permite definir estados máximamente entrelazados que no pueden ser factorizados. Este ejercicio práctico confirma que la estructura del espacio de Hilbert y el uso del producto tensorial son las herramientas que permiten definir correlaciones no clásicas entre qubits.
+
+\paragraph{Dimensionalidad y representación multiqubit}
+La expansión del sistema hacia $\mathbb{C}^8$ subraya el incremento de la complejidad en la descripción de sistemas multiqubit. La construcción de vectores específicos con coeficientes complejos en un espacio de ocho dimensiones ha servido para constatar que el álgebra lineal es el lenguaje operativo del simulador. En última instancia, se concluye que el valor del trabajo reside en la capacidad de mapear expresiones matemáticas abstractas a representaciones vectoriales concretas, permitiendo una interpretación coherente de los estados resultantes en sistemas de complejidad creciente.
+
+\begin{thebibliography}{99}
+
+\bibitem[Bell(1964)]{bell1964} 
+Bell, J. S. (1964). On the Einstein Podolsky Rosen paradox. \emph{Physics Physique Fizika}, 1(3), 195. 
+
+\bibitem[Bennett et al.(1993)]{bennett1993} 
+Bennett, C. H., et al. (1993). Teleporting an unknown quantum state via dual classical and Einstein-Podolsky-Rosen channels. \emph{Physical Review Letters}, 70(13), 1895.
+
+\bibitem[Deutsch(1985)]{deutsch1985}
+Deutsch, D. (1985). Quantum theory, the Church-Turing principle and the universal quantum computer. \emph{Proceedings of the Royal Society of London. A}, 400(1818), 97-117.
+
+\bibitem[Dirac(1939)]{dirac1939} 
+Dirac, P. A. M. (1939). A new notation for quantum mechanics. \emph{Mathematical Proceedings of the Cambridge Philosophical Society}, 35(3), 416-418.
+
+\bibitem[Feynman(1982)]{feynman1982}
+Feynman, R. P. (1982). Simulating physics with computers. \emph{International Journal of Theoretical Physics}, 21(6/7). 
+
+\bibitem[Harris et al.(2020)]{harris2020} 
+Harris, C. R., Millman, K. J., van der Walt, S. J., et al. (2020). Array programming with NumPy. \emph{Nature}, 585(7825), 357-362.
+
+\bibitem[Nielsen \& Chuang(2010)]{nielsen2010} 
+Nielsen, M. A., \& Chuang, I. L. (2010). \emph{Quantum Computation and Quantum Information: 10th Anniversary Edition}. Cambridge University Press.
+
+\bibitem[Qiskit contributors(2023)]{qiskit2023} 
+Qiskit contributors. (2023). \emph{Qiskit: An Open-source Framework for Quantum Computing}. DOI: 10.5281/zenodo.2562110.
+
+\bibitem[Shor(1994)]{shor1994} 
+Shor, P. W. (1994). Algorithms for quantum computation: discrete logarithms and factoring. \emph{Proceedings 35th Annual Symposium on Foundations of Computer Science}, IEEE, 124-134.
+
+\end{thebibliography}
+%\bibliographystyle{plain} 
+%\bibliography{bibliografia}
+
+\end{document}
+

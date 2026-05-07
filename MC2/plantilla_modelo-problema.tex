@@ -11,11 +11,11 @@
 %---------------------------
 %título de la asignatura, trabajo y autor
 %---------------------------
-\subject{Nombre de la asignatura}
+\subject{Mecánica Cuántica}
 \title{Escribir el título del documento}
-\author{Nombre y Apellidos de los autores}
-\profesor{Nombre del profesor}
-\date{introducir fecha}
+\author{Enrique Prada Vázquez}
+\profesor{Rodrigo Gil-Merino y Rubio}
+\date{07/05/2026}
 
 %---------------------------
 %marges
@@ -130,78 +130,192 @@ Esquematizar claramente los enunciados de los problemas, cuestiones o las ideas 
 En este capítulo se procede al desarrollo formal y calculista de las propiedades fundamentales de los conmutadores. Para cada demostración, se utilizará la definición estándar del conmutador de dos operadores lineales ${A}$ y ${B}$, definida como $[{A}, {B}] = {A}{B} - {B}{A}$. Se prestará especial atención al orden de los operadores, dado que en el espacio de Hilbert la multiplicatividad no es necesariamente conmutativa.
 
 \section{Regla del producto o Identidad de Leibniz}
-Esta identidad es fundamental para el cálculo de conmutadores de operadores compuestos, muy comunes en el análisis de Hamiltonianos de interacción.
-
-Se desea demostrar:
+Esta identidad es fundamental para el cálculo de conmutadores de operadores compuestos, muy comunes en el análisis de Hamiltonianos de interacción. Se desea demostrar la siguiente igualdad:
 \begin{equation}
-[{A}{B}, {C}] = {A}[{B}, {C}] + [{A}, {C}]{B}
+[AB, C] = A[B, C] + [A, C]B
 \end{equation}
 
-Para ello, expandimos el término izquierdo:
+Para ello, expandimos el término izquierdo siguiendo la definición fundamental:
 \begin{equation}
-[{A}{B}, {C}] = {A}{B}{C} - {C}{A}{B}
+[AB, C] = ABC - CAB
 \end{equation}
 
-Sumamos y restamos el término ${A}{C}{B}$, manteniendo la igualdad:
+A continuación, aplicamos una técnica de manipulación algebraica consistente en sumar y restar el término $ACB$, lo cual mantiene la igualdad intacta pero facilita la factorización:
 \begin{equation}
-[{A}{B}, {C}] = {A}{B}{C} - {A}{C}{B} + {A}{C}{B} - {C}{A}{B}
+[AB, C] = ABC - ACB + ACB - CAB
 \end{equation}
 
-Agrupamos los términos de manera que podamos extraer factores comunes manteniendo el orden de los operadores:
+Agrupamos los términos de manera que podamos extraer factores comunes, teniendo especial cuidado en mantener el orden de los operadores (factorización por la izquierda y por la derecha según corresponda):
 \begin{equation}
-[{A}{B}, {C}] = {A}({B}{C} - {C}{B}) + ({A}{C} - {C}{A}){B}
+[AB, C] = A(BC - CB) + (AC - CA)B
 \end{equation}
 
-Sustituyendo las definiciones de los conmutadores resultantes:
+Finalmente, sustituyendo las expresiones entre paréntesis por sus respectivas definiciones de conmutador, llegamos al resultado buscado:
 \begin{equation}
-[{A}{B}, {C}] = {A}[{B}, {C}] + [{A}, {C}]{B}
+[AB, C] = A[B, C] + [A, C]B
 \end{equation}
 
 \section{Conmutador con potencias de operadores}
-En esta sección demostramos la relación $[A^n, B] = n A^{n-1} [A, B]$ bajo la premisa de que $[A, [A, B]] = 0$. La demostración será realizada por inducción.
+En esta sección se demuestra la relación $[A^n, B] = n A^{n-1} [A, B]$ bajo la premisa de que $[A, [A, B]] = 0$. Esta condición implica que el operador $A$ conmuta con el resultado del conmutador $[A, B]$. La demostración se realizará mediante el método de inducción matemática.
 
-Para $n=1$, es trivialmente cierto.
-
+\textbf{Caso base:} Para $n=1$, la propiedad es trivialmente cierta, ya que cualquier operador elevado a la potencia cero es la identidad ($A^0 = I$):
 \begin{equation}
-    [A^1, B] = 1 A^0[A,B]
+    [A^1, B] = 1 \cdot A^0 [A, B] = [A, B]
 \end{equation}
 
-
-Suponiendo que se cumple para $n=k$:
+\textbf{Paso inductivo:} Suponiendo que la relación es válida para $n=k$ se obtiene la \textbf{hipótesis de inducción}:
 \begin{equation}
-[{A}^{k+1}, {B}] = {A}[{A}^k, {B}] + [{A}, {B}]{A}^k
+    [A^k, B] = k A^{k-1} [A, B]
 \end{equation}
 
-Sustituyendo la hipótesis de inducción:
+Se procede a desarrollar el caso para $n=k+1$, haciendo uso de la regla del producto demostrada en la sección anterior:
 \begin{equation}
-[{A}^{k+1}, {B}] = {A}(k{A}^{k-1}[{A}, {B}]) + [{A}, {B}]{A}^k = k{A}^k[{A}, {B}] + [{A}, {B}]{A}^k
+    [A^{k+1}, B] = [A \cdot A^k, B] = A[A^k, B] + [A, B]A^k
 \end{equation}
 
-Dado que $[{A}, [{A}, {B}]] = 0$, el operador ${A}$ conmuta con el bloque $[{A}, {B}]$, permitiendo reordenar el segundo término:
+Sustituyendo la hipótesis de inducción en el primer término de la suma:
 \begin{equation}
-[{A}^{k+1}, {B}] = k{A}^k[{A}, {B}] + {A}^k[{A}, {B}] = (k+1){A}^k[{A}, {B}]
+    [A^{k+1}, B] = A(k A^{k-1} [A, B]) + [A, B]A^k = k A^k [A, B] + [A, B]A^k
 \end{equation}
 
-\section{Identidad de Glauber y la relación exponencial}
-Finalmente, abordamos la simplificación de la fórmula de Baker-Campbell-Hausdorff cuando el conmutador es una constante: $e^{{A}} e^{{B}} = e^{{A} + {B}} e^{\frac{1}{2}[{A}, {B}]}$.
+En este punto, aplicamos la condición crítica del enunciado: $[A, [A, B]] = 0$. Esta premisa nos indica que $A$ (y por ende cualquier potencia $A^k$) conmuta con $[A, B]$, lo que nos permite reordenar el segundo término del sumando ($[A, B]A^k = A^k[A, B]$):
+\begin{equation}
+    [A^{k+1}, B] = k A^k [A, B] + A^k [A, B]
+\end{equation}
+
+Agrupando términos semejantes, obtenemos el resultado para $k+1$:
+\begin{equation}
+    [A^{k+1}, B] = (k+1) A^k [A, B]
+\end{equation}
+
+Queda así demostrado por inducción que la fórmula es válida para todo $n \in \mathbb{N}$ siempre que el conmutador sea central respecto a $A$.
+
+\section{Relación entre el conmutador y la derivada de una función de operador}
+En esta sección se generaliza el comportamiento de los conmutadores al actuar sobre funciones de operadores. Se desea demostrar que, bajo condiciones específicas de conmutación, el conmutador actúa como un operador diferencial:
+\begin{equation}
+[A, F(B)] = [A, B] \frac{dF(B)}{dB}
+\end{equation}
+bajo la premisa de que $[B, [A, B]] = 0$.
+
+\subsection{Derivación de la identidad auxiliar para el segundo argumento}
+Antes de proceder con la función genérica, es imperativo obtener la expresión para $[A, B^n]$. Partiendo de la propiedad de anticonmutatividad y aplicando el resultado obtenido por inducción en la sección anterior para la potencia en el primer argumento, realizamos el siguiente desarrollo:
+\begin{equation}
+[A, B^n] = - [B^n, A]
+\end{equation}
+
+Dado que la condición $[B, [B, A]] = 0$ se satisface (pues es equivalente a la centralidad de $[A, B]$ respecto a $B$), podemos sustituir el conmutador derecho por su forma expandida $n B^{n-1} [B, A]$:
+\begin{equation}
+[A, B^n] = - (n B^{n-1} [B, A])
+\end{equation}
+
+Aplicando nuevamente la antisimetría al conmutador interno ($[B, A] = -[A, B]$), los signos negativos se cancelan:
+\begin{equation}
+[A, B^n] = - n B^{n-1} (-[A, B]) = n B^{n-1} [A, B]
+\end{equation}
+Este resultado es crucial, ya que garantiza que el signo de la derivada final sea positivo.
+
+\subsection{Demostración mediante expansión en serie y derivada formal}
+Para abordar una función genérica $F(B)$, recurrimos a su expansión en serie de potencias (serie de Taylor), asumiendo que $F$ es una función analítica:
+\begin{equation}
+F(B) = \sum_{n=0}^{\infty} c_n B^n
+\end{equation}
+
+En este contexto, se define la \textbf{derivada formal} de la función del operador como la derivada término a término de dicha serie respecto al operador $B$:
+\begin{equation}
+\frac{dF(B)}{dB} = \sum_{n=1}^{\infty} n c_n B^{n-1}
+\end{equation}
+
+Sustituyendo la expansión de $F(B)$ en el conmutador original y aplicando la \textbf{propiedad de linealidad} (que permite extraer el sumatorio y los coeficientes escalares $c_n$ del corchete), obtenemos:
+\begin{equation}
+[A, F(B)] = \left[ A, \sum_{n=0}^{\infty} c_n B^n \right] = \sum_{n=0}^{\infty} c_n [A, B^n]
+\end{equation}
+
+Haciendo uso de la identidad auxiliar $[A, B^n] = n B^{n-1} [A, B]$ derivada anteriormente:
+\begin{equation}
+[A, F(B)] = \sum_{n=1}^{\infty} c_n \left( n B^{n-1} [A, B] \right)
+\end{equation}
+
+La condición $[B, [A, B]] = 0$ asegura que el operador $B$ y el bloque $[A, B]$ conmutan. Por extensión, cualquier potencia $B^{n-1}$ también conmuta con dicho bloque, permitiendo factorizar $[A, B]$ hacia la derecha del sumatorio:
+\begin{equation}
+[A, F(B)] = \left( \sum_{n=1}^{\infty} n c_n B^{n-1} \right) [A, B]
+\end{equation}
+
+Finalmente, identificando el término entre paréntesis como la derivada formal de la función, alcanzamos el resultado deseado:
+\begin{equation}
+[A, F(B)] = \frac{dF(B)}{dB} [A, B] = [A, B] \frac{dF(B)}{dB}
+\end{equation}
+
+Esta identidad guarda una analogía directa con los corchetes de Poisson de la mecánica clásica y es fundamental para la descripción de la dinámica cuántica mediante operadores.
+
+\section{Identidad de Glauber y la fórmula simplificada de Baker-Campbell-Hausdorff}
+
+Para finalizar el desarrollo de este capítulo, se aborda una de las identidades más fundamentales en el formalismo de la mecánica cuántica y la óptica cuántica. Se desea demostrar la relación:
+\begin{equation}
+e^{A} e^{B} = e^{A+B} e^{\frac{1}{2}[A, B]}
+\end{equation}
+bajo la premisa de que el conmutador $[A, B]$ es una constante escalar o un elemento central del álgebra ($[A, [A, B]] = [B, [A, B]] = 0$).
 
 \textbf{Demostración:}
-Definimos la función paramétrica $f(t) = e^{t{A}} e^{t{B}}$. Su derivada respecto a $t$ es:
+Definimos una función operativa auxiliar que depende de un parámetro real $t \in [0, 1]$:
 \begin{equation}
-\frac{df}{dt} = {A}e^{t{A}} e^{t{B}} + e^{t{A}}{B}e^{t{B}}
+f(t) = e^{tA} e^{tB}
 \end{equation}
 
-Usando la identidad $e^{t{A}}{B} = ({B} + t[{A}, {B}])e^{t{A}}$:
+Derivamos la función respecto al parámetro $t$ empleando la regla del producto. Es vital mantener el orden de los operadores, ya que $A$ y $B$ no conmutan:
 \begin{equation}
-\frac{df}{dt} = ({A} + {B} + t[{A}, {B}])f(t)
+\frac{df(t)}{dt} = A e^{tA} e^{tB} + e^{tA} B e^{tB} \label{derivada_inicial}
 \end{equation}
 
-Integrando esta ecuación diferencial lineal de operadores desde $t=0$ hasta $t=1$:
+Para resolver esta ecuación diferencial operativa, el objetivo es expresar el lado derecho de forma factorizada como $\hat{O}(t) f(t)$. El primer término de la ecuación \ref{derivada_inicial} ya cumple esta forma ($A f(t)$), pero en el segundo término el operador $B$ se encuentra "atrapado" entre las dos exponenciales. Para extraerlo, utilizamos la definición del conmutador $[e^{tA}, B] = e^{tA}B - Be^{tA}$, despejando el producto en el orden deseado:
 \begin{equation}
-f(1) = \exp \left( \int_0^1 ({A} + {B} + t[{A}, {B}]) dt \right) = \exp \left( {A} + {B} + \frac{1}{2}[{A}, {B}] \right)
+e^{tA}B = B e^{tA} + [e^{tA}, B] \label{reordenacion}
 \end{equation}
 
-Puesto que $[{A}+{B}, [{A}, {B}]] = 0$, podemos separar la exponencial del conmutador, completando la demostración.
+Para evaluar el conmutador $[e^{tA}, B]$, expandimos la exponencial en su serie de potencias y aplicamos la propiedad de linealidad:
+\begin{equation}
+[e^{tA}, B] = \left[ \sum_{n=0}^{\infty} \frac{t^n A^n}{n!}, B \right] = \sum_{n=0}^{\infty} \frac{t^n}{n!} [A^n, B]
+\end{equation}
+
+El término para $n=0$ es nulo ($[I, B] = 0$). Para los términos $n \geq 1$, aplicamos el resultado obtenido por inducción en la primera sección de este capítulo, $[A^n, B] = n A^{n-1} [A, B]$:
+\begin{equation}
+[e^{tA}, B] = \sum_{n=1}^{\infty} \frac{t^n}{n!} \left( n A^{n-1} [A, B] \right)
+\end{equation}
+
+Para simplificar esta expresión, realizamos los siguientes ajustes algebraicos:
+\begin{enumerate}
+    \item Simplificamos el factor $n$ con el factorial: $\frac{n}{n!} = \frac{1}{(n-1)!}$.
+    \item Extraemos un factor $t$ y el conmutador $[A, B]$ fuera del sumatorio (por ser constante).
+    \item Realizamos un cambio de índice $k = n-1$ para identificar la serie de la exponencial.
+\end{enumerate}
+
+\begin{equation}
+[e^{tA}, B] = t \left( \sum_{k=0}^{\infty} \frac{t^k A^k}{k!} \right) [A, B] = t e^{tA} [A, B]
+\end{equation}
+
+Sustituyendo este resultado en la identidad de reordenación \ref{reordenacion}, obtenemos $e^{tA}B = (B + t[A, B])e^{tA}$. Reemplazamos ahora este bloque en la derivada original \ref{derivada_inicial}:
+\begin{equation}
+\frac{df(t)}{dt} = A (e^{tA} e^{tB}) + (B + t[A, B]) (e^{tA} e^{tB})
+\end{equation}
+
+Factorizando $f(t)$ por la derecha, obtenemos la ecuación diferencial:
+\begin{equation}
+\frac{df(t)}{dt} = (A + B + t[A, B]) f(t)
+\end{equation}
+
+Dado que $[A, B]$ es central, el operador entre paréntesis conmuta consigo mismo para diferentes valores de $t$. Esto permite integrar la ecuación directamente:
+\begin{equation}
+f(t) = f(0) \exp \left( \int_{0}^{t} (A + B + s[A, B]) ds \right)
+\end{equation}
+
+Considerando la condición inicial $f(0) = I$ y resolviendo la integral en el exponente:
+\begin{equation}
+f(t) = \exp \left( (A + B)t + \frac{t^2}{2}[A, B] \right)
+\end{equation}
+
+Finalmente, evaluando en $t=1$ y separando la exponencial del término central, obtenemos la identidad buscada:
+\begin{equation}
+e^A e^B = e^{A+B} e^{\frac{1}{2}[A, B]}
+\end{equation}
 
 \chapter{Conclusiones}
 

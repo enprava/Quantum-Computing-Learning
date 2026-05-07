@@ -62,77 +62,105 @@ This Section should include the english version of the previous Resumen.
 
 \mainmatter
 
+
 \chapter{Introducción}
 
-En la Introducción se debe resumir de forma esquemática pero suficientemente clara lo esencial de cada una de las partes del trabajo y, sobre todo, aprovechar para explicar conceptos que puedan ser de utilidad después. 
-\newline
+\section{Motivación y justificación del tema a tratar}
 
-La lectura de esta parte debe contextualizar perfectamente todo el Trabajo y debe estar PLAGADA DE REFERENCIAS (más adelante se describe cómo hacerlo).
-\newline
+El nacimiento de la mecánica cuántica moderna a principios del siglo XX supuso un cambio de paradigma no solo en la física, sino en la estructura matemática necesaria para describir la naturaleza. A diferencia de la mecánica clásica, donde las variables dinámicas son funciones escalares que conmutan entre sí, en la formulación matricial introducida por \cite{heisenberg1925}, las magnitudes físicas se representan mediante operadores lineales no conmutativos. 
 
-Es una parte muy importante de la memoria. Las ideas principales a transmitir son la identificación del problema a tratar, la justificación de su importancia, esbozo de los objetivos generales a grandes rasgos y un adelanto de la contribución que esperas hacer.
+La justificación de este Trabajo reside en la necesidad de dominar el álgebra de dichos operadores, cuyo eje central es el conmutador $[A, B]$. Esta operación no es una mera curiosidad analítica; según establece \cite{dirac1925}, el conmutador es el análogo cuántico de los corchetes de Poisson de la mecánica analítica clásica, proporcionando el vínculo formal entre ambos mundos. La importancia de estas relaciones se manifiesta en el principio de incertidumbre y en la evolución temporal de los sistemas, donde la manipulación de funciones de operadores y exponenciales es una herramienta cotidiana en la investigación actual en óptica cuántica y computación cuántica \citep{glauber1963, nielsen2010}.
 
-A modo de guía, la Introducción debe contener estos tres apartados:
+\section{Planteamiento del Trabajo}
+
+El presente Trabajo se plantea como un desarrollo deductivo y riguroso de las identidades operacionales más relevantes del álgebra de conmutadores. Se parte de las propiedades más elementales para construir, de forma incremental, soluciones a problemas complejos de reordenación de operadores. 
+
+El núcleo del Trabajo consiste en demostrar cómo el comportamiento de los conmutadores permite tratar a los operadores, bajo ciertas condiciones de centralidad, de forma análoga al cálculo diferencial convencional. Este planteamiento culmina con el estudio de la relación entre exponenciales de operadores no conmutativos, un problema que históricamente ha sido abordado por matemáticos y físicos como Baker, Campbell y Hausdorff. En este sentido, nos apoyamos en la perspectiva de \cite{wilcox1967}, quien detalla el uso de funciones operativas dependientes de parámetros para resolver problemas de ordenación de exponenciales, procedimiento que seguiremos fielmente en nuestro desarrollo.
+
+\section{Estructura del Trabajo}
+
+Para lograr una exposición clara y progresiva de los objetivos planteados, el Trabajo se estructura en los siguientes bloques:
+
 \begin{itemize}
-\item Motivación / justificación del tema a tratar
-\item Planteamiento del Trabajo (atención a la mayúscula de "Trabajo": cuando nos referimos a nuestro documento, ese Trabajo va en mayúscula)
-\item Estructura del Trabajo
+    \item \textbf{Capítulo 1: Enunciado del problema.} Se definen los objetivos generales y específicos, acotando el alcance de las demostraciones y las premisas necesarias.
+    \item \textbf{Capítulo 2: Desarrollo del Trabajo.} Constituye el cuerpo principal de la memoria y se divide en cuatro secciones:
+    \begin{itemize}
+        \item Demostración de la regla del producto (Identidad de Leibniz).
+        \item Generalización del conmutador a potencias mediante inducción matemática.
+        \item Aplicación de conmutadores a funciones analíticas y definición de derivada formal.
+        \item Derivación detallada de la identidad de Glauber, analizando la integración de ecuaciones diferenciales operativas.
+    \end{itemize}
+    \item \textbf{Capítulo 3: Conclusiones.} Se realiza una síntesis de los resultados obtenidos y se reflexiona sobre su impacto en el formalismo de la física moderna.
 \end{itemize}
-
-\vspace{1cm}
-{\bf{ATENCIÓN, CÓMO REFERENCIAR.}}
-
-A continuación vamos a ver qué son, qué no son y para qué  sirven las referencias bibliográficas:
-\begin{itemize}
-	\item las referencias NO están para rellenar
-	\item las referencias SÍ son un TRIBUTO a las personas que hicieron en primer lugar una investigación o aportaron una idea
-	\item la referencias citan trabajo que acompaña una idea o un concepto, NO se usa UNA referencia para todo un párrafo que aglutina diferentes conceptos
-	\item deben citarse LOS TRABAJOS ORIGINALES DE LOS AUTORES, y no un libro de texto donde he visto que hablan de algo
-	\item os libros de texto se pueden referencial excepcionalmente, porque el libro es sobresaliente y conocido en el campo y/o porque quiero apoyarme en una explicación conocida para un determinado concepto o cuestión, pero no como origen del concepto del que se habla
-\end{itemize}
-
-\vspace{1cm}
-{\bf{VEAMOS EJEMPLOS DE CITAS.}}
-
-Vamos a ver los dos tipos de citas que vamos a utilizar normalmente en los trabajos y actividades:
-\begin{itemize}
-	\item CITA INDIRECTA: estamos hablando de algo e introcimos la referencia sobre la que apoyamos esa idea. Por ejemplo, hablado de los procesadores de texto, LATEX  \citep{lamport1994} es tipo de editor con el que se consiguen resultados de gran calidad
-	\item CITA DIRECTA: nos referimos directamente a un trabajo y lo citamos. Por ejemplo, según \cite{ackerman2017}, la liga de fútbol inglesa debe tener torneos de desempate
-\end{itemize}
-\newline
-
-Según el párrafo anterior con la cita indirecta aparecerá entre paréntesis el apellido y el año, separados por una coma; en el caso de varios autores, podrán aparecer hasta tres apellidos y, cuando son más, aparecerá el primero seguido de "et al." (y después el año separado con una coma). Con la cita directa solo va entre paréntesis el año, pero no los autores. Podéis mirar el apartado de Bibliografía para ver cómo han quedado estas citas.
-\newline
-
-En esta Actividad, cuando vamos a resolver problemas, PUEDE utilizarse libros de texto como referencias de procedimientos matemáticos que vamos a utilizar, pero sin olvidar el párrafo anterior. Es decir, sería conveniente citar ARTÍCULOS ORIGINALES de donde surgieron esos desarrollos.
-\newline
-
-Para consultar detenidamente la formas de referenciar, debéis seguir el formato APA del siguiente documento: \url{https://bibliografiaycitas.unir.net/documentos/APA_7ed_UNIR.pdf}
-
-
 \chapter{Objetivos}
 
 Esquematizar claramente los objetivos del trabajo, las ideas que queremos demostrar. Podemos tener varios tipos de objetivos. Por ejemplo, podemos tener un número de objetivos generales y otro de objetivos específicos. Deben ordenarse claramente.
 
+
 \section{Objetivos generales}
-Aquí vamos a exponer los objetivos generales. Es una forma de dar perspectiva al Trabajo. Debemos ser ambiciosos en esta exposición
+
+El propósito fundamental de este trabajo es profundizar en el formalismo algebraico de la mecánica cuántica, trascendiendo la manipulación escalar convencional para dominar el cálculo de operadores no conmutativos. Los objetivos generales que dan perspectiva a esta memoria son:
+
+\begin{itemize}
+    \item \textbf{Dominar el álgebra de operadores lineales:} Consolidar una base matemática sólida que permita abordar problemas complejos de física teórica donde el orden de los factores es crítico para la descripción de la realidad física.
+    \item \textbf{Establecer un puente entre la mecánica clásica y la cuántica:} Comprender cómo las estructuras algebraicas de los conmutadores y sus identidades diferenciales reflejan la transición desde los corchetes de Poisson clásicos hacia el formalismo de operadores de Hilbert.
+    \item \textbf{Desarrollar rigor en la demostración analítica:} Fortalecer la capacidad de deducción matemática mediante el uso de métodos diversos, como la inducción, la expansión en series de potencias y la resolución de ecuaciones diferenciales operativas.
+\end{itemize}
 
 \section{Objetivos específicos}
-En esta Sección vamos a dar detalles concretos de lo que queremos conseguir. Por tanto, estos objetivos van al detalle.
 
+Para alcanzar las metas generales propuestas, se han definido los siguientes objetivos técnicos y detallados, los cuales se desarrollan a lo largo de este trabajo:
+
+\begin{itemize}
+    \item \textbf{Demostración de la Identidad de Leibniz:} Derivar la regla del producto para conmutadores, estableciendo la base para el cálculo de operadores compuestos.
+    \item \textbf{Validación de relaciones de potencia mediante inducción:} Probar de manera rigurosa la expresión $[A^n, B] = n A^{n-1} [A, B]$ y comprender la necesidad de la condición de centralidad del conmutador ($[A, [A, B]] = 0$) para la validez de dicha fórmula.
+    \item \textbf{Generalización del conmutador como operador diferencial:} Demostrar la identidad $[A, F(B)] = [A, B] \frac{dF(B)}{dB}$ para funciones analíticas, definiendo el concepto de derivada formal de un operador.
+    \item \textbf{Obtención de la Identidad de Glauber:} Ejecutar el desarrollo completo de la forma simplificada de la fórmula de Baker-Campbell-Hausdorff ($e^A e^B = e^{A+B} e^{\frac{1}{2}[A, B]}$).
+    \item \textbf{Resolución de EDOs operativas:} Aplicar técnicas de integración de funciones operativas dependientes de un parámetro, justificando la validez de la integración directa bajo condiciones de conmutatividad del generador.
+\end{itemize}
 
 \chapter{Enunciado del problema}
 
-Esquematizar claramente los enunciados de los problemas, cuestiones o las ideas que queremos demostrar. Podemos extender el enunciado de la Actividad para mejorarlo o para dejar más claro aquello que vamos a solucionar.
+El presente Trabajo tiene como objetivo el desarrollo y la demostración formal de un conjunto de identidades operacionales fundamentales en el marco de la mecánica cuántica. El problema se centra en la manipulación de operadores lineales no conmutativos, cuya álgebra difiere del cálculo escalar convencional y requiere un tratamiento riguroso de las reglas de prioridad y orden.
+
+A continuación, se esquematizan los puntos clave y las metas demostrativas de este estudio:
+
+\begin{enumerate}
+    \item \textbf{Álgebra de Conmutadores:} Partiendo de la definición fundamental $[A, B] = AB - BA$, demostrar la propiedad de linealidad y la identidad de Leibniz o regla del producto para un producto de operadores:
+    \begin{equation*}
+        [AB, C] = A[B, C] + [A, C]B
+    \end{equation*}
+
+    \item \textbf{Generalización a Potencias:} Extender las reglas de conmutación a potencias enteras de operadores mediante el método de inducción. Se busca demostrar que, bajo la condición de que el conmutador sea un elemento central ($[A, [A, B]] = 0$), se cumple:
+    \begin{equation*}
+        [A^n, B] = n A^{n-1} [A, B]
+    \end{equation*}
+
+    \item \textbf{Cálculo Diferencial Operativo:} Demostrar que el conmutador puede actuar como un operador diferencial cuando se aplica sobre funciones analíticas de operadores, estableciendo la relación:
+    \begin{equation*}
+        [A, F(B)] = [A, B] \frac{dF(B)}{dB}
+    \end{equation*}
+
+
+
+    \item \textbf{Identidad de Glauber (BCH simplificada):} El objetivo final y culminación del Trabajo es la demostración de la fórmula de Baker-Campbell-Hausdorff en su forma truncada. Esta identidad permite desacoplar la exponencial de una suma de operadores en un producto de exponenciales individuales, corregido por un factor que depende de su conmutador:
+    \begin{equation*}
+        e^A e^B = e^{A+B} e^{\frac{1}{2}[A, B]}
+    \end{equation*}
+    Bajo la restricción de que $[A, B]$ sea una constante escalar o central en el álgebra.
+\end{enumerate}
+
+\section*{Justificación del estudio}
+La resolución de estos problemas no es puramente académica; estas herramientas son esenciales para entender la evolución temporal de sistemas cuánticos (Ecuación de Schrödinger), la definición de estados coherentes en óptica cuántica y la transición entre la mecánica clásica y la cuántica mediante la analogía de los corchetes de Poisson.
 
 \chapter{Desarrollo del Trabajo}
 
-En este capítulo se procede al desarrollo formal y calculista de las propiedades fundamentales de los conmutadores. Para cada demostración, se utilizará la definición estándar del conmutador de dos operadores lineales ${A}$ y ${B}$, definida como $[{A}, {B}] = {A}{B} - {B}{A}$. Se prestará especial atención al orden de los operadores, dado que en el espacio de Hilbert la multiplicatividad no es necesariamente conmutativa.
+En este capítulo se procede al desarrollo formal y calculista de las propiedades fundamentales de los conmutadores. Para cada demostración, se utilizará la definición estándar del conmutador de dos operadores lineales ${A}$ y ${B}$, definida como $[{A}, {B}] = {A}{B} - {B}{A}$.
 
-\section{Regla del producto o Identidad de Leibniz}
-Esta identidad es fundamental para el cálculo de conmutadores de operadores compuestos, muy comunes en el análisis de Hamiltonianos de interacción. Se desea demostrar la siguiente igualdad:
+\section{Regla del producto o Identidad de Leibniz} \label{sec:regla_producto}
+Esta identidad es fundamental para el cálculo de conmutadores de operadores compuestos. Se desea demostrar la siguiente igualdad:
 \begin{equation}
-[AB, C] = A[B, C] + [A, C]B
+[AB, C] = A[B, C] + [A, C]B \label{eq:leibniz}
 \end{equation}
 
 Para ello, expandimos el término izquierdo siguiendo la definición fundamental:
@@ -140,22 +168,19 @@ Para ello, expandimos el término izquierdo siguiendo la definición fundamental
 [AB, C] = ABC - CAB
 \end{equation}
 
-A continuación, aplicamos una técnica de manipulación algebraica consistente en sumar y restar el término $ACB$, lo cual mantiene la igualdad intacta pero facilita la factorización:
+A continuación, se suma y resta el término $ACB$:
 \begin{equation}
 [AB, C] = ABC - ACB + ACB - CAB
 \end{equation}
 
-Agrupamos los términos de manera que podamos extraer factores comunes, teniendo especial cuidado en mantener el orden de los operadores (factorización por la izquierda y por la derecha según corresponda):
+Se agrupan los términos de manera que se puedan extraer factores comunes:
 \begin{equation}
 [AB, C] = A(BC - CB) + (AC - CA)B
 \end{equation}
 
-Finalmente, sustituyendo las expresiones entre paréntesis por sus respectivas definiciones de conmutador, llegamos al resultado buscado:
-\begin{equation}
-[AB, C] = A[B, C] + [A, C]B
-\end{equation}
+Finalmente, sustituyendo las expresiones entre paréntesis por sus respectivas definiciones de conmutador, se llega al resultado buscado en la ecuación \ref{eq:leibniz}.
 
-\section{Conmutador con potencias de operadores}
+\section{Conmutador con potencias de operadores} \label{sec:potencias}
 En esta sección se demuestra la relación $[A^n, B] = n A^{n-1} [A, B]$ bajo la premisa de que $[A, [A, B]] = 0$. Esta condición implica que el operador $A$ conmuta con el resultado del conmutador $[A, B]$. La demostración se realizará mediante el método de inducción matemática.
 
 \textbf{Caso base:} Para $n=1$, la propiedad es trivialmente cierta, ya que cualquier operador elevado a la potencia cero es la identidad ($A^0 = I$):
@@ -165,154 +190,132 @@ En esta sección se demuestra la relación $[A^n, B] = n A^{n-1} [A, B]$ bajo la
 
 \textbf{Paso inductivo:} Suponiendo que la relación es válida para $n=k$ se obtiene la \textbf{hipótesis de inducción}:
 \begin{equation}
-    [A^k, B] = k A^{k-1} [A, B]
+    [A^k, B] = k A^{k-1} [A, B] \label{eq:hipotesis}
 \end{equation}
 
-Se procede a desarrollar el caso para $n=k+1$, haciendo uso de la regla del producto demostrada en la sección anterior:
+Se procede a desarrollar el caso para $n=k+1$, haciendo uso de la regla del producto demostrada en la sección \ref{sec:regla_producto}:
 \begin{equation}
     [A^{k+1}, B] = [A \cdot A^k, B] = A[A^k, B] + [A, B]A^k
 \end{equation}
 
-Sustituyendo la hipótesis de inducción en el primer término de la suma:
+Sustituyendo la hipótesis de inducción (\ref{eq:hipotesis}) en el primer término de la suma:
 \begin{equation}
     [A^{k+1}, B] = A(k A^{k-1} [A, B]) + [A, B]A^k = k A^k [A, B] + [A, B]A^k
 \end{equation}
 
-En este punto, aplicamos la condición crítica del enunciado: $[A, [A, B]] = 0$. Esta premisa nos indica que $A$ (y por ende cualquier potencia $A^k$) conmuta con $[A, B]$, lo que nos permite reordenar el segundo término del sumando ($[A, B]A^k = A^k[A, B]$):
+En este punto, se aplica la condición crítica del enunciado: $[A, [A, B]] = 0$. Esta premisa indica que $A$, y por ende cualquier potencia $A^k$, conmuta con $[A, B]$, lo que permite reordenar el segundo término del sumando ($[A, B]A^k = A^k[A, B]$):
 \begin{equation}
     [A^{k+1}, B] = k A^k [A, B] + A^k [A, B]
 \end{equation}
 
-Agrupando términos semejantes, obtenemos el resultado para $k+1$:
+Agrupando términos semejantes, se obtiene el resultado para $k+1$:
 \begin{equation}
-    [A^{k+1}, B] = (k+1) A^k [A, B]
+    [A^{k+1}, B] = (k+1) A^k [A, B] \label{eq:induccion_n}
 \end{equation}
 
 Queda así demostrado por inducción que la fórmula es válida para todo $n \in \mathbb{N}$ siempre que el conmutador sea central respecto a $A$.
 
-\section{Relación entre el conmutador y la derivada de una función de operador}
+\section{Relación entre el conmutador y la derivada de una función de operador} \label{sec:derivada_funcion}
 En esta sección se generaliza el comportamiento de los conmutadores al actuar sobre funciones de operadores. Se desea demostrar que, bajo condiciones específicas de conmutación, el conmutador actúa como un operador diferencial:
 \begin{equation}
-[A, F(B)] = [A, B] \frac{dF(B)}{dB}
+[A, F(B)] = [A, B] \frac{dF(B)}{dB} \label{eq:conmutador_f_b}
 \end{equation}
 bajo la premisa de que $[B, [A, B]] = 0$.
 
 \subsection{Derivación de la identidad auxiliar para el segundo argumento}
-Antes de proceder con la función genérica, es imperativo obtener la expresión para $[A, B^n]$. Partiendo de la propiedad de anticonmutatividad y aplicando el resultado obtenido por inducción en la sección anterior para la potencia en el primer argumento, realizamos el siguiente desarrollo:
+Antes de proceder con la función genérica, es necesario obtener la expresión para $[A, B^n]$. Partiendo de la propiedad de anticonmutatividad y aplicando el resultado (\ref{eq:induccion_n}) obtenido en la sección \ref{sec:potencias}, se realiza el siguiente desarrollo:
 \begin{equation}
 [A, B^n] = - [B^n, A]
 \end{equation}
 
-Dado que la condición $[B, [B, A]] = 0$ se satisface (pues es equivalente a la centralidad de $[A, B]$ respecto a $B$), podemos sustituir el conmutador derecho por su forma expandida $n B^{n-1} [B, A]$:
+Dado que se satisface la condición $[B, [B, A]] = 0$, podemos sustituir el conmutador derecho por su forma expandida $n B^{n-1} [B, A]$ según la relación demostrada en \ref{sec:potencias}:
 \begin{equation}
 [A, B^n] = - (n B^{n-1} [B, A])
 \end{equation}
 
 Aplicando nuevamente la antisimetría al conmutador interno ($[B, A] = -[A, B]$), los signos negativos se cancelan:
 \begin{equation}
-[A, B^n] = - n B^{n-1} (-[A, B]) = n B^{n-1} [A, B]
+[A, B^n] = - n B^{n-1} (-[A, B]) = n B^{n-1} [A, B] \label{eq:auxiliar_b}
 \end{equation}
-Este resultado es crucial, ya que garantiza que el signo de la derivada final sea positivo.
 
 \subsection{Demostración mediante expansión en serie y derivada formal}
-Para abordar una función genérica $F(B)$, recurrimos a su expansión en serie de potencias (serie de Taylor), asumiendo que $F$ es una función analítica:
+Para abordar una función genérica $F(B)$, se recurre a su expansión en serie de potencias:
 \begin{equation}
-F(B) = \sum_{n=0}^{\infty} c_n B^n
+F(B) = \sum_{n=0}^{\infty} c_n B^n \label{eq:taylor}
 \end{equation}
 
-En este contexto, se define la \textbf{derivada formal} de la función del operador como la derivada término a término de dicha serie respecto al operador $B$:
+En este contexto, se define la \textbf{derivada formal} de la función del operador como:
 \begin{equation}
-\frac{dF(B)}{dB} = \sum_{n=1}^{\infty} n c_n B^{n-1}
+\frac{dF(B)}{dB} = \sum_{n=1}^{\infty} n c_n B^{n-1} \label{eq:derivada_formal}
 \end{equation}
 
-Sustituyendo la expansión de $F(B)$ en el conmutador original y aplicando la \textbf{propiedad de linealidad} (que permite extraer el sumatorio y los coeficientes escalares $c_n$ del corchete), obtenemos:
+Sustituyendo la expansión (\ref{eq:taylor}) en el conmutador original y aplicando la \textbf{propiedad de linealidad}:
 \begin{equation}
 [A, F(B)] = \left[ A, \sum_{n=0}^{\infty} c_n B^n \right] = \sum_{n=0}^{\infty} c_n [A, B^n]
 \end{equation}
 
-Haciendo uso de la identidad auxiliar $[A, B^n] = n B^{n-1} [A, B]$ derivada anteriormente:
+Haciendo uso de la identidad auxiliar (\ref{eq:auxiliar_b}):
 \begin{equation}
 [A, F(B)] = \sum_{n=1}^{\infty} c_n \left( n B^{n-1} [A, B] \right)
 \end{equation}
 
-La condición $[B, [A, B]] = 0$ asegura que el operador $B$ y el bloque $[A, B]$ conmutan. Por extensión, cualquier potencia $B^{n-1}$ también conmuta con dicho bloque, permitiendo factorizar $[A, B]$ hacia la derecha del sumatorio:
+La condición $[B, [A, B]] = 0$ asegura que cualquier potencia $B^{n-1}$ conmuta con el bloque $[A, B]$, permitiendo factorizar dicho bloque hacia la derecha:
 \begin{equation}
 [A, F(B)] = \left( \sum_{n=1}^{\infty} n c_n B^{n-1} \right) [A, B]
 \end{equation}
 
-Finalmente, identificando el término entre paréntesis como la derivada formal de la función, alcanzamos el resultado deseado:
+Identificando el término entre paréntesis como la derivada formal definida en (\ref{eq:derivada_formal}), alcanzamos el resultado de la ecuación \ref{eq:conmutador_f_b}:
 \begin{equation}
 [A, F(B)] = \frac{dF(B)}{dB} [A, B] = [A, B] \frac{dF(B)}{dB}
 \end{equation}
 
-Esta identidad guarda una analogía directa con los corchetes de Poisson de la mecánica clásica y es fundamental para la descripción de la dinámica cuántica mediante operadores.
+\section{Fórmula de Baker-Campbell-Hausdorff (Caso simplificado)} \label{sec:BCH}
 
-\section{Identidad de Glauber y la fórmula simplificada de Baker-Campbell-Hausdorff}
-
-Para finalizar el desarrollo de este capítulo, se aborda una de las identidades más fundamentales en el formalismo de la mecánica cuántica y la óptica cuántica. Se desea demostrar la relación:
+Para finalizar el desarrollo de este capítulo, se aborda la relación conocida como la \textbf{identidad de Glauber}:
 \begin{equation}
-e^{A} e^{B} = e^{A+B} e^{\frac{1}{2}[A, B]}
+e^{A} e^{B} = e^{A+B} e^{\frac{1}{2}[A, B]} \label{eq:glauber}
 \end{equation}
-bajo la premisa de que el conmutador $[A, B]$ es una constante escalar o un elemento central del álgebra ($[A, [A, B]] = [B, [A, B]] = 0$).
-
-\textbf{Demostración:}
-Definimos una función operativa auxiliar que depende de un parámetro real $t \in [0, 1]$:
+bajo la premisa de que $[A, [A, B]] = [B, [A, B]] = 0$. Se define la función operativa auxiliar:
 \begin{equation}
-f(t) = e^{tA} e^{tB}
+f(t) = e^{tA} e^{tB} \label{eq:f_auxiliar}
 \end{equation}
 
-Derivamos la función respecto al parámetro $t$ empleando la regla del producto. Es vital mantener el orden de los operadores, ya que $A$ y $B$ no conmutan:
+Derivando respecto al parámetro $t$ empleando la regla del producto:
 \begin{equation}
-\frac{df(t)}{dt} = A e^{tA} e^{tB} + e^{tA} B e^{tB} \label{derivada_inicial}
+\frac{df(t)}{dt} = A e^{tA} e^{tB} + e^{tA} B e^{tB} \label{eq:derivada_inicial}
 \end{equation}
 
-Para resolver esta ecuación diferencial operativa, el objetivo es expresar el lado derecho de forma factorizada como $\hat{O}(t) f(t)$. El primer término de la ecuación \ref{derivada_inicial} ya cumple esta forma ($A f(t)$), pero en el segundo término el operador $B$ se encuentra "atrapado" entre las dos exponenciales. Para extraerlo, utilizamos la definición del conmutador $[e^{tA}, B] = e^{tA}B - Be^{tA}$, despejando el producto en el orden deseado:
+Para resolver esta ecuación, el objetivo es expresar el segundo término en función de $f(t)$. Usamos la identidad de reordenación basada en la definición del conmutador:
 \begin{equation}
-e^{tA}B = B e^{tA} + [e^{tA}, B] \label{reordenacion}
+e^{tA}B = B e^{tA} + [e^{tA}, B] \label{eq:reordenacion}
 \end{equation}
 
-Para evaluar el conmutador $[e^{tA}, B]$, expandimos la exponencial en su serie de potencias y aplicamos la propiedad de linealidad:
+Para evaluar $[e^{tA}, B]$, expandimos la exponencial en serie de potencias y aplicamos la linealidad, de forma análoga al procedimiento de la sección \ref{sec:derivada_funcion}:
 \begin{equation}
-[e^{tA}, B] = \left[ \sum_{n=0}^{\infty} \frac{t^n A^n}{n!}, B \right] = \sum_{n=0}^{\infty} \frac{t^n}{n!} [A^n, B]
+[e^{tA}, B] = \sum_{n=0}^{\infty} \frac{t^n}{n!} [A^n, B]
 \end{equation}
 
-El término para $n=0$ es nulo ($[I, B] = 0$). Para los términos $n \geq 1$, aplicamos el resultado obtenido por inducción en la primera sección de este capítulo, $[A^n, B] = n A^{n-1} [A, B]$:
+Aplicando el resultado de potencias (\ref{eq:induccion_n}) y realizando el cambio de índice $k = n-1$:
 \begin{equation}
-[e^{tA}, B] = \sum_{n=1}^{\infty} \frac{t^n}{n!} \left( n A^{n-1} [A, B] \right)
+[e^{tA}, B] = t \left( \sum_{k=0}^{\infty} \frac{t^k A^k}{k!} \right) [A, B] = t e^{tA} [A, B] \label{eq:conmutador_exp_resultado}
 \end{equation}
 
-Para simplificar esta expresión, realizamos los siguientes ajustes algebraicos:
-\begin{enumerate}
-    \item Simplificamos el factor $n$ con el factorial: $\frac{n}{n!} = \frac{1}{(n-1)!}$.
-    \item Extraemos un factor $t$ y el conmutador $[A, B]$ fuera del sumatorio (por ser constante).
-    \item Realizamos un cambio de índice $k = n-1$ para identificar la serie de la exponencial.
-\end{enumerate}
-
+Sustituyendo (\ref{eq:conmutador_exp_resultado}) en (\ref{eq:reordenacion}), se obtiene $e^{tA}B = (B + t[A, B])e^{tA}$. Reemplazando este bloque en la derivada original (\ref{eq:derivada_inicial}) y factorizando $f(t)$:
 \begin{equation}
-[e^{tA}, B] = t \left( \sum_{k=0}^{\infty} \frac{t^k A^k}{k!} \right) [A, B] = t e^{tA} [A, B]
+\frac{df(t)}{dt} = (A + B + t[A, B]) f(t) \label{eq:edo_operativa}
 \end{equation}
 
-Sustituyendo este resultado en la identidad de reordenación \ref{reordenacion}, obtenemos $e^{tA}B = (B + t[A, B])e^{tA}$. Reemplazamos ahora este bloque en la derivada original \ref{derivada_inicial}:
+Dado que $[A, B]$ es central, el operador entre paréntesis conmuta consigo mismo para diferentes valores de $t$. Esto permite integrar (\ref{eq:edo_operativa}) directamente:
 \begin{equation}
-\frac{df(t)}{dt} = A (e^{tA} e^{tB}) + (B + t[A, B]) (e^{tA} e^{tB})
+  f(t) = f(0) e^{\int_{0}^{t} (A + B + s[A, B]) ds} 
 \end{equation}
 
-Factorizando $f(t)$ por la derecha, obtenemos la ecuación diferencial:
+Considerando la condición inicial $f(0) = I$ (obtenida al evaluar \ref{eq:f_auxiliar} en $t=0$) y resolviendo la integral:
 \begin{equation}
-\frac{df(t)}{dt} = (A + B + t[A, B]) f(t)
+  f(t) = e^{(A + B)t + \frac{t^2}{2}[A, B]}
 \end{equation}
 
-Dado que $[A, B]$ es central, el operador entre paréntesis conmuta consigo mismo para diferentes valores de $t$. Esto permite integrar la ecuación directamente:
-\begin{equation}
-f(t) = f(0) \exp \left( \int_{0}^{t} (A + B + s[A, B]) ds \right)
-\end{equation}
-
-Considerando la condición inicial $f(0) = I$ y resolviendo la integral en el exponente:
-\begin{equation}
-f(t) = \exp \left( (A + B)t + \frac{t^2}{2}[A, B] \right)
-\end{equation}
-
-Finalmente, evaluando en $t=1$ y separando la exponencial del término central, obtenemos la identidad buscada:
+Finalmente, evaluando en $t=1$, se demuestra la identidad \ref{eq:glauber}:
 \begin{equation}
 e^A e^B = e^{A+B} e^{\frac{1}{2}[A, B]}
 \end{equation}

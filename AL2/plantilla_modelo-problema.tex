@@ -1,0 +1,113 @@
+\documentclass[11pt,a4paper,spanish]{book}
+\usepackage{estilo_unir-1}
+\hypersetup{
+	colorlinks   = true, %Colours links instead of ugly boxes
+	urlcolor     = blue, %Colour for external hyperlinks
+	linkcolor    = black, %Colour of internal links
+	citecolor   = red %Colour of citations
+}
+\usepackage[nottoc]{tocbibind}
+
+%---------------------------
+%título de la asignatura, trabajo y autor
+%---------------------------
+
+\subject{Máster en Computación Cuántica}
+\title{Producto tensorial y esfera de Bloch}
+\author{Nombre y Apellidos del Estudiante}
+\profesor{Nombre del Profesor}
+\date{08-05-2026}
+
+\begin{document}
+\renewcommand{\listfigurename}{Índice de figuras}
+\renewcommand{\listtablename}{Índice de tablas}
+\renewcommand{\contentsname}{Índice de contenidos}
+\renewcommand{\figurename}{Figura}
+\renewcommand{\tablename}{Tabla} 
+
+\maketitle
+\frontmatter
+\tableofcontents
+\listoffigures
+\listoftables
+
+\chapter{Resumen}
+En este Trabajo se aborda la manipulación de sistemas cuánticos multi-qubit mediante el uso del producto tensorial y la interpretación geométrica de los estados en la esfera de Bloch. Se presentan los cálculos detallados para la construcción de operadores compuestos y la evaluación de amplitudes de transición entre estados de la base computacional. Finalmente, se analiza el comportamiento de las puertas lógicas cuánticas fundamentales como rotaciones en el espacio de estados.
+
+\vspace{0.5cm}
+{\bf Palabras clave:} producto tensorial, esfera de Bloch, operadores unitarios, superposición, matrices de Pauli.
+
+\chapter{Abstract}
+This Report addresses the manipulation of multi-qubit quantum systems through the use of the tensor product and the geometric interpretation of states on the Bloch sphere. Detailed calculations are presented for the construction of composite operators and the evaluation of transition amplitudes between computational basis states. Finally, the behavior of fundamental quantum logic gates is analyzed as rotations in the state space.
+
+\vspace{0.5cm}
+{\bf Keywords:} tensor product, bloch sphere, unitary operators, superposition, Pauli matrices.
+
+\mainmatter
+
+\chapter{Introducción}
+La descripción de sistemas cuánticos compuestos requiere una estructura matemática capaz de representar el crecimiento exponencial de la dimensionalidad del espacio de Hilbert. El producto tensorial ($\otimes$) permite combinar espacios individuales de qubits para formar un espacio global de dimensión $2^n$. 
+
+Este Trabajo se estructura en tres bloques: primero, el cálculo algebraico de productos de Kronecker para matrices de Pauli; segundo, la aplicación de estos resultados en operadores ponderados y el cálculo de elementos de matriz; y tercero, la visualización de vectores de estado y su evolución bajo transformaciones unitarias en la esfera de Bloch.
+
+\chapter{Objetivos}
+\section{Objetivos generales}
+Comprender la construcción de operadores multiqubit y la representación visual de estados cuánticos.
+
+\section{Objetivos específicos}
+\begin{itemize}
+    \item Realizar el producto tensorial de matrices unitarias de forma analítica.
+    \item Operar con combinaciones lineales de operadores de producto tensorial.
+    \item Interpretar las puertas cuánticas como rotaciones físicas en la esfera de Bloch.
+\end{itemize}
+
+\chapter{Enunciado del problema}
+El problema requiere el cálculo de tres productos tensoriales específicos, la determinación de un operador combinado $\hat{O}$, el cálculo de la amplitud $\langle 101 | \hat{O} | 010 \rangle$ y la representación gráfica de estados y puertas en la esfera de Bloch.
+
+\chapter{Desarrollo del Trabajo}
+
+\section{Cálculo del producto tensorial}
+Para calcular el producto tensorial (o producto de Kronecker) de matrices $A \otimes B$, multiplicamos cada elemento $a_{ij}$ por la matriz $B$ completa.
+
+\subsection{Caso 1: $X \otimes I \otimes Z \otimes I$}
+Considerando las matrices de Pauli y la identidad:
+$$X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, Z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}, I = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$$
+El resultado es una matriz de $16 \times 16$. El primer paso, $X \otimes I$, resulta en:
+$$X \otimes I = \begin{pmatrix} 0 \cdot I & 1 \cdot I \\ 1 \cdot I & 0 \cdot I \end{pmatrix} = \begin{pmatrix} 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \\ 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \end{pmatrix}$$
+Este proceso se repite recursivamente para incluir $Z$ e $I$.
+
+\section{Aplicaciones del producto tensorial}
+Se define el operador $\hat{O} = \frac{2}{3}(X \otimes Z \otimes I) + \frac{1}{4}(I \otimes Z \otimes X) - \frac{5}{6}(Y \otimes Y \otimes Z)$.
+
+\subsection{Cálculo de $\langle 101 | \hat{O} | 010 \rangle$}
+Dada la linealidad del producto escalar, evaluamos el primer término:
+$$ \frac{2}{3} \langle 101 | X \otimes Z \otimes I | 010 \rangle = \frac{2}{3} \langle 1|X|0\rangle \langle 0|Z|1\rangle \langle 1|I|0\rangle $$
+Debido a que $\langle 1|I|0\rangle = 0$, este término es nulo. Este razonamiento de ortogonalidad se aplica a cada componente para simplificar el resultado final sin necesidad de desarrollar la matriz completa de $8 \times 8$.
+
+\section{Visualización en la esfera de Bloch}
+Cualquier estado puro se representa como un vector unitario en la esfera. 
+
+\begin{figure}[h]
+	\centering
+    \framebox{\parbox{0.7\textwidth}{\centering \vspace{2cm} [Insertar aquí captura de la esfera de Bloch con estados $|0\rangle, |1\rangle, |+\rangle, |-\rangle, |i+\rangle, |i-\rangle$] \vspace{2cm}}}
+	\caption[Representación de estados cuánticos]{Los estados $|0\rangle$ y $|1\rangle$ se ubican en los polos, mientras que los estados de superposición equitativa se encuentran en el ecuador. Fuente: elaboración propia.}
+	\label{fig:bloch_states}
+\end{figure}
+
+\section{Efecto de las puertas cuánticas}
+Las puertas actúan como rotaciones de $\pi$ radianes sobre sus respectivos ejes:
+\begin{itemize}
+    \item \textbf{Puerta X}: Intercambia $|0\rangle$ y $|1\rangle$ (rotación sobre el eje X).
+    \item \textbf{Puerta H}: Crea superposición, rotando el estado sobre el eje diagonal $X+Z$.
+\end{itemize}
+
+\chapter{Conclusiones}
+Se ha demostrado la utilidad del producto tensorial para modelar interacciones y estados multiqubit. La ortogonalidad de la base computacional simplifica drásticamente los cálculos de valores de expectación. Asimismo, la esfera de Bloch se confirma como una herramienta visual crítica para predecir el resultado de algoritmos cuánticos elementales.
+
+\begin{thebibliography}{99}
+\bibitem[Nielsen(2010)]{nielsen2010} Nielsen, M. A., \& Chuang, I. L. (2010). \emph{Quantum Computation and Quantum Information}. Cambridge University Press.
+\bibitem[Mermin(2007)]{mermin2007} Mermin, N. D. (2007). \emph{Quantum Computer Science: An Introduction}. Cambridge University Press.
+\end{thebibliography}
+
+\end{document}
+

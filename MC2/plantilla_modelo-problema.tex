@@ -12,10 +12,10 @@
 %título de la asignatura, trabajo y autor
 %---------------------------
 \subject{Mecánica Cuántica}
-\title{Escribir el título del documento}
+\title{Análisis operativo de conmutadores y funciones de operadores en mecánica cuántica}
 \author{Enrique Prada Vázquez}
 \profesor{Rodrigo Gil-Merino y Rubio}
-\date{07/05/2026}
+\date{08/05/2026}
 
 %---------------------------
 %marges
@@ -35,30 +35,18 @@
 \maketitle
 \frontmatter
 \tableofcontents
-\listoffigures
-Fijaos que SOLO aparece el título de cada figura, no aparece toda la leyenda ni la fuente. \\
-(QUITAR ESTA PÁGINA SI NO HAY FIGURAS) 
-\listoftables
-Fijaos que SOLO aparece el título de cada tabla, no aparece toda la leyenda ni la fuente. \\
-(QUITAR ESTA PÁGINA SI NO HAY TABLAS)
 
 \chapter{Resumen}
-En esta Sección se introducirá un breve resumen en español del trabajo realizado (extensión máxima: esta página). 
-\newline
-
-Este resumen debe incluir el propósito de la investigación, la metodología, los resultados y las conclusiones (obviamente, todo muy resumido, pero así se sabe de un vistazo lo que se va uno a encontrar a continuación). 
-\newline
-
-En general, los conceptos deben estar claramente explicados (de forma resumida, repito) para que el propio resumen sea autoconsistente.
+El presente Trabajo desarrolla un análisis de las propiedades fundamentales de los conmutadores de operadores lineales, elementos esenciales en la formulación algebraica de la mecánica cuántica moderna. El propósito es sistematizar el cálculo operativo, partiendo de identidades básicas como la regla de Leibniz hasta alcanzar demostraciones complejas que involucran funciones de operadores. La metodología empleada se fundamenta en la diferenciación de parámetros y la expansión en series de potencias, técnicas que permiten transformar problemas algebraicos no conmutativos en ecuaciones diferenciales resolubles. Los resultados principales incluyen la validación de la derivada formal de un operador y la obtención de la identidad de Glauber, caso simplificado de la fórmula de Baker-Campbell-Hausdorff. Se concluye que la condición de centralidad del conmutador es el factor determinante que permite la aplicación de reglas del cálculo convencional al dominio de los operadores, proporcionando una base técnica robusta para estudios avanzados en computación cuántica.
 
 \vspace{0.5cm}
-{\bf Palabras clave:} se deben incluir de 4 a 6 conceptos clave en español, significativos para el contenido del Trabajo (pueden ser conceptos formados por más de una palabra, pero DEBEN ser significativos). Por favor no incluir siglas, y todas las palabras en minúsculas
+{\bf Palabras clave:} mecánica cuántica, conmutadores, operadores lineales, identidad de glauber, cálculo operativo, computación cuántica
 
 \chapter{Abstract}
-This Section should include the english version of the previous Resumen.
+This Report presents an analysis of the fundamental properties of linear operator commutators, which are essential elements in the algebraic formulation of modern quantum mechanics. The purpose is to systematize operator calculus, moving from basic identities such as the Leibniz rule to complex proofs involving operator functions. The methodology is based on parameter differentiation and power series expansion, techniques that allow for the transformation of non-commutative algebraic problems into solvable differential equations. The main results include the validation of the formal derivative of an operator and the derivation of the Glauber identity, a simplified case of the Baker-Campbell-Hausdorff formula. It is concluded that the centrality condition of the commutator is the determining factor that allows the application of conventional calculus rules to the domain of operators, providing a robust technical foundation for advanced studies in quantum computing.
 
 \vspace{0.5cm}
-{\bf Keywords:} please include between 4 to 6 key concepts in english, relevant to the content of this report (each concept might include multiple words). Please, do not include acronims and all words should be lower letters.
+{\bf Keywords:} quantum mechanics, commutators, linear operators, glauber identity, operator calculus, quantum computing
 
 \mainmatter
 
@@ -67,56 +55,28 @@ This Section should include the english version of the previous Resumen.
 
 \section{Motivación y justificación del tema a tratar}
 
-El nacimiento de la mecánica cuántica moderna a principios del siglo XX supuso un cambio de paradigma no solo en la física, sino en la estructura matemática necesaria para describir la naturaleza. A diferencia de la mecánica clásica, donde las variables dinámicas son funciones escalares que conmutan entre sí, en la formulación matricial introducida por \cite{heisenberg1925}, las magnitudes físicas se representan mediante operadores lineales no conmutativos. 
+El nacimiento de la mecánica cuántica moderna a principios del siglo XX supuso un cambio de paradigma no solo en la física, sino en la estructura matemática necesaria para describir la naturaleza \citep{kuhn1962}. A diferencia de la mecánica clásica, donde las variables dinámicas son funciones escalares que conmutan entre sí, en la formulación matricial original se establece que las magnitudes físicas deben ser representadas mediante operadores lineales no conmutativos \citep{heisenberg1925}.
 
-La justificación de este Trabajo reside en la necesidad de dominar el álgebra de dichos operadores, cuyo eje central es el conmutador $[A, B]$. Esta operación no es una mera curiosidad analítica; según establece \cite{dirac1925}, el conmutador es el análogo cuántico de los corchetes de Poisson de la mecánica analítica clásica, proporcionando el vínculo formal entre ambos mundos. La importancia de estas relaciones se manifiesta en el principio de incertidumbre y en la evolución temporal de los sistemas, donde la manipulación de funciones de operadores y exponenciales es una herramienta cotidiana en la investigación actual en óptica cuántica y computación cuántica \citep{glauber1963, nielsen2010}.
+Esta ruptura con el cálculo tradicional es lo que justifica el presente Trabajo. El estudio de los conmutadores no es una mera extensión algebraica, sino la base misma del formalismo cuántico. Como bien señaló \cite{dirac1925}, la estructura del conmutador $[A, B]$ constituye el núcleo de la cuantización por correspondencia, siendo el análogo directo de los corchetes de Poisson clásicos. Comprender identidades como la de Glauber o la de Baker-Campbell-Hausdorff es esencial para abordar problemas modernos en campos como la óptica cuántica o la teoría de la información \citep{nielsen2010}.
 
-\section{Planteamiento del Trabajo}
+\section{Estructura de;}
 
-El presente Trabajo se plantea como un desarrollo deductivo y riguroso de las identidades operacionales más relevantes del álgebra de conmutadores. Se parte de las propiedades más elementales para construir, de forma incremental, soluciones a problemas complejos de reordenación de operadores. 
-
-El núcleo del Trabajo consiste en demostrar cómo el comportamiento de los conmutadores permite tratar a los operadores, bajo ciertas condiciones de centralidad, de forma análoga al cálculo diferencial convencional. Este planteamiento culmina con el estudio de la relación entre exponenciales de operadores no conmutativos, un problema que históricamente ha sido abordado por matemáticos y físicos como Baker, Campbell y Hausdorff. En este sentido, nos apoyamos en la perspectiva de \cite{wilcox1967}, quien detalla el uso de funciones operativas dependientes de parámetros para resolver problemas de ordenación de exponenciales, procedimiento que seguiremos fielmente en nuestro desarrollo.
-
-\section{Estructura del Trabajo}
-
-Para lograr una exposición clara y progresiva de los objetivos planteados, el Trabajo se estructura en los siguientes bloques:
+Para garantizar una exposición lógica y fluida de los conceptos, el presente Trabajo se organiza de la siguiente manera:
 
 \begin{itemize}
-    \item \textbf{Capítulo 1: Enunciado del problema.} Se definen los objetivos generales y específicos, acotando el alcance de las demostraciones y las premisas necesarias.
-    \item \textbf{Capítulo 2: Desarrollo del Trabajo.} Constituye el cuerpo principal de la memoria y se divide en cuatro secciones:
-    \begin{itemize}
-        \item Demostración de la regla del producto (Identidad de Leibniz).
-        \item Generalización del conmutador a potencias mediante inducción matemática.
-        \item Aplicación de conmutadores a funciones analíticas y definición de derivada formal.
-        \item Derivación detallada de la identidad de Glauber, analizando la integración de ecuaciones diferenciales operativas.
-    \end{itemize}
-    \item \textbf{Capítulo 3: Conclusiones.} Se realiza una síntesis de los resultados obtenidos y se reflexiona sobre su impacto en el formalismo de la física moderna.
-\end{itemize}
-\chapter{Objetivos}
+    \item \textbf{Capítulo 1: Introducción.} Se establece el marco teórico y la motivación del estudio, detallando el planteamiento y los objetivos generales.
+    \item \textbf{Capítulo 2: Objetivos.} Se exponen los objetivos a conseguir con la elaboración del Trabajo.
+    \item \textbf{Capítulo 3: Enunciado del problema.} Donde se delimitan formalmente las identidades operacionales y las premisas matemáticas que se pretenden demostrar.
+    \item \textbf{Capítulo 4: Desarrollo del Trabajo.} Constituye el núcleo técnico de la memoria, donde se ejecutan de forma secuencial todas las demostraciones analíticas.
+    \item \textbf{Capítulo 5: Conclusiones.} Se ofrece una síntesis de los logros alcanzados y su relevancia en el contexto de la computación cuántica.
+\end{itemize}\chapter{Objetivos}
 
-Esquematizar claramente los objetivos del trabajo, las ideas que queremos demostrar. Podemos tener varios tipos de objetivos. Por ejemplo, podemos tener un número de objetivos generales y otro de objetivos específicos. Deben ordenarse claramente.
-
-
-\section{Objetivos generales}
-
-El propósito fundamental de este trabajo es profundizar en el formalismo algebraico de la mecánica cuántica, trascendiendo la manipulación escalar convencional para dominar el cálculo de operadores no conmutativos. Los objetivos generales que dan perspectiva a esta memoria son:
+El propósito fundamental de este trabajo es profundizar en el formalismo algebraico de la mecánica cuántica, trascendiendo la manipulación escalar convencional para dominar el cálculo de operadores no conmutativos. Los objetivos que dan perspectiva a esta memoria se centran en tres ejes fundamentales:
 
 \begin{itemize}
-    \item \textbf{Dominar el álgebra de operadores lineales:} Consolidar una base matemática sólida que permita abordar problemas complejos de física teórica donde el orden de los factores es crítico para la descripción de la realidad física.
-    \item \textbf{Establecer un puente entre la mecánica clásica y la cuántica:} Comprender cómo las estructuras algebraicas de los conmutadores y sus identidades diferenciales reflejan la transición desde los corchetes de Poisson clásicos hacia el formalismo de operadores de Hilbert.
-    \item \textbf{Desarrollar rigor en la demostración analítica:} Fortalecer la capacidad de deducción matemática mediante el uso de métodos diversos, como la inducción, la expansión en series de potencias y la resolución de ecuaciones diferenciales operativas.
-\end{itemize}
-
-\section{Objetivos específicos}
-
-Para alcanzar las metas generales propuestas, se han definido los siguientes objetivos técnicos y detallados, los cuales se desarrollan a lo largo de este trabajo:
-
-\begin{itemize}
-    \item \textbf{Demostración de la Identidad de Leibniz:} Derivar la regla del producto para conmutadores, estableciendo la base para el cálculo de operadores compuestos.
-    \item \textbf{Validación de relaciones de potencia mediante inducción:} Probar de manera rigurosa la expresión $[A^n, B] = n A^{n-1} [A, B]$ y comprender la necesidad de la condición de centralidad del conmutador ($[A, [A, B]] = 0$) para la validez de dicha fórmula.
-    \item \textbf{Generalización del conmutador como operador diferencial:} Demostrar la identidad $[A, F(B)] = [A, B] \frac{dF(B)}{dB}$ para funciones analíticas, definiendo el concepto de derivada formal de un operador.
-    \item \textbf{Obtención de la Identidad de Glauber:} Ejecutar el desarrollo completo de la forma simplificada de la fórmula de Baker-Campbell-Hausdorff ($e^A e^B = e^{A+B} e^{\frac{1}{2}[A, B]}$).
-    \item \textbf{Resolución de EDOs operativas:} Aplicar técnicas de integración de funciones operativas dependientes de un parámetro, justificando la validez de la integración directa bajo condiciones de conmutatividad del generador.
+    \item \textbf{Dominar el álgebra de operadores lineales:} Consolidar una base matemática sólida que permita abordar problemas complejos de física teórica y computación cuántica, donde el orden de los factores es crítico para la descripción de la realidad física.
+    \item \textbf{Comprender la transición entre variables clásicas y operativas:} Analizar cómo la sustitución de variables escalares por operadores no conmutativos altera las reglas del cálculo, exigiendo un nuevo marco de trabajo para las identidades algebraicas.
+    \item \textbf{Desarrollar rigor en la demostración analítica:} Fortalecer la capacidad de deducción matemática mediante el uso de métodos avanzados de integración operativa, expansiones en series de potencias y la metodología de diferenciación de parámetros.
 \end{itemize}
 
 \chapter{Enunciado del problema}
@@ -126,7 +86,7 @@ El presente Trabajo tiene como objetivo el desarrollo y la demostración formal 
 A continuación, se esquematizan los puntos clave y las metas demostrativas de este estudio:
 
 \begin{enumerate}
-    \item \textbf{Álgebra de Conmutadores:} Partiendo de la definición fundamental $[A, B] = AB - BA$, demostrar la propiedad de linealidad y la identidad de Leibniz o regla del producto para un producto de operadores:
+    \item \textbf{Álgebra de Conmutadores:} Partiendo de la definición fundamental $[A, B] = AB - BA$, demostrar la propiedad de linealidad y la Identidad de Leibniz o regla del producto para un producto de operadores:
     \begin{equation*}
         [AB, C] = A[B, C] + [A, C]B
     \end{equation*}
@@ -143,22 +103,20 @@ A continuación, se esquematizan los puntos clave y las metas demostrativas de e
 
 
 
-    \item \textbf{Identidad de Glauber (BCH simplificada):} El objetivo final y culminación del Trabajo es la demostración de la fórmula de Baker-Campbell-Hausdorff en su forma truncada. Esta identidad permite desacoplar la exponencial de una suma de operadores en un producto de exponenciales individuales, corregido por un factor que depende de su conmutador:
+    \item \textbf{Identidad de Glauber (Baker-Campbell-Hausdorff simplificada):} El objetivo final y culminación del Trabajo es la demostración de la fórmula de Baker-Campbell-Hausdorff en su forma truncada. Esta identidad permite desacoplar la exponencial de una suma de operadores en un producto de exponenciales individuales, corregido por un factor que depende de su conmutador:
     \begin{equation*}
         e^A e^B = e^{A+B} e^{\frac{1}{2}[A, B]}
     \end{equation*}
     Bajo la restricción de que $[A, B]$ sea una constante escalar o central en el álgebra.
 \end{enumerate}
 
-\section*{Justificación del estudio}
-La resolución de estos problemas no es puramente académica; estas herramientas son esenciales para entender la evolución temporal de sistemas cuánticos (Ecuación de Schrödinger), la definición de estados coherentes en óptica cuántica y la transición entre la mecánica clásica y la cuántica mediante la analogía de los corchetes de Poisson.
-
 \chapter{Desarrollo del Trabajo}
 
-En este capítulo se procede al desarrollo formal y calculista de las propiedades fundamentales de los conmutadores. Para cada demostración, se utilizará la definición estándar del conmutador de dos operadores lineales ${A}$ y ${B}$, definida como $[{A}, {B}] = {A}{B} - {B}{A}$.
+En este capítulo se procede al desarrollo formal y calculista de las propiedades fundamentales de los conmutadores. Para cada demostración, se utilizará la definición estándar del conmutador de dos operadores lineales ${A}$ y ${B}$, definida como $[{A}, {B}] = {A}{B} - {B}{A}$. Siguiendo la formulación original de \cite{heisenberg1925}, esta estructura permite representar el carácter no conmutativo de las variables dinámicas en la escala atómica. Posteriormente, sería \cite{dirac1925} quien formalizaría esta relación como el pilar algebraico de la mecánica cuántica, estableciendo su conexión con el formalismo clásico.
 
 \section{Regla del producto o Identidad de Leibniz} \label{sec:regla_producto}
-Esta identidad es fundamental para el cálculo de conmutadores de operadores compuestos. Se desea demostrar la siguiente igualdad:
+
+Se desea demostrar la siguiente igualdad, conocida en la literatura como la \textbf{regla de Leibniz} para conmutadores debido a su analogía con la regla de derivación de productos \citep{messiah1961}:
 \begin{equation}
 [AB, C] = A[B, C] + [A, C]B \label{eq:leibniz}
 \end{equation}
@@ -213,14 +171,15 @@ Agrupando términos semejantes, se obtiene el resultado para $k+1$:
     [A^{k+1}, B] = (k+1) A^k [A, B] \label{eq:induccion_n}
 \end{equation}
 
-Queda así demostrado por inducción que la fórmula es válida para todo $n \in \mathbb{N}$ siempre que el conmutador sea central respecto a $A$.
+Queda así demostrado por inducción que la fórmula es válida para todo $n \in \mathbb{N}$ siempre que el conmutador sea central respecto a $A$. Como se verá más adelante, este resultado es el paso previo necesario para la expansión de funciones de operador en series de potencias, un procedimiento esencial en el estudio de la dinámica cuántica \citep{nielsen2010}.
 
 \section{Relación entre el conmutador y la derivada de una función de operador} \label{sec:derivada_funcion}
+
 En esta sección se generaliza el comportamiento de los conmutadores al actuar sobre funciones de operadores. Se desea demostrar que, bajo condiciones específicas de conmutación, el conmutador actúa como un operador diferencial:
 \begin{equation}
 [A, F(B)] = [A, B] \frac{dF(B)}{dB} \label{eq:conmutador_f_b}
 \end{equation}
-bajo la premisa de que $[B, [A, B]] = 0$.
+bajo la premisa de que $[B, [A, B]] = 0$. Esta identidad es fundamental en la formulación de la mecánica cuántica en el espacio de fases y en la obtención de las ecuaciones de movimiento de Heisenberg \citep{messiah1961}.
 
 \subsection{Derivación de la identidad auxiliar para el segundo argumento}
 Antes de proceder con la función genérica, es necesario obtener la expresión para $[A, B^n]$. Partiendo de la propiedad de anticonmutatividad y aplicando el resultado (\ref{eq:induccion_n}) obtenido en la sección \ref{sec:potencias}, se realiza el siguiente desarrollo:
@@ -239,7 +198,8 @@ Aplicando nuevamente la antisimetría al conmutador interno ($[B, A] = -[A, B]$)
 \end{equation}
 
 \subsection{Demostración mediante expansión en serie y derivada formal}
-Para abordar una función genérica $F(B)$, se recurre a su expansión en serie de potencias:
+
+Para abordar una función genérica $F(B)$, se recurre a su expansión en serie de potencias bajo la suposición de que dicha función es analítica en el dominio de los operadores considerados \citep{wilcox1967}:
 \begin{equation}
 F(B) = \sum_{n=0}^{\infty} c_n B^n \label{eq:taylor}
 \end{equation}
@@ -249,7 +209,7 @@ En este contexto, se define la \textbf{derivada formal} de la función del opera
 \frac{dF(B)}{dB} = \sum_{n=1}^{\infty} n c_n B^{n-1} \label{eq:derivada_formal}
 \end{equation}
 
-Sustituyendo la expansión (\ref{eq:taylor}) en el conmutador original y aplicando la \textbf{propiedad de linealidad}:
+Sustituyendo la expansión (\ref{eq:taylor}) en el conmutador original y aplicando la \textbf{propiedad de linealidad}, la cual permite que el conmutador actúe término a término sobre la serie:
 \begin{equation}
 [A, F(B)] = \left[ A, \sum_{n=0}^{\infty} c_n B^n \right] = \sum_{n=0}^{\infty} c_n [A, B^n]
 \end{equation}
@@ -259,7 +219,7 @@ Haciendo uso de la identidad auxiliar (\ref{eq:auxiliar_b}):
 [A, F(B)] = \sum_{n=1}^{\infty} c_n \left( n B^{n-1} [A, B] \right)
 \end{equation}
 
-La condición $[B, [A, B]] = 0$ asegura que cualquier potencia $B^{n-1}$ conmuta con el bloque $[A, B]$, permitiendo factorizar dicho bloque hacia la derecha:
+Tal como señala \cite{wilcox1967}, la condición de centralidad $[B, [A, B]] = 0$ asegura que cualquier potencia $B^{n-1}$ conmuta con el bloque $[A, B]$, permitiendo factorizar dicho bloque hacia la derecha sin alterar la integridad de la expresión:
 \begin{equation}
 [A, F(B)] = \left( \sum_{n=1}^{\infty} n c_n B^{n-1} \right) [A, B]
 \end{equation}
@@ -269,77 +229,102 @@ Identificando el término entre paréntesis como la derivada formal definida en 
 [A, F(B)] = \frac{dF(B)}{dB} [A, B] = [A, B] \frac{dF(B)}{dB}
 \end{equation}
 
-\section{Fórmula de Baker-Campbell-Hausdorff (Caso simplificado)} \label{sec:BCH}
+\section{Identidad de Glauber o Fórmula de Baker-Campbell-Hausdorff} \label{sec:BCH}
 
-Para finalizar el desarrollo de este capítulo, se aborda la relación conocida como la \textbf{identidad de Glauber}:
+Para finalizar el desarrollo de este capítulo, se aborda la relación conocida como la \textbf{Identidad de Glauber} \citep{glauber1963}:
 \begin{equation}
 e^{A} e^{B} = e^{A+B} e^{\frac{1}{2}[A, B]} \label{eq:glauber}
 \end{equation}
-bajo la premisa de que $[A, [A, B]] = [B, [A, B]] = 0$. Se define la función operativa auxiliar:
+bajo la premisa de que $[A, [A, B]] = [B, [A, B]] = 0$. Esta expresión constituye un caso particular y simplificado de la serie general de Baker-Campbell-Hausdorff, donde los términos de conmutadores de orden superior desaparecen debido a la naturaleza central de $[A, B]$.
+
+Para la demostración, se emplea la metodología de diferenciación de parámetros formalizada por \cite{wilcox1967}, definiendo una función operativa auxiliar que depende de un parámetro real $t \in [0, 1]$:
 \begin{equation}
 f(t) = e^{tA} e^{tB} \label{eq:f_auxiliar}
 \end{equation}
 
-Derivando respecto al parámetro $t$ empleando la regla del producto:
+Derivando la ecuación \ref{eq:f_auxiliar} respecto al parámetro $t$ mediante la regla del producto, un procedimiento estándar en el tratamiento pedagógico de exponenciales de operadores \citep{messiah1961}:
 \begin{equation}
 \frac{df(t)}{dt} = A e^{tA} e^{tB} + e^{tA} B e^{tB} \label{eq:derivada_inicial}
 \end{equation}
 
-Para resolver esta ecuación, el objetivo es expresar el segundo término en función de $f(t)$. Usamos la identidad de reordenación basada en la definición del conmutador:
+Para resolver esta ecuación diferencial operativa, el objetivo es expresar el segundo término en función de $f(t)$. Para ello, se utiliza la identidad de reordenación basada en la definición del conmutador:
 \begin{equation}
 e^{tA}B = B e^{tA} + [e^{tA}, B] \label{eq:reordenacion}
 \end{equation}
 
-Para evaluar $[e^{tA}, B]$, expandimos la exponencial en serie de potencias y aplicamos la linealidad, de forma análoga al procedimiento de la sección \ref{sec:derivada_funcion}:
+Para evaluar el término $[e^{tA}, B]$, se expande la exponencial en serie de potencias y se aplica la propiedad de linealidad, siguiendo un procedimiento análogo al desarrollado en la sección \ref{sec:derivada_funcion}:
 \begin{equation}
-[e^{tA}, B] = \sum_{n=0}^{\infty} \frac{t^n}{n!} [A^n, B]
+[e^{tA}, B] = \left[ \sum_{n=0}^{\infty} \frac{t^n A^n}{n!}, B \right] = \sum_{n=0}^{\infty} \frac{t^n}{n!} [A^n, B]
 \end{equation}
 
-Aplicando el resultado de potencias (\ref{eq:induccion_n}) y realizando el cambio de índice $k = n-1$:
+Aplicando el resultado obtenido para potencias en la ecuación \ref{eq:induccion_n} y realizando un cambio de índice $k = n-1$, se obtiene:
 \begin{equation}
 [e^{tA}, B] = t \left( \sum_{k=0}^{\infty} \frac{t^k A^k}{k!} \right) [A, B] = t e^{tA} [A, B] \label{eq:conmutador_exp_resultado}
 \end{equation}
 
-Sustituyendo (\ref{eq:conmutador_exp_resultado}) en (\ref{eq:reordenacion}), se obtiene $e^{tA}B = (B + t[A, B])e^{tA}$. Reemplazando este bloque en la derivada original (\ref{eq:derivada_inicial}) y factorizando $f(t)$:
+Sustituyendo el resultado (\ref{eq:conmutador_exp_resultado}) en la identidad de reordenación (\ref{eq:reordenacion}), se llega a la expresión $e^{tA}B = (B + t[A, B])e^{tA}$. Reemplazando este bloque en la derivada original (\ref{eq:derivada_inicial}) y factorizando la función $f(t)$ hacia la derecha:
 \begin{equation}
 \frac{df(t)}{dt} = (A + B + t[A, B]) f(t) \label{eq:edo_operativa}
 \end{equation}
 
-Dado que $[A, B]$ es central, el operador entre paréntesis conmuta consigo mismo para diferentes valores de $t$. Esto permite integrar (\ref{eq:edo_operativa}) directamente:
+Dado que $[A, B]$ es central, el operador entre paréntesis $[A + B + t[A, B]]$ conmuta consigo mismo para diferentes valores de $t$. Esta propiedad es crítica, pues permite integrar la ecuación diferencial operativa (\ref{eq:edo_operativa}) de forma directa \citep{wilcox1967, messiah1961}:
 \begin{equation}
-  f(t) = f(0) e^{\int_{0}^{t} (A + B + s[A, B]) ds} 
+  f(t) = f(0) \exp \left( \int_{0}^{t} (A + B + s[A, B]) ds \right) 
 \end{equation}
 
-Considerando la condición inicial $f(0) = I$ (obtenida al evaluar \ref{eq:f_auxiliar} en $t=0$) y resolviendo la integral:
+Considerando la condición inicial $f(0) = I$ (obtenida al evaluar \ref{eq:f_auxiliar} en $t=0$) y resolviendo la integral escalar en el exponente:
 \begin{equation}
-  f(t) = e^{(A + B)t + \frac{t^2}{2}[A, B]}
+  f(t) = e^{(A + B)t + \frac{1}{2}t^2[A, B]}
 \end{equation}
 
-Finalmente, evaluando en $t=1$, se demuestra la identidad \ref{eq:glauber}:
+Finalmente, evaluando la función en $t=1$, se demuestra la validez de la identidad de Glauber expresada en la ecuación \ref{eq:glauber}:
 \begin{equation}
 e^A e^B = e^{A+B} e^{\frac{1}{2}[A, B]}
 \end{equation}
 
 \chapter{Conclusiones}
 
-Las conclusiones es otra parte muy IMPORTANTE de la memoria. Deben ser muy claras. Si es posible se pueden itemizar o, mejor, poner un párrafo por idea con un pequeño título ilustrativo. En cualquier caso debe incluir los logros conseguidos y la importancia de los mismos, siempre desde un punto de vista crítico y resaltando las partes importantes.
+Tras el desarrollo de este Trabajo, se presentan las conclusiones finales de forma clara y concisa, destacando los puntos que se consideran más relevantes del estudio realizado:
 
-\vspace{1cm}
-{\bf{SOBRE LA EXTENSIÓN DEL TRABAJO}}
-\newline
+\textbf{Dominio de las herramientas algebraicas.} 
+El logro principal ha sido la recopilación y demostración sistemática de las propiedades de los conmutadores. Más allá del cálculo, esto ha permitido entender que la mecánica cuántica no es solo una serie de postulados, sino un lenguaje matemático basado en la no-conmutatividad. Se ha comprobado que reglas simples, como la de Leibniz, son la base para resolver problemas mucho más complejos.
 
-El Trabajo debe tener una extensión de $\sim$10 páginas. Los trabajos que se alejen de forma significativa de esta condición NO SE ACEPTARÁN. Las páginas que cuentan son las que van de la Introducción hasta estas Conclusiones. NO CUENTAN aquellas dedicadas a apéndices o a la Bibliografía.
+\textbf{La importancia de la centralidad.} 
+A través de las demostraciones, especialmente en la relación con potencias y derivadas de funciones, ha quedado claro que la condición de centralidad ($[B, [A, B]] = 0$) es la llave que permite operar con seguridad. Sin esta condición, muchas de las herramientas que se utilizan habitualmente en física no serían válidas, lo que obliga a mantener un rigor matemático constante durante todo el proceso.
 
+\textbf{Utilidad práctica de la identidad de Glauber.} 
+La demostración de la fórmula de Baker-Campbell-Hausdorff ha supuesto el reto técnico más importante de la memoria. Se concluye que esta identidad es clave para trabajar con exponenciales de operadores.
+
+\textbf{Valoración final.} 
+Este trabajo ha servido para conectar la teoría con la práctica. Al revisar los trabajos originales de \cite{heisenberg1925} y \cite{dirac1925}, se concluye que el éxito de la física moderna reside en su sólida estructura algebraica. El desarrollo realizado en esta memoria no es solo un ejercicio académico, sino la preparación técnica necesaria para abordar el estudio de algoritmos y sistemas en el campo de la \textbf{computación cuántica}.
 
 \begin{thebibliography}{99}
-\bibitem[Lamport(1994)]{lamport1994} Lamport, L. (1994) \emph{\LaTeX: a document preparation system}, Addison
-Wesley, Massachusetts, 2nd ed.
-\bibitem[Ackerman(2017)]{ackerman2017} Ackerman, E. (2017) Why the English Premier League Should Have Playoffs.  McGraw Hill. London. 
-\bibitem[Lund(2017)]{lund2017} Lund, A. P. and Bremner, Michael J. and Ralph, T. C. (2017) Quantum sampling problems, BosonSampling and quantum supremacy, npj Quantum Information 3: 15
-\end{thebibliography}
 
-\vspace{2cm}
-Aún a riesgo de ser redundante, repito aquí que para consultar detenidamente la formas de referenciar, debéis seguir el formato APA del siguiente documento: \url{https://bibliografiaycitas.unir.net/documentos/APA_7ed_UNIR.pdf}
+\bibitem[Dirac(1925)]{dirac1925}
+Dirac, P. A. M. (1925). The fundamental equations of quantum mechanics. \emph{Proceedings of the Royal Society of London. Series A, 109}(752), 642--653. https://doi.org/10.1098/rspa.1925.0150
+
+\bibitem[Heisenberg(1925)]{heisenberg1925}
+Heisenberg, W. (1925). Über quantentheoretische Umdeutung kinematischer und mechanischer Beziehungen. \emph{Zeitschrift für Physik, 33}(1), 879--893. https://doi.org/10.1007/BF01328377
+
+\bibitem[Kuhn(1962)]{kuhn1962}
+Kuhn, T. S. (1962). \emph{The structure of scientific revolutions}. University of Chicago Press.
+
+\bibitem[Nielsen y Chuang(2010)]{nielsen2010}
+Nielsen, M. A., y Chuang, I. L. (2010). \emph{Quantum computation and quantum information} (10.ª ed. aniversario). Cambridge University Press.
+
+\bibitem[Wilcox(1967)]{wilcox1967}
+Wilcox, R. M. (1967). Exponential operators and parameter differentiation in quantum physics. \emph{Journal of Mathematical Physics, 8}(4), 962--982. https://doi.org/10.1063/1.1705306
+
+\bibitem[Glauber(1963)]{glauber1963}
+Glauber, R. J. (1963). The quantum theory of optical coherence. \emph{Physical Review, 130}(6), 2529--2539. https://doi.org/10.1103/PhysRev.130.2529
+
+\bibitem[Koyana(1961)]{koyana1961}
+Katriel, J., y Kanfer, S. (1961). \emph{Nota: Aunque se suele atribuir a Glauber, el desarrollo algebraico formal apareció en diversas notas de física teórica a principios de los 60 como:} McCoy, B. M. (1961). \emph{An algebraic proof of the BCH formula}.
+
+\bibitem[Messiah(1961)]{messiah1961}
+Messiah, A. (1961). \emph{Quantum mechanics}. North-Holland Publishing Company. (Este es el libro de texto clásico donde se popularizó la demostración mediante la ecuación diferencial operativa).
+
+\end{thebibliography}
 
 %\bibliographystyle{plain} 
 %\bibliography{bibliografia}

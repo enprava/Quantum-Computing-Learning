@@ -15,7 +15,7 @@
 \title{Análisis operativo de conmutadores y funciones de operadores en mecánica cuántica}
 \author{Enrique Prada Vázquez}
 \profesor{Rodrigo Gil-Merino y Rubio}
-\date{08/05/2026}
+\date{11/05/2026}
 
 %---------------------------
 %marges
@@ -53,23 +53,27 @@ This Report presents an analysis of the fundamental properties of linear operato
 
 \chapter{Introducción}
 
+En este primer capítulo se establecen las bases conceptuales que motivan el presente trabajo. Se describe el contexto histórico y científico que justifica el estudio del álgebra de operadores, se definen los objetivos que guían la investigación y se detalla la organización estructural del Trabajo para facilitar su lectura y comprensión.
+
 \section{Motivación y justificación del tema a tratar}
 
 El nacimiento de la mecánica cuántica moderna a principios del siglo XX supuso un cambio de paradigma no solo en la física, sino en la estructura matemática necesaria para describir la naturaleza \citep{kuhn1962}. A diferencia de la mecánica clásica, donde las variables dinámicas son funciones escalares que conmutan entre sí, en la formulación matricial original se establece que las magnitudes físicas deben ser representadas mediante operadores lineales no conmutativos \citep{heisenberg1925}.
 
-Esta ruptura con el cálculo tradicional es lo que justifica el presente Trabajo. El estudio de los conmutadores no es una mera extensión algebraica, sino la base misma del formalismo cuántico. Como bien señaló \cite{dirac1925}, la estructura del conmutador $[A, B]$ constituye el núcleo de la cuantización por correspondencia, siendo el análogo directo de los corchetes de Poisson clásicos. Comprender identidades como la de Glauber o la de Baker-Campbell-Hausdorff es esencial para abordar problemas modernos en campos como la óptica cuántica o la teoría de la información \citep{nielsen2010}.
+Esta ruptura con el cálculo tradicional es lo que justifica el presente Trabajo. El estudio de los conmutadores no es una mera extensión algebraica, sino la base misma del formalismo cuántico. Como bien señaló \cite{dirac1925}, la estructura del conmutador $[A, B]$ constituye el núcleo de la cuantización por correspondencia. Comprender identidades como la de Glauber o la de Baker-Campbell-Hausdorff es esencial para abordar problemas modernos en campos como la óptica cuántica o la teoría de la información \citep{nielsen2010}.
 
-\section{Estructura de;}
+\section{Estructura del Trabajo}
 
 Para garantizar una exposición lógica y fluida de los conceptos, el presente Trabajo se organiza de la siguiente manera:
 
 \begin{itemize}
-    \item \textbf{Capítulo 1: Introducción.} Se establece el marco teórico y la motivación del estudio, detallando el planteamiento y los objetivos generales.
-    \item \textbf{Capítulo 2: Objetivos.} Se exponen los objetivos a conseguir con la elaboración del Trabajo.
+    \item \textbf{Capítulo 1: Introducción.} Se establece el marco teórico y la motivación del estudio, detallando el contexto y la estructura general.
+    \item \textbf{Capítulo 2: Objetivos.} Se exponen las metas académicas y técnicas a alcanzar con la elaboración del Trabajo.
     \item \textbf{Capítulo 3: Enunciado del problema.} Donde se delimitan formalmente las identidades operacionales y las premisas matemáticas que se pretenden demostrar.
-    \item \textbf{Capítulo 4: Desarrollo del Trabajo.} Constituye el núcleo técnico de la memoria, donde se ejecutan de forma secuencial todas las demostraciones analíticas.
-    \item \textbf{Capítulo 5: Conclusiones.} Se ofrece una síntesis de los logros alcanzados y su relevancia en el contexto de la computación cuántica.
-\end{itemize}\chapter{Objetivos}
+    \item \textbf{Capítulo 4: Desarrollo del Trabajo.} Constituye el núcleo técnico del Trabajo, donde se ejecutan de forma secuencial todas las demostraciones analíticas.
+    \item \textbf{Capítulo 5: Conclusiones.} Se ofrece una síntesis de los logros alcanzados.
+\end{itemize}
+
+\chapter{Objetivos}
 
 El propósito fundamental de este trabajo es profundizar en el formalismo algebraico de la mecánica cuántica, trascendiendo la manipulación escalar convencional para dominar el cálculo de operadores no conmutativos. Los objetivos que dan perspectiva a esta memoria se centran en tres ejes fundamentales:
 
@@ -293,21 +297,30 @@ El logro principal ha sido la recopilación y demostración sistemática de las 
 A través de las demostraciones, especialmente en la relación con potencias y derivadas de funciones, ha quedado claro que la condición de centralidad ($[B, [A, B]] = 0$) es la llave que permite operar con seguridad. Sin esta condición, muchas de las herramientas que se utilizan habitualmente en física no serían válidas, lo que obliga a mantener un rigor matemático constante durante todo el proceso.
 
 \textbf{Utilidad práctica de la identidad de Glauber.} 
-La demostración de la fórmula de Baker-Campbell-Hausdorff ha supuesto el reto técnico más importante de la memoria. Se concluye que esta identidad es clave para trabajar con exponenciales de operadores.
+La demostración de la fórmula de Baker-Campbell-Hausdorff ha supuesto el reto técnico más importante del Trabajo. Se concluye que esta identidad es clave para trabajar con exponenciales de operadores.
 
 \textbf{Valoración final.} 
-Este trabajo ha servido para conectar la teoría con la práctica. Al revisar los trabajos originales de \cite{heisenberg1925} y \cite{dirac1925}, se concluye que el éxito de la física moderna reside en su sólida estructura algebraica. El desarrollo realizado en esta memoria no es solo un ejercicio académico, sino la preparación técnica necesaria para abordar el estudio de algoritmos y sistemas en el campo de la \textbf{computación cuántica}.
+Este Trabajo ha servido para conectar la teoría con la práctica. Al revisar los trabajos originales de \cite{heisenberg1925} y \cite{dirac1925}, se concluye que el éxito de la física moderna reside en su sólida estructura algebraica. El desarrollo realizado en est Trabajo no es solo un ejercicio académico, sino la preparación técnica necesaria para abordar el estudio de algoritmos y sistemas en el campo de la \textbf{computación cuántica}.
 
 \begin{thebibliography}{99}
 
 \bibitem[Dirac(1925)]{dirac1925}
 Dirac, P. A. M. (1925). The fundamental equations of quantum mechanics. \emph{Proceedings of the Royal Society of London. Series A, 109}(752), 642--653. https://doi.org/10.1098/rspa.1925.0150
 
+\bibitem[Glauber(1963)]{glauber1963}
+Glauber, R. J. (1963). The quantum theory of optical coherence. \emph{Physical Review, 130}(6), 2529--2539. https://doi.org/10.1103/PhysRev.130.2529
+
 \bibitem[Heisenberg(1925)]{heisenberg1925}
 Heisenberg, W. (1925). Über quantentheoretische Umdeutung kinematischer und mechanischer Beziehungen. \emph{Zeitschrift für Physik, 33}(1), 879--893. https://doi.org/10.1007/BF01328377
 
+\bibitem[Katriel y Kanfer(1961)]{koyana1961}
+Katriel, J., y Kanfer, S. (1961). \emph{Nota: Aunque se suele atribuir a Glauber, el desarrollo algebraico formal apareció en diversas notas de física teórica a principios de los 60 como:} McCoy, B. M. (1961). \emph{An algebraic proof of the BCH formula}.
+
 \bibitem[Kuhn(1962)]{kuhn1962}
 Kuhn, T. S. (1962). \emph{The structure of scientific revolutions}. University of Chicago Press.
+
+\bibitem[Messiah(1961)]{messiah1961}
+Messiah, A. (1961). \emph{Quantum mechanics}. North-Holland Publishing Company.
 
 \bibitem[Nielsen y Chuang(2010)]{nielsen2010}
 Nielsen, M. A., y Chuang, I. L. (2010). \emph{Quantum computation and quantum information} (10.ª ed. aniversario). Cambridge University Press.
@@ -315,17 +328,7 @@ Nielsen, M. A., y Chuang, I. L. (2010). \emph{Quantum computation and quantum in
 \bibitem[Wilcox(1967)]{wilcox1967}
 Wilcox, R. M. (1967). Exponential operators and parameter differentiation in quantum physics. \emph{Journal of Mathematical Physics, 8}(4), 962--982. https://doi.org/10.1063/1.1705306
 
-\bibitem[Glauber(1963)]{glauber1963}
-Glauber, R. J. (1963). The quantum theory of optical coherence. \emph{Physical Review, 130}(6), 2529--2539. https://doi.org/10.1103/PhysRev.130.2529
-
-\bibitem[Koyana(1961)]{koyana1961}
-Katriel, J., y Kanfer, S. (1961). \emph{Nota: Aunque se suele atribuir a Glauber, el desarrollo algebraico formal apareció en diversas notas de física teórica a principios de los 60 como:} McCoy, B. M. (1961). \emph{An algebraic proof of the BCH formula}.
-
-\bibitem[Messiah(1961)]{messiah1961}
-Messiah, A. (1961). \emph{Quantum mechanics}. North-Holland Publishing Company. (Este es el libro de texto clásico donde se popularizó la demostración mediante la ecuación diferencial operativa).
-
 \end{thebibliography}
-
 %\bibliographystyle{plain} 
 %\bibliography{bibliografia}
 

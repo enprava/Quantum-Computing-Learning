@@ -17,7 +17,7 @@
 \title{Producto tensorial y Esfera de Bloch}
 \author{Enrique Prada Vázquez}
 \profesor{Francisco Costa Cano}
-\date{08-05-2026}
+\date{18-05-2026}
 
 \begin{document}
 \renewcommand{\listfigurename}{Índice de figuras}
@@ -34,7 +34,7 @@
 
 \chapter*{Resumen}
 
-En este Trabajo se aborda de forma sistemática la manipulación de sistemas cuánticos multiqubit, fundamentando el análisis en el uso del producto tensorial y en la interpretación geométrica de los estados mediante la esfera de Bloch. A lo largo de la memoria, se presentan los cálculos detallados para la construcción de operadores compuestos a partir de matrices de Pauli, así como la evaluación de amplitudes de transición entre estados específicos de la base computacional. 
+En este Trabajo se aborda de forma sistemática la manipulación de sistemas cuánticos multicúbit, fundamentando el análisis en el uso del producto tensorial y en la interpretación geométrica de los estados mediante la esfera de Bloch. A lo largo del desarrollo, se presentan los cálculos detallados para la construcción de operadores compuestos a partir de matrices de Pauli, así como la evaluación de amplitudes de transición entre estados específicos de la base computacional. 
 
 El Trabajo integra el desarrollo analítico con la verificación computacional en \textit{Qiskit}, analizando finalmente el comportamiento de las puertas lógicas fundamentales ($X, Y, Z, H$) como rotaciones unitarias en el espacio de estados. Los resultados subrayan la importancia de la fase y la superposición en la evolución de la información cuántica.
 
@@ -53,85 +53,82 @@ The Report integrates analytical development with computational verification usi
 
 \chapter{Introducción}
 
+Este primer capítulo establece el marco conceptual y metodológico sobre el cual se desarrolla el presente Trabajo. En primer lugar, se expone la motivación histórica y científica que justifica el surgimiento del paradigma cuántico, destacando los límites físicos que la tecnología convencional ha alcanzado en la actualidad. Seguidamente, se define el planteamiento del problema técnico abordado, el cual gira en torno a la dimensionalidad y la representación formal de operadores en sistemas de múltiples cúbits. Por último, se desglosa cronológicamente la estructura del Trabajo mencionando hitos teóricos, analíticos y de validación computacional que componen este trabajo.
+
 \section{Motivación y justificación}
 
 El surgimiento del paradigma de la computación cuántica se fundamenta en la necesidad crítica de trascender las limitaciones físicas de la computación clásica \citep{landauer1961}, un desafío que fue anticipado teóricamente por \cite{benioff1980} al describir el primer modelo mecánico-cuántico de un computador. Esta transición se justifica por la ineficiencia intrínseca de los sistemas clásicos para simular la naturaleza a escala atómica; como argumentó \cite{feynman1982}, la simulación de sistemas cuánticos en hardware convencional conlleva un crecimiento exponencial de recursos computacionales, lo que exige el desarrollo de dispositivos que operen bajo las leyes de la superposición y la interferencia \citep{deutsch1985}.
 
-En el escenario tecnológico actual, el diseño de algoritmos cuánticos demanda un dominio absoluto del álgebra lineal y de la manipulación de estados en espacios de Hilbert de alta dimensionalidad. La capacidad de procesamiento de estos sistemas reside en la estructura de sus operadores unitarios y en la explotación del paralelismo cuántico \citep{shor1994}. Por tanto, la comprensión de la construcción de matrices multiqubit y su visualización mediante la esfera de Bloch \citep{bloch1946} no constituye únicamente un ejercicio académico, sino que se establece como una competencia técnica indispensable para el desarrollo de la computación cuántica en la era NISQ \citep{preskill2018}.
+En el escenario tecnológico actual, el diseño de algoritmos cuánticos demanda un dominio absoluto del álgebra lineal y de la manipulación de estados en espacios de \cite{hilbert1912} de alta dimensionalidad. La capacidad de procesamiento de estos sistemas reside en la estructura de sus operadores unitarios y en la explotación del paralelismo cuántico \citep{shor1994}. Por tanto, la comprensión de la construcción de matrices multicúbit y su visualización mediante la esfera de Bloch \citep{bloch1946} no constituye únicamente un ejercicio académico, sino que se establece como una competencia técnica indispensable para el desarrollo de la computación cuántica en la era NISQ \citep{preskill2018}.
 
 \section{Planteamiento del Trabajo}
 
-Este Trabajo se centra en el análisis formal de la composición de sistemas cuánticos a través de la operación del producto tensorial. El problema central reside en la "maldición de la dimensionalidad" que caracteriza a los sistemas de $n$ qubits, donde el espacio de estados escala como $2^n$ \citep{nielsen2010}. El Trabajo aborda este reto mediante el rigor del cálculo analítico de productos de Kronecker y su validación empírica mediante herramientas de computación en la nube.
+Este Trabajo se centra en el análisis formal de la composición de sistemas cuánticos a través de la operación del producto tensorial. El problema central reside en la <<maldición de la dimensionalidad>> que caracteriza a los sistemas de $n$ cúbits, donde el espacio de estados escala como $2^n$ \citep{nielsen2010}. El Trabajo aborda este reto mediante el rigor del cálculo analítico de productos de Kronecker y su validación empírica mediante herramientas de computación en la nube.
 
-Se pretende validar la construcción de operadores multiqubit, evaluar su impacto mediante el cálculo de amplitudes de transición y mapear estas operaciones como rotaciones isométricas en el espacio de estados. Se espera que este Trabajo contribuya a consolidar una metodología que integre la precisión del cálculo manual con la eficiencia de las librerías de programación cuántica contemporáneas, garantizando la reproducibilidad de los resultados.
+Se pretende validar la construcción de operadores multicúbit, evaluar su impacto mediante el cálculo de amplitudes de transición y mapear estas operaciones como rotaciones isométricas en el espacio de estados. Se espera que este Trabajo contribuya a consolidar una metodología que integre la precisión del cálculo manual con la eficiencia de las librerías de programación cuántica contemporáneas, garantizando la reproducibilidad de los resultados.
 
 \section{Estructura del Trabajo}
 
-Para alcanzar los objetivos propuestos y resolver de manera sistemática los problemas planteados, este Trabajo se organiza en los siguientes capítulos:
+Este Trabajo se organiza en los siguientes capítulos:
 
-El \textbf{Capítulo 2, Objetivos}, define las metas generales y específicas, estableciendo los umbrales de dominio teórico y práctico requeridos. El \textbf{Capítulo 3, Enunciado del problema}, desglosa los ejercicios prácticos, desde el cálculo de productos de Kronecker en sistemas de cuatro qubits hasta la dinámica de puertas lógicas. 
+El \textbf{Capítulo 2, Objetivos}, define las metas generales y específicas, estableciendo los umbrales de dominio teórico y práctico requeridos.
 
-El \textbf{Capítulo 4, Desarrollo del Trabajo}, constituye el núcleo de la memoria y se articula en tres áreas de análisis. Comienza con el \textbf{cálculo del producto tensorial}, donde se aborda la resolución analítica de los operadores $A, B$ y $C$ para explorar la expansión del espacio de Hilbert. Seguidamente, en el apartado de \textbf{aplicaciones y amplitudes}, se detalla la construcción del operador compuesto $O$ y el cálculo de elementos de matriz fundamentados en la linealidad del producto escalar. Finalmente, el bloque de \textbf{esfera de Bloch y puertas cuánticas} se centra en la representación geométrica de las bases fundamentales y en el análisis rotacional de las puertas $X, Y, Z$ y $H$, bajo el formalismo de evolución unitaria \citep{nielsen2010}.
+El \textbf{Capítulo 3, Enunciado del problema}, desglosa los ejercicios prácticos, desde el cálculo de productos de Kronecker en sistemas de cuatro cúbits hasta la dinámica de puertas lógicas. 
 
-Finalmente, el \textbf{Capítulo 5, Conclusiones}, sintetiza los hallazgos y evalúa la convergencia entre los resultados analíticos y la simulación realizada en \textit{Qiskit}, seguido de la \textbf{Bibliografía} que recoge las fuentes originales citadas.\begin{itemize}
-    \item \textbf{Capítulo 2. Objetivos:} Se definen las metas generales y específicas, estableciendo los niveles de dominio teórico y práctico que se pretenden alcanzar.
-    \item \textbf{Capítulo 3. Enunciado del problema:} Se desglosan los ejercicios propuestos, desde el cálculo de productos de Kronecker en sistemas de hasta cuatro qubits hasta la visualización de la dinámica de puertas cuánticas.
-    \item El \textbf{Capítulo 4, Desarrollo del Trabajo}, constituye el núcleo de la memoria y se articula en torno a tres áreas clave de análisis. Comienza con el \textbf{cálculo del producto tensorial}, donde se aborda la resolución analítica de los operadores $A, B$ y $C$ con el fin de explorar la expansión del espacio de Hilbert en sistemas multiqubit. Seguidamente, en el apartado de \textbf{aplicaciones y amplitudes}, se detalla la construcción del operador compuesto $O$ y el cálculo minucioso de elementos de matriz fundamentados en la linealidad del producto escalar. Finalmente, el bloque dedicado a la \textbf{esfera de Bloch y puertas cuánticas} se centra en la representación geométrica de las bases fundamentales y en el análisis rotacional de las puertas $X, Y, Z$ y $H$, siguiendo para ello el formalismo de evolución unitaria descrito por \cite{nielsen2010}.
-    \item \textbf{Capítulo 5. Conclusiones:} Se sintetizan los hallazgos del Trabajo, evaluando la convergencia entre los resultados analíticos y la simulación computacional realizada con \textit{Qiskit}.
-\end{itemize}
+El \textbf{Capítulo 4, Desarrollo del Trabajo}, constituye el núcleo de la memoria y se articula en tres áreas de análisis. Comienza con el \textbf{cálculo del producto tensorial}, donde se aborda la resolución analítica de los operadores $A, B$ y $C$ para explorar la expansión del espacio de Hilbert. Seguidamente, en el apartado de \textbf{aplicaciones y amplitudes}, se detalla la construcción del operador compuesto $O$ y el cálculo de elementos de matriz fundamentados en la linealidad del producto escalar. Finalmente, el bloque de \textbf{esfera de Bloch y puertas cuánticas} se centra en la representación geométrica de las bases fundamentales y en el análisis rotacional de las puertas $X, Y, Z$ y $H$, bajo el formalismo de evolución unitaria.
 
-Finalmente, se incluye una sección de \textbf{Bibliografía} con las fuentes originales y libros de consulta que han servido de tributo y apoyo documental a las ideas aquí expuestas.
+Finalmente, el \textbf{Capítulo 5, Conclusiones}, presenta una síntetis de los hallazgos, seguido de la \textbf{Bibliografía} que recoge las fuentes originales citadas.
 
 \chapter{Objetivos}
 
 El propósito de este Trabajo es profundizar en el formalismo matricial de la mecánica cuántica, estableciendo un puente entre el cálculo analítico de operadores y su aplicación práctica en entornos de programación cuántica.
 
 \section{Objetivo general}
-Desarrollar una comprensión sólida de la estructura algebraica de los sistemas multiqubit y validar su comportamiento mediante la representación geométrica en la esfera de Bloch.
+Desarrollar una comprensión sólida de la estructura algebraica de los sistemas multicúbit y validar su comportamiento mediante la representación geométrica en la esfera de Bloch.
 
 \section{Objetivos específicos}
 Para la consecución del objetivo general, se han definido las siguientes metas:
 
 \begin{itemize}
-    \item \textbf{Dominio del álgebra de Kronecker:} Dominar la técnica del producto tensorial para expandir operadores de un solo qubit a espacios de Hilbert de mayor dimensión ($2^N$), asegurando la correcta disposición de los elementos matriciales.
+    \item \textbf{Dominio del álgebra de Kronecker:} Dominar la técnica del producto tensorial para expandir operadores de un solo cúbit a espacios de Hilbert de mayor dimensión ($2^N$), asegurando la correcta disposición de los elementos matriciales.
     \item \textbf{Análisis de Operadores Compuestos:} Evaluar la acción de operadores complejos definidos por combinaciones lineales de productos de matrices de Pauli, comprendiendo cómo influyen los coeficientes en el elemento de matriz final.
     \item \textbf{Abstracción Geométrica de Puertas:} Caracterizar las puertas cuánticas fundamentales no solo como operadores matemáticos, sino como transformaciones físicas de rotación, facilitando la comprensión de la evolución de estados.
-    \item \textbf{Integración Computacional:} Utilizar librerías de computación cuántica (\textit{Qiskit}) para automatizar la construcción de operadores y la visualización de estados, contrastando los resultados numéricos con los desarrollos teóricos.
+    \item \textbf{Integración Computacional:} Utilizar las librerías (\textit{Qiskit} y \textit{NumPy}) para automatizar la construcción de operadores y la visualización de estados, contrastando los resultados numéricos con los desarrollos teóricos.
     \item \textbf{Evaluación de Amplitudes:} Calcular probabilidades y amplitudes de transición entre estados base específicos para determinar la eficacia de las operaciones unitarias aplicadas.
 \end{itemize}
 
 \chapter{Enunciado del problema}
 
-El presente Trabajo tiene como objetivo la resolución de una serie de ejercicios prácticos centrados en el álgebra de sistemas cuánticos multiqubit y su interpretación geométrica. El problema se descompone en los siguientes bloques de estudio:
+El presente Trabajo tiene como objetivo la resolución de una serie de ejercicios prácticos centrados en el álgebra de sistemas cuánticos multicúbit y su interpretación geométrica. El problema se descompone en los siguientes bloques de estudio:
 
 \section{Cálculo de productos tensoriales}
 Se requiere determinar la representación matricial resultante de diversas combinaciones de matrices unitarias fundamentales (matrices de Pauli e Identidad), aplicando la operación del producto de Kronecker. En particular, se deben calcular los operadores correspondientes a:
 \begin{itemize}
-    \item Un sistema de cuatro qubits definido por $A = X \otimes I \otimes Z \otimes I$.
-    \item Un sistema de cuatro qubits definido por $B = I \otimes Y \otimes Z \otimes X$.
-    \item Un sistema de tres qubits definido por $C = Z \otimes X \otimes I$.
+    \item Un sistema de cuatro cúbits definido por $A = X \otimes I \otimes Z \otimes I$.
+    \item Un sistema de cuatro cúbits definido por $B = I \otimes Y \otimes Z \otimes X$.
+    \item Un sistema de tres cúbits definido por $C = Z \otimes X \otimes I$.
 \end{itemize}
 
 \section{Operadores compuestos y amplitudes de transición}
 A partir de la combinación lineal de productos tensoriales, se debe definir un operador global $O$ de la forma:
 \[ O = \frac{2}{3}(X \otimes Z \otimes I) + \frac{1}{4}(I \otimes Z \otimes X) - \frac{5}{6}(Y \otimes Y \otimes Z) \]
-Posteriormente, el problema exige el cálculo de la amplitud de transición (o elemento de matriz) entre dos estados específicos de la base computacional de tres qubits:
+Posteriormente, el problema exige el cálculo de la amplitud de transición (o elemento de matriz) entre dos estados específicos de la base computacional de tres cúbits:
 \[ \langle 101 | O | 010 \rangle \]
 
 \section{Representación en la esfera de Bloch}
 El último bloque del problema se centra en la visualización geométrica mediante el uso de la esfera de Bloch, abordando dos tareas:
 \begin{enumerate}
     \item \textbf{Representación de estados:} Localizar en una única esfera los estados cuánticos puros $|0\rangle$, $|1\rangle$, $|+\rangle$, $|-\rangle$, $|i+\rangle$ y $|i-\rangle$.
-    \item \textbf{Dinámica de puertas cuánticas:} Visualizar y analizar el efecto de las puertas unitarias $X$, $Y$, $Z$ y $H$ (Hadamard) cuando actúan sobre los estados básicos de la computación $|0\rangle$ y $|1\rangle$.
+    \item \textbf{Dinámica de puertas cuánticas:} Visualizar y analizar el efecto de las puertas unitarias $X$, $Y$, $Z$ y $H$ cuando actúan sobre los estados básicos de la computación $|0\rangle$ y $|1\rangle$.
 \end{enumerate}
-
-La resolución de estos puntos debe acompañarse de una implementación práctica en lenguaje Python, utilizando las librerías \texttt{NumPy} para el cálculo matricial y \texttt{Qiskit} para la simulación y visualización de los estados cuánticos.
 
 \chapter{Desarrollo del Trabajo}
 
+En este capítulo se despliega el núcleo operativo y analítico del Trabajo, traduciendo los fundamentos teóricos descritos previamente en un conjunto de resoluciones prácticas estructuradas. El desarrollo se divide en tres fases consecutivas y complementarias: la derivación analítica de operadores de múltiples cúbits, la evaluación operativa de sus amplitudes de transición en sistemas compuestos y, por último, la interpretación geométrica y cinemática de estos estados y puertas lógicas sobre el espacio isométrico de la esfera de \cite{bloch1946}. Con el propósito de asegurar un marco de trabajo reproducible y libre de ambigüedades, los formalismos matemáticos se contrastan de manera directa con las simulaciones numéricas ejecutadas de forma local.
+
 \section{Cálculo del producto tensorial}
 
-Para el desarrollo de los ejercicios, se parte de las definiciones de las matrices unitarias de Pauli y la matriz Identidad, las cuales constituyen la base para los operadores de un único qubit:
+Para el desarrollo de los ejercicios, se parte de las definiciones de las matrices unitarias de \cite{pauli1927} y la matriz Identidad, las cuales constituyen la base para los operadores de un único cúbit:
 
 \[ 
 I = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}, \quad 
@@ -140,13 +137,13 @@ Y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}, \quad
 Z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} 
 \]
 
-El producto tensorial (o de Kronecker) $A \otimes B$ permite extender estos operadores a espacios de Hilbert de mayor dimensión. Para dos matrices $A$ (de tamaño $m \times n$) y $B$, se define como:
+El producto tensorial (o de Kronecker) $A \otimes B$ permite extender estos operadores a espacios de \cite{hilbert1912} de mayor dimensión. Para dos matrices $A$ (de tamaño $m \times n$) y $B$, se define algebraicamente como:
 \[ A \otimes B = \begin{pmatrix} a_{11}B & \cdots & a_{1n}B \\ \vdots & \ddots & \vdots \\ a_{m1}B & \cdots & a_{mn}B \end{pmatrix} \]
 
-A continuación, se detallan las combinaciones solicitadas:
+    Con el fin de garantizar la absoluta rigurosidad del desarrollo analítico, cada uno de los operadores calculados ha sido verificado computacionalmente en el cuaderno de trabajo. Para ello, se definieron las matrices fundamentales como objetos de tipo \textit{array} en la librería \textit{NumPy} y se procedió a la simulación de los productos tensoriales mediante la función estándar \texttt{np.kron()}, contrastando el resultado numérico con las matrices deducidas de forma manual. \cite{numpy2020}
 
 \subsection{Caso 1: $X \otimes I \otimes Z \otimes I$}
-Este operador actúa sobre un sistema de 4 qubits, resultando en una matriz de $16 \times 16$. Para facilitar su visualización, representamos la matriz resultante en bloques de $8 \times 8$:
+Este operador actúa sobre un sistema de 4 cúbits, resultando en una matriz de $16 \times 16$. Para facilitar su visualización, representamos la matriz resultante en bloques de $8 \times 8$:
 
 \[
 X \otimes I \otimes Z \otimes I = 
@@ -172,10 +169,10 @@ Donde cada bloque $\mathbf{M_1}$ es el producto tensorial de $I \otimes Z \otime
 \end{pmatrix}
 \]
 
-De este modo, la matriz completa de $16 \times 16$ se construye situando el bloque $\mathbf{M_1}$ en las posiciones donde la matriz $X$ tiene sus elementos iguales a 1 (fuera de la diagonal principal) y matrices nulas donde $X$ tiene ceros. Esta estructura es consistente con los resultados obtenidos mediante \texttt{NumPy} en el cuaderno de prácticas.
+De este modo, la matriz completa de $16 \times 16$ se construye situando el bloque $\mathbf{M_1}$ en las posiciones donde la matriz $X$ tiene sus elementos iguales a 1 (fuera de la diagonal principal) y matrices nulas donde $X$ tiene ceros.
 
 \subsection{Caso 2: $I \otimes Y \otimes Z \otimes X$}
-Este operador actúa sobre un sistema de 4 qubits, lo que genera una matriz de dimensiones $2^4 \times 2^4 = 16 \times 16$. Debido a que el primer qubit se encuentra en el estado Identidad ($I$), la matriz global presenta una estructura diagonal por bloques de $8 \times 8$:
+Este operador actúa sobre un sistema de 4 cúbits, lo que genera una matriz de dimensiones $2^4 \times 2^4 = 16 \times 16$. Debido a que el primer cúbit se encuentra en el estado Identidad ($I$), la matriz global presenta una estructura diagonal por bloques de $8 \times 8$:
 
 \[
 I \otimes Y \otimes Z \otimes X = 
@@ -185,7 +182,7 @@ I \otimes Y \otimes Z \otimes X =
 \end{pmatrix}
 \]
 
-Para determinar el contenido de los bloques $\mathbf{M_2}$, calculamos primero el producto tensorial de los dos últimos qubits, $Z \otimes X$ (matriz de $4 \times 4$):
+Para determinar el contenido de los bloques $\mathbf{M_2}$, se calcula primero el producto tensorial de los dos últimos cúbits, $Z \otimes X$ (matriz de $4 \times 4$):
 
 \[
 Z \otimes X = 
@@ -198,7 +195,7 @@ Z \otimes X =
 \end{pmatrix}
 \]
 
-A continuación, aplicamos la matriz $Y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}$ sobre el resultado anterior para obtener el bloque $\mathbf{M_2} = Y \otimes (Z \otimes X)$:
+A continuación, aplicamos la matriz $Y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}$ sobre el resultado anterior para obtener el bloque $\mathbf{M_2} = Y \otimes (Z \otimes X)$ de $8 \times 8$:
 
 \[
 \mathbf{M_2} = 
@@ -218,10 +215,10 @@ i & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
 \end{pmatrix}
 \]
 
-La matriz final de $16 \times 16$ se completa situando dos copias de esta matriz $\mathbf{M_2}$ en la diagonal principal. Es notable observar cómo la presencia de la matriz $Y$ introduce la unidad imaginaria en la estructura, mientras que la matriz $Z$ en la tercera posición del producto tensorial provoca la inversión de fase (cambio de signo de $i$ a $-i$) en los elementos correspondientes a la segunda mitad del bloque $\mathbf{M_2}$. Esta configuración ha sido validada computacionalmente, confirmando el resultado.
+La matriz final se completa situando dos copias de esta matriz $\mathbf{M_2}$ en la diagonal principal. Es notable observar cómo la presencia de la matriz $Y$ introduce la unidad imaginaria en la estructura, mientras que la matriz $Z$ provoca la inversión de fase (cambio de signo de $i$ a $-i$) en la segunda mitad de $\mathbf{M_2}$.
 
 \subsection{Caso 3: $Z \otimes X \otimes I$}
-Este operador actúa sobre un sistema de 3 qubits, lo que resulta en una matriz de $2^3 \times 2^3 = 8 \times 8$. Utilizando la definición de la matriz $Z$, podemos particionar el operador en dos bloques principales de $4 \times 4$:
+Este operador actúa sobre un sistema de 3 cúbits, lo que resulta en una matriz de $2^3 \times 2^3 = 8 \times 8$. Utilizando la definición de la matriz $Z$, podemos particionar el operador en dos bloques principales de $4 \times 4$:
 
 \[ 
 Z \otimes X \otimes I = \begin{pmatrix} 1 \cdot (X \otimes I) & \mathbf{0} \\ \mathbf{0} & -1 \cdot (X \otimes I) \end{pmatrix} = 
@@ -250,15 +247,16 @@ Z \otimes X \otimes I =
 0 & 0 & 0 & 0 & 0 & -1 & 0 & 0 
 \end{pmatrix} 
 \]
-Esta representación muestra claramente cómo el primer qubit ($Z$) controla el signo de los bloques inferiores, mientras que el segundo qubit ($X$) gestiona la posición de los elementos dentro de cada bloque.
+
+Esta representación muestra claramente cómo el primer cúbit ($Z$) controla el signo de los bloques inferiores, mientras que el segundo cúbit ($X$) gestiona la posición de los elementos dentro de cada bloque. 
 
 \section{Aplicaciones del producto tensorial}
 
-Se define el operador $O$ mediante la suma ponderada de tres términos multiqubit. La construcción de este operador se realiza sumando las contribuciones de cada producto de Kronecker escalado por sus respectivos coeficientes:
+Se define el operador $O$ mediante la suma ponderada de tres términos multicúbit. La construcción de este operador se realiza sumando las contribuciones de cada producto de Kronecker escalado por sus respectivos coeficientes:
 
 \[ O = \frac{2}{3}(X \otimes Z \otimes I) + \frac{1}{4}(I \otimes Z \otimes X) - \frac{5}{6}(Y \otimes Y \otimes Z) \]
 
-La matriz resultante de $8 \times 8$ presenta una estructura simétrica con elementos puramente reales. A continuación, se muestra su representación explícita:
+Para validar el desarrollo algebraico, se replicó la combinación lineal en el cuaderno de trabajo definiendo cada término mediante matrices de \textit{NumPy} (\textit{arrays}) y operando de forma ponderada con las funciones vectoriales de la librería. La matriz resultante de $8 \times 8$ presenta una estructura simétrica con elementos puramente reales. A continuación, se muestra su representación explícita, la cual coincide de manera idéntica con el \textit{array} devuelto en la simulación \citep{numpy2020}:
 
 \[
 O = \left(
@@ -283,16 +281,18 @@ Para hallar este valor, aplicamos la linealidad del producto escalar sobre cada 
     \item \textbf{Término 3:} $-\frac{5}{6} \langle 1|Y|0\rangle \langle 0|Y|1\rangle \langle 1|Z|0\rangle$. Como $\langle 1|Z|0\rangle = 0$ (ya que $Z|0\rangle = |0\rangle$ y $\langle 1|0\rangle = 0$), este término también es nulo.
 \end{enumerate}
 
-Por lo tanto, el resultado final es $\langle 101 | O | 010 \rangle = 0$. Esto demuestra que el estado $|010\rangle$ es ortogonal al estado resultante de aplicar $O$ sobre $|101\rangle$.
+Por lo tanto, el resultado final es $\langle 101 | O | 010 \rangle = 0$. Esto demuestra que el estado $|010\rangle$ es ortogonal al estado resultante de aplicar $O$ sobre $|101\rangle$. Este producto interno y la evaluación de la nulidad de la amplitud de transición se comprobaron numéricamente con \textit{NumPy} \citep{numpy2020}.
 
 \section{Visualización en la esfera de Bloch}
 
-La esfera de Bloch constituye una herramienta fundamental para la representación geométrica de estados puros de un qubit. En la \textbf{Figura \ref{fig:bloch_states}}, se presenta la distribución conjunta de los seis estados solicitados, los cuales se sitúan en los extremos de los ejes ortogonales del espacio de Hilbert:
+La esfera de \cite{bloch1946} constituye una herramienta fundamental para la representación geométrica de estados puros de un cúbit. La generación de este espacio isométrico y la representación de los vectores correspondientes se han llevado a cabo de manera interactiva en el cuaderno de trabajo recurriendo a las funciones de visualización de \textit{Qiskit}, específicamente mediante el uso de la clase \texttt{Statevector} y el método \texttt{plot\_bloch\_multivector()} \citep{qiskit2023}.
+
+En la \textbf{Figura \ref{fig:bloch_states}}, se presenta la distribución conjunta de los seis estados solicitados tras ser mapeados por el entorno gráfico, los cuales se sitúan en los extremos de los ejes ortogonales del espacio de \cite{hilbert1912}:
 
 \begin{itemize}
-    \item \textbf{Eje $Z$ (Base computacional):} Los estados $|0\rangle$ y $|1\rangle$ se ubican en los polos norte (rojo) y sur (azul) respectivamente.
-    \item \textbf{Eje $X$ (Base de Hadamard):} Los estados $|+\rangle$ y $|-\rangle$ se sitúan en las intersecciones con el eje $X$ ($\theta=\pi/2, \phi=0, \pi$), representados en azul claro y morado.
-    \item \textbf{Eje $Y$ (Base circular):} Los estados $|i+\rangle$ y $|i-\rangle$ corresponden a las intersecciones con el eje $Y$ ($\theta=\pi/2, \phi=\pi/2, 3\pi/2$), identificados con los colores verde y amarillo.
+    \item \textbf{Eje $Z$:} Los estados $|0\rangle$ y $|1\rangle$ se ubican en los polos norte (rojo) y sur (azul) respectivamente.
+    \item \textbf{Eje $X$:} Los estados $|+\rangle$ y $|-\rangle$ se sitúan en las intersecciones con el eje $X$ ($\theta=\pi/2, \phi=0, \pi$), representados en azul claro y morado.
+    \item \textbf{Eje $Y$:} Los estados $|i+\rangle$ y $|i-\rangle$ corresponden a las intersecciones con el eje $Y$ ($\theta=\pi/2, \phi=\pi/2, 3\pi/2$), identificados con los colores verde y amarillo.
 \end{itemize}
 
 \begin{figure}[H]
@@ -303,36 +303,38 @@ La esfera de Bloch constituye una herramienta fundamental para la representació
 \end{figure}
 
 \section{Efecto de las puertas cuánticas}
-El análisis de la evolución de los estados $|0\rangle$ y $|1\rangle$ bajo distintas puertas revela su naturaleza rotacional en la esfera de Bloch:
+El análisis de la evolución de los estados $|0\rangle$ y $|1\rangle$ bajo distintas puertas revela su naturaleza rotacional en la esfera de \cite{bloch1946}. Las transformaciones cinemáticas y el desplazamiento del vector de estado que se tabulan a continuación fueron corroborados en el entorno computacional inicializando los cúbits en el simulador de \textit{Qiskit} y aplicando consecutivamente las instrucciones de circuito equivalentes a cada operador unitario \citep{qiskit2023}:
 
 \begin{table}[H]
 \centering
 \begin{tabular}{|c|c|c|l|}
 \hline
 \textbf{Puerta} & \textbf{Estado Inicial} & \textbf{Estado Final} & \textbf{Descripción de la Rotación} \\ \hline
-$X$ & $|0\rangle$ & $|1\rangle$ & Rotación de $\pi$ sobre el eje $X$ (NOT cuántico). \\ \hline
+$X$ & $|0\rangle$ & $|1\rangle$ & Rotación de $\pi$ radianes sobre el eje $X$ (NOT cuántico). \\ \hline
 $X$ & $|1\rangle$ & $|0\rangle$ & Intercambio de los estados de la base computacional. \\ \hline
-$Y$ & $|0\rangle$ & $i|1\rangle$ & Rotación de $\pi$ sobre el eje $Y$. \\ \hline
-$Y$ & $|1\rangle$ & $-i|0\rangle$ & Rotación de $\pi$ con factor de fase global. \\ \hline
-$Z$ & $|0\rangle$ & $|0\rangle$ & Rotación de $\pi$ sobre el eje $Z$ (fase trivial $e^{i0}$). \\ \hline
-$Z$ & $|1\rangle$ & $-|1\rangle$ & Rotación de $\pi$ sobre el eje $Z$ (fase global $e^{i\pi}$). \\ \hline
+$Y$ & $|0\rangle$ & $i|1\rangle$ & Rotación de $\pi$ radianes sobre el eje $Y$. \\ \hline
+$Y$ & $|1\rangle$ & $-i|0\rangle$ & Rotación de $\pi$ radianes con factor de fase global. \\ \hline
+$Z$ & $|0\rangle$ & $|0\rangle$ & Rotación de $\pi$ radianes sobre el eje $Z$ (fase trivial $e^{i0}$). \\ \hline
+$Z$ & $|1\rangle$ & $-|1\rangle$ & Rotación de $\pi$ radianes sobre el eje $Z$ (fase global $e^{i\pi}$). \\ \hline
 $H$ & $|0\rangle$ & $|+\rangle$ & Creación de superposición equitativa. \\ \hline
-$H$ & $|1\rangle$ & $|-\rangle$ & Creación de superposición con fase relativa $\pi$. \\ \hline
+$H$ & $|1\rangle$ & $|-\rangle$ & Creación de superposición con fase relativa $\pi$ radianes. \\ \hline
 \end{tabular}
-\caption{Resumen del efecto de las puertas unitarias fundamentales sobre los estados base.}
+\caption{Resumen del efecto de las puertas unitarias fundamentales sobre los estados base. Fuente: elaboración propia}
 \label{tab:puertas}
 \end{table}
 
-Como se observa en la Tabla~\ref{tab:puertas}, la puerta $Z$ actúa de forma distinta según la base: mientras que en la base computacional ($|0\rangle, |1\rangle$) solo introduce una fase global, en la base de Hadamard es capaz de transformar estados entre sí ($|+\rangle \leftrightarrow |-\rangle$). Por su parte, la puerta Hadamard ($H$) es esencial para permitir la transición a estados de superposición, facilitando la explotación del paralelismo cuántico.
+Como se observa en la Tabla~\ref{tab:puertas}, la puerta $Z$ \citep{pauli1927} actúa de forma distinta según la base: mientras que en la base computacional ($|0\rangle, |1\rangle$) solo introduce una fase global, en la base de Hadamard \citep{deutsch1985} es capaz de transformar estados entre sí ($|+\rangle \leftrightarrow |-\rangle$).
+
 
 \chapter{Conclusiones}
-Tras el desarrollo analítico y la validación computacional de los ejercicios propuestos, se extraen las siguientes conclusiones fundamentales:
 
-En primer lugar, se ha corroborado que el \textbf{producto tensorial} es la piedra angular para la descripción de sistemas compuestos. El análisis de las matrices de $16 \times 16$ demostró cómo la posición de una puerta dentro de un registro cuántico altera drásticamente la topología de la matriz global, transformando identidades en estructuras de bloques o matrices dispersas.
+Tras el desarrollo analítico y la validación computacional de los ejercicios propuestos, se extraen las siguientes conclusiones fundamentales basadas estrictamente en los resultados obtenidos:
 
-En segundo lugar, el cálculo de la \textbf{amplitud de transición} $\langle 101 | O | 010 \rangle = 0$ pone de manifiesto la importancia de la ortogonalidad en el espacio de Hilbert. Este resultado, validado tanto por la expansión de términos como por la implementación en Python, subraya cómo las reglas de selección cuántica limitan las transiciones posibles en un operador lineal.
+En primer lugar, se ha corroborado que el \textbf{producto tensorial} es la herramienta algebraica necesaria para la expansión y descripción de sistemas multicúbit en el espacio de \cite{hilbert1912}. El análisis de las estructuras de $16 \times 16$ en los Casos 1 y 2 ha demostrado de forma matemática cómo la posición de un operador unitario dentro del producto determina la topología de la matriz global, derivando en matrices dispersas por bloques o diagonales. Asimismo, la declaración de estas matrices como objetos \textit{array} y su posterior cálculo mediante el método \texttt{np.kron()} de \cite{numpy2020} ha permitido contrastar con exactitud numérica la disposición de cada uno de los coeficientes reales y complejos calculados a mano.
 
-Finalmente, la \textbf{esfera de Bloch} se confirma como un puente indispensable entre el formalismo abstracto y la intuición física. La capacidad de visualizar puertas como rotaciones sobre ejes específicos permite predecir el comportamiento de un qubit sin recurrir constantemente al cálculo matricial, facilitando el diseño lógico de algoritmos más complejos. La integración de herramientas como \textit{Qiskit} ha permitido cerrar el ciclo de aprendizaje, uniendo la teoría clásica con la computación cuántica moderna.
+En segundo lugar, el cálculo analítico de la \textbf{amplitud de transición} del operador compuesto $O$ ha permitido demostrar la ortogonalidad exacta entre los estados involucrados, resultando en $\langle 101 | O | 010 \rangle = 0$. Este valor nulo, determinado de forma teórica mediante la aplicación de la linealidad del producto escalar y las reglas de proyección de los operadores de \cite{pauli1927}, ha sido verificado computacionalmente en el cuaderno de trabajo operando de forma directa sobre los vectores de estado indexados en la matriz simétrica real generada con \cite{numpy2020}. El resultado corrobora de manera unívoca que el estado $|010\rangle$ permanece completamente ortogonal al espacio generado tras la acción de $O$ sobre $|101\rangle$.
+
+Finalmente, la representación geométrica en la \textbf{esfera de \cite{bloch1946}} ha permitido asociar las transformaciones algebraicas abstractas con rotaciones e inversiones sobre ejes ortogonales específicos. A través del uso de la clase \texttt{Statevector} y las herramientas de visualización de \cite{qiskit2023}, se ha contrastado cómo la base computacional, la base de Hadamard \citep{deutsch1985} y la base circular ocupan los extremos opuestos de los ejes $Z$, $X$ e $Y$ respectivamente. De igual modo, se ha verificado numéricamente la acción cinemática de las puertas unitarias fundamentales tabuladas, evidenciando cómo operadores como la puerta $Y$ \citep{pauli1927} introducen factores de fase complejos en el vector de estado matricial sin alterar la proyección geométrica del cúbit en los polos de la esfera de simulación.
 
 \begin{thebibliography}{99}
 
@@ -347,6 +349,15 @@ Deutsch, D. (1985). Quantum theory, the Church-Turing principle and the universa
 
 \bibitem[Feynman(1982)]{feynman1982} 
 Feynman, R. P. (1982). Simulating physics with computers. \emph{International Journal of Theoretical Physics}, 21(6-7), 467--488.
+
+\bibitem[Hadamard(1893)]{hadamard1893}
+Hadamard, J. (1893). Résolution d'une question relative aux déterminants. \emph{Bulletin des Sciences Mathématiques}, 17, 240--246.
+
+\bibitem[Harris et al.(2020)]{numpy2020}
+Harris, C. R., Millman, K. J., van der Walt, S. J., Gommers, R., Virtanen, P., Cournapeau, D., Wieser, E., Taylor, J., Berg, S., Smith, N. J., Kern, R., Picus, M., Hoyer, S., van Kerkwijk, M. H., Brett, M., Haldane, J., del Río, J. F., Wiebe, M., Peterson, P., \dots Oliphant, T. E. (2020). Array programming with NumPy. \emph{Nature}, \emph{585}(7825), 357--362. https://doi.org/10.1038/s41586-020-2649-2
+
+\bibitem[Hilbert(1912)]{hilbert1912} 
+Hilbert, D. (1912). \emph{Grundzüge einer allgemeinen Theorie de linearen Integralgleichungen}. B. G. Teubner.
 
 \bibitem[Landauer(1961)]{landauer1961} 
 Landauer, R. (1961). Irreversibility and heat generation in the computing process. \emph{IBM Journal of Research and Development}, 5(3), 183--191.
@@ -363,9 +374,13 @@ Pauli, W. (1927). Zur Quantenmechanik des magnetischen Elektrons. \emph{Zeitschr
 \bibitem[Preskill(2018)]{preskill2018} 
 Preskill, J. (2018). Quantum Computing in the NISQ era and beyond. \emph{Quantum}, 2, 79.
 
+\bibitem[Qiskit contributors(2023)]{qiskit2023}
+Qiskit contributors. (2023). \emph{Qiskit: An open-source framework for quantum computing} (Versión 0.45) [Software de computación cuántica]. Zenodo. https://doi.org/10.5281/zenodo.2573505
+
 \bibitem[Shor(1994)]{shor1994} 
 Shor, P. W. (1994). Algorithms for quantum computation: discrete logarithms and factoring. En \emph{Proceedings 35th Annual Symposium on Foundations of Computer Science} (pp. 124--134). IEEE.
 
 \end{thebibliography}
+
 \end{document}
 

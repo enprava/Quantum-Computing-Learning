@@ -1,0 +1,260 @@
+\documentclass[11pt,a4paper,spanish]{book}
+\usepackage{estilo_unir-1}
+\hypersetup{
+	colorlinks   = true, %Colours links instead of ugly boxes
+	urlcolor     = blue, %Colour for external hyperlinks
+	linkcolor    = black, %Colour of internal links
+	citecolor   = red %Colour of citations
+}
+\usepackage[nottoc]{tocbibind}
+
+%---------------------------
+%título de la asignatura, trabajo y autor
+%---------------------------
+\subject{Computación Cuántica}
+\title{Ejercicios con Puertas Lógicas Cuánticas}
+\author{Enrique Prada Vázquez}
+\profesor{Andrés Navas Cáliz}
+\date{28/05/2026}
+
+%---------------------------
+%marges
+%---------------------------
+%\usepackage[margin=1.9cm]{geometry}
+%---------------------------
+%---------------------------
+%---------------------------
+%---------------------------
+\begin{document}
+\renewcommand{\listfigurename}{Índice de figuras}
+\renewcommand{\listtablename}{Índice de tablas}
+\renewcommand{\contentsname}{Índice de contenidos}
+\renewcommand{\figurename}{Figura}
+\renewcommand{\tablename}{Tabla} 
+
+\maketitle
+\frontmatter
+\tableofcontents
+\listoffigures
+Fijaos que SOLO aparece el título de cada figura, no aparece toda la leyenda ni la fuente. \\
+(QUITAR ESTA PÁGINA SI NO HAY FIGURAS) 
+\listoftables
+Fijaos que SOLO aparece el título de cada tabla, no aparece toda la leyenda ni la fuente. \\
+(QUITAR ESTA PÁGINA SI NO HAY TABLAS)
+
+\chapter{Resumen}
+En esta Sección se introducirá un breve resumen en español del trabajo realizado (extensión máxima: esta página). 
+
+Este resumen debe incluir el propósito de la investigación, la metodología, los resultados y las conclusiones (obviamente, todo muy resumido, pero así se sabe de un vistazo lo que se va uno a encontrar a continuación). 
+
+En general, los conceptos deben estar claramente explicados (de forma resumida, repito) para que el propio resumen sea autoconsistente.
+
+\vspace{0.5cm}
+{\bf Palabras clave:} se deben incluir de 4 a 6 conceptos clave en español, significativos para el contenido del Trabajo (pueden ser conceptos formados por más de una palabra, pero DEBEN ser significativos). Por favor no incluir siglas, y todas las palabras en minúsculas
+
+\chapter{Abstract}
+This Section should include the english version of the previous Resumen.
+
+\vspace{0.5cm}
+{\bf Keywords:} please include between 4 to 6 key concepts in english, relevant to the content of this report (each concept might include multiple words). Please, do not include acronims and all words should be lower letters.
+
+\mainmatter
+
+\chapter{Introducción}
+
+En la Introducción se debe resumir de forma esquemática pero suficientemente clara lo esencial de cada una de las partes del trabajo y, sobre todo, aprovechar para explicar conceptos que puedan ser de utilidad después. 
+
+La lectura de esta parte debe contextualizar perfectamente todo el Trabajo y debe estar PLAGADA DE REFERENCIAS (más adelante se describe cómo hacerlo).
+
+Es una parte muy importante de la memoria. Las ideas principales a transmitir son la identificación del problema a tratar, la justificación de su importancia, esbozo de los objetivos generales a grandes rasgos y un adelanto de la contribución que esperas hacer.
+
+A modo de guía, la Introducción debe contener estos tres apartados:
+\begin{itemize}
+\item Motivación / justificación del tema a tratar
+\item Planteamiento del Trabajo (atención a la mayúscula de "Trabajo": cuando nos referimos a nuestro documento, ese Trabajo va en mayúscula)
+\item Estructura del Trabajo
+\end{itemize}
+
+\vspace{1cm}
+{\bf{ATENCIÓN, CÓMO REFERENCIAR.}}
+
+A continuación vamos a ver qué son, qué no son y para qué  sirven las referencias bibliográficas:
+\begin{itemize}
+	\item las referencias NO están para rellenar
+	\item las referencias SÍ son un TRIBUTO a las personas que hicieron en primer lugar una investigación o aportaron una idea
+	\item la referencias citan trabajo que acompaña una idea o un concepto, NO se usa UNA referencia para todo un párrafo que aglutina diferentes conceptos
+	\item deben citarse LOS TRABAJOS ORIGINALES DE LOS AUTORES, y no un libro de texto donde he visto que hablan de algo
+	\item os libros de texto se pueden referencial excepcionalmente, porque el libro es sobresaliente y conocido en el campo y/o porque quiero apoyarme en una explicación conocida para un determinado concepto o cuestión, pero no como origen del concepto del que se habla
+\end{itemize}
+
+\vspace{1cm}
+{\bf{VEAMOS EJEMPLOS DE CITAS.}}
+
+Vamos a ver los dos tipos de citas que vamos a utilizar normalmente en los trabajos y actividades:
+\begin{itemize}
+	\item CITA INDIRECTA: estamos hablando de algo e introcimos la referencia sobre la que apoyamos esa idea. Por ejemplo, hablado de los procesadores de texto, LATEX  \citep{lamport1994} es tipo de editor con el que se consiguen resultados de gran calidad
+	\item CITA DIRECTA: nos referimos directamente a un trabajo y lo citamos. Por ejemplo, según \cite{ackerman2017}, la liga de fútbol inglesa debe tener torneos de desempate
+\end{itemize}
+
+Según el párrafo anterior con la cita indirecta aparecerá entre paréntesis el apellido y el año, separados por una coma; en el caso de varios autores, podrán aparecer hasta tres apellidos y, cuando son más, aparecerá el primero seguido de "et al." (y después el año separado con una coma). Con la cita directa solo va entre paréntesis el año, pero no los autores. Podéis mirar el apartado de Bibliografía para ver cómo han quedado estas citas.
+
+En esta Actividad, cuando vamos a resolver problemas, PUEDE utilizarse libros de texto como referencias de procedimientos matemáticos que vamos a utilizar, pero sin olvidar el párrafo anterior. Es decir, sería conveniente citar ARTÍCULOS ORIGINALES de donde surgieron esos desarrollos.
+
+Para consultar detenidamente la formas de referenciar, debéis seguir el formato APA del siguiente documento: \url{https://bibliografiaycitas.unir.net/documentos/APA_7ed_UNIR.pdf}
+
+
+\chapter{Objetivos}
+
+Esquematizar claramente los objetivos del trabajo, las ideas que queremos demostrar. Podemos tener varios tipos de objetivos. Por ejemplo, podemos tener un número de objetivos generales y otro de objetivos específicos. Deben ordenarse claramente.
+
+\section{Objetivos generales}
+Aquí vamos a exponer los objetivos generales. Es una forma de dar perspectiva al Trabajo. Debemos ser ambiciosos en esta exposición
+
+\section{Objetivos específicos}
+En esta Sección vamos a dar detalles concretos de lo que queremos conseguir. Por tanto, estos objetivos van al detalle.
+
+\chapter{Enunciado del problema}
+
+El objetivo de esta actividad consiste en el desarrollo e investigación de los estados de Bell mediante el uso de computación cuántica y herramientas de simulación. El problema se compone de los siguientes tres ejercicios específicos:
+
+\begin{itemize}
+    \item \textbf{Ejercicio 1:} Implementar cuatro circuitos cuánticos de forma que cada uno de ellos haga evolucionar el estado del sistema a cada uno de los cuatro estados de Bell. Demostrar con las debidas mediciones que los circuitos funcionan correctamente. Debe utilizarse la librería Qiskit.
+    
+    \item \textbf{Ejercicio 2:} Escribir un informe técnico que explique el diseño de los circuitos, los pasos para generar cada estado de Bell y los resultados obtenidos.
+    
+    \item \textbf{Ejercicio 3:} Investigar y analizar el impacto de los estados de Bell en la distribución cuántica de claves. Además, explorar qué otras aplicaciones prácticas tienen dichos estados.
+\end{itemize}
+
+\chapter{Desarrollo del Trabajo}
+
+En este capítulo se aborda el diseño conceptual, la arquitectura lógica y la posterior validación estadística de los cuatro estados de Bell. Los estados de Bell representan las configuraciones de entrelazamiento máximo para un sistema compuesto por dos cúbits, actuando como pilares fundamentales en los protocolos de información cuántica.
+
+\section{Diseño Teórico y Evolución de los Estados de Bell}
+
+A continuación, se detalla el procedimiento lógico y matemático para la construcción de cada uno de los cuatro estados a partir del estado base del sistema, denotado como $\lvert00\rangle$.
+
+\subsection{Estado $\lvert\Phi^+\rangle = \frac{1}{\sqrt{2}}(\lvert00\rangle + \lvert11\rangle)$}
+Es el estado de Bell más sencillo e ideal para empezar. No requiere ninguna preparación previa de los cúbits de entrada, aplicando las transformaciones directamente sobre la base computacional inicial.
+
+\begin{itemize}
+    \item \textbf{Paso 1:} Se aplica la puerta Hadamard ($H$) al cúbit 0. Este operador rompe el determinismo inicial transformando el cúbit en una superposición equiprobable, $\frac{1}{\sqrt{2}}(\lvert0\rangle + \lvert1\rangle)$. El estado global del sistema compuesto pasa a ser:
+    $$\frac{1}{\sqrt{2}}(\lvert00\rangle + \lvert10\rangle)$$
+    \item \textbf{Paso 2:} Se aplica la puerta CNOT ($CX$) usando el cúbit 0 como control y el cúbit 1 como objetivo. Esto entrelaza los estados de ambos cúbits de la siguiente manera:
+    \begin{itemize}
+        \item La componente $\lvert00\rangle$ se mantiene inalterada debido a que el cúbit de control (cúbit 0) se encuentra en el estado $\lvert0\rangle$.
+        \item La componente $\lvert10\rangle$ se transforma en $\lvert11\rangle$, ya que el cúbit de control está en el estado $\lvert1\rangle$, provocando la inversión del cúbit objetivo (cúbit 1) de $\lvert0\rangle$ a $\lvert1\rangle$.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Estado $\lvert\Phi^-\rangle = \frac{1}{\sqrt{2}}(\lvert00\rangle - \lvert11\rangle)$}
+Este estado introduce el signo menos (fase relativa negativa). Para conseguirlo, es necesario invertir el estado del primer cúbit antes de aplicar la superposición para aprovechar las propiedades de fase de la puerta Hadamard.
+
+\begin{itemize}
+    \item \textbf{Paso 1:} Se aplica una puerta Pauli-X ($X$) al cúbit 0 para transformarlo de $\lvert0\rangle$ a $\lvert1\rangle$. El estado global inicial del sistema muta a $\lvert10\rangle$.
+    \item \textbf{Paso 2:} Se aplica la puerta Hadamard ($H$) al cúbit 0. Debido a que el cúbit arrancaba en el estado activo $\lvert1\rangle$, la rotación en la esfera de Bloch genera una superposición con signo negativo: $\frac{1}{\sqrt{2}}(\lvert0\rangle - \lvert1\rangle)$. Al combinarlo con el cúbit 1, el estado global pasa a ser:
+    $$\frac{1}{\sqrt{2}}(\lvert00\rangle - \lvert10\rangle)$$
+    \item \textbf{Paso 3:} Se aplica la puerta CNOT ($CX$) usando el cúbit 0 como control y el cúbit 1 como objetivo. La componente con amplitud positiva $\lvert00\rangle$ permanece igual, mientras que la componente negativa $-\lvert10\rangle$ se transforma en $-\lvert11\rangle$ al activarse el control, arrastrando la fase destructiva al estado entrelazado final.
+\end{itemize}
+
+\subsection{Estado $\lvert\Psi^+\rangle = \frac{1}{\sqrt{2}}(\lvert01\rangle + \lvert10\rangle)$}
+Este estado caracteriza a los cúbits con una correlación inversa (antirrelacionados), donde una medición clásica siempre arrojará valores opuestos. Para lograrlo, se altera el estado del cúbit objetivo tras realizar el entrelazamiento base.
+
+\begin{itemize}
+    \item \textbf{Paso 1:} Se aplica la puerta Hadamard ($H$) al cúbit 0 para crear la superposición inicial, situando el sistema en el estado mixto $\frac{1}{\sqrt{2}}(\lvert00\rangle + \lvert10\rangle)$.
+    \item \textbf{Paso 2:} Se aplica la puerta CNOT ($CX$) empleando el cúbit 0 como control y el cúbit 1 como objetivo, dejando el sistema en el estado entrelazado base $\lvert\Phi^+\rangle$.
+    \item \textbf{Paso 3:} Se aplica una puerta Pauli-X ($X$) en el cúbit 1. Este operador actúa como una puerta NOT clásica, invirtiendo de forma determinista el valor del segundo cúbit en todas las componentes del sistema: la componente $\lvert00\rangle$ se transforma en $\lvert01\rangle$ y la componente $\lvert11\rangle$ pasa a ser $\lvert10\rangle$.
+\end{itemize}
+
+\subsection{Estado $\lvert\Psi^-\rangle = \frac{1}{\sqrt{2}}(\lvert01\rangle - \lvert10\rangle)$}
+Esta configuración combina tanto la correlación inversa de los estados clásicos como el desfase relativo negativo, unificando los principios operacionales de los circuitos anteriores.
+
+\begin{itemize}
+    \item \textbf{Paso 1:} Se aplica una puerta Pauli-X ($X$) al cúbit 0, alterando la base de partida al estado $\lvert10\rangle$.
+    \item \textbf{Paso 2:} Se aplica la puerta Hadamard ($H$) al cúbit 0, induciendo la fase negativa debido al estado de excitación inicial, lo que resulta en el estado compuesto $\frac{1}{\sqrt{2}}(\lvert00\rangle - \lvert10\rangle)$.
+    \item \textbf{Paso 3:} Se aplica la puerta CNOT ($CX$) sobre el cúbit 1 controlado por el cúbit 0. Esto hace evolucionar el sistema de forma transitoria hacia el estado $\frac{1}{\sqrt{2}}(\lvert00\rangle - \lvert11\rangle)$.
+    \item \textbf{Paso 4:} Se aplica una puerta Pauli-X ($X$) en el cúbit 1 en la etapa final del circuito. Al invertir los valores lógicos del segundo cúbit de manera uniforme, la componente positiva se convierte en $\lvert01\rangle$ y la negativa en $-\lvert10\rangle$.
+\end{itemize}
+
+\section{Análisis de la Simulación y Validación Estadística}
+
+Para validar el comportamiento de los modelos lógicos diseñados, se recurre a un entorno de simulación ideal que emula las leyes de Born mediante un muestreo estadístico repetido de varias ejecuciones por circuito. Este muestreo permite aproximar las probabilidades analíticas puras del formalismo cuántico a través del cálculo de frecuencias relativas experimentales obtenidas tras el colapso de la función de onda.
+
+Para verificar que los cuatro estados de Bell se han generado correctamente, se comprueba que los estados base resultantes en cada circuito se obtienen con una probabilidad cercana al $50\%$ cada uno. Debido a las propiedades de entrelazamiento máximo, los circuitos diseñados para los estados $\lvert\Phi^+\rangle$ y $\lvert\Phi^-\rangle$ colapsan únicamente en las componentes correspondientes a los estados clásicos $\lvert00\rangle$ y $\lvert11\rangle$, mientras que los estados $\lvert\Psi^+\rangle$ y $\lvert\Psi^-\rangle$ se proyectan de forma exclusiva sobre las componentes cruzadas $\lvert01\rangle$ y $\lvert10\rangle$, con una distribución de probabilidad prácticamente equitativa entre ambas opciones en cada caso.
+
+Al analizar con detalle estas distribuciones estadísticas de salida, se observa que las probabilidades obtenidas para las componentes de cada estado (por ejemplo, un $50.39\%$ para un estado y un $49.61\%$ para el otro) raramente se posicionan en un $50.00\%$ exacto. Este comportamiento no es un error del proceso, sino una manifestación directa de las \textbf{fluctuaciones estadísticas del muestreo} (el fenómeno denominado estadísticamente como \emph{error de disparo} o \emph{shot noise}).
+
+Matemáticamente, cada ejecución individual constituye un ensayo de Bernoulli independiente. Debido a que el proceso de medición fuerza una proyección probabilística sobre la base computacional, la acumulación de las 1024 muestras sigue una distribución binomial. De acuerdo con la \textbf{Ley de los Grandes Números}, las frecuencias empíricas convergerán hacia el valor teórico ideal únicamente cuando el número de repeticiones tienda a infinito. Para un espacio muestral acotado a 1024 iteraciones, el formalismo estadístico estipula una desviación estándar esperada de aproximadamente $\pm 1.5\%$. Las sutiles variaciones decimales registradas quedan, por tanto, plenamente justificadas y dentro de los márgenes de tolerancia matemática previstos para un sistema ideal.
+
+\section{Aplicaciones Prácticas e Impacto en Criptografía Cuántica}
+
+Los estados de Bell no constituyen únicamente construcciones teóricas para la validación del entrelazamiento cuántico, sino que son el recurso operativo fundamental sobre el que se erigen las tecnologías de la información cuántica moderna. A continuación, se analiza su impacto en la seguridad criptográfica y sus aplicaciones tecnológicas más relevantes.
+
+\subsection{Distribución Cuántica de Claves y el Protocolo E91}
+El impacto más disruptivo de los estados de Bell en el ámbito de la seguridad de la información se manifiesta en la Distribución Cuántica de Claves (\emph{Quantum Key Distribution}, QKD). Mientras que protocolos primitivos como BB84 se basan en la preparación y medición de estados cuánticos individuales de una sola partícula, el protocolo **E91**, propuesto por Artur Ekert en 1991, revolucionó la disciplina al introducir el entrelazamiento cuántico basado en pares de Bell (típicamente el estado de singlete $\lvert\Psi^-\rangle$) como núcleo del sistema.
+
+Las implicaciones fundamentales de los estados de Bell en este protocolo son:
+
+\begin{itemize}
+    \item \textbf{Generación de correlaciones perfectas a distancia:} Al distribuir los dos cúbits entrelazados de un estado de Bell entre dos partes legítimas, las mediciones individuales realizadas en las mismas bases colapsan en resultados correlacionados de forma idéntica o complementaria (dependiendo del estado de Bell utilizado). Esto permite generar una clave simétrica compartida totalmente aleatoria sin necesidad de transmitir la clave de forma explícita por ningún canal de comunicación.
+    
+    \item \textbf{Detección intrínseca de espías mediante el Teorema de No Clonación:} Debido a las leyes de la mecánica cuántica, es imposible duplicar o medir un estado cuántico desconocido sin alterar su función de onda de manera irreversible. Si un tercer actor intenta interceptar y medir uno de los cúbits en tránsito, destruirá el entrelazamiento del par de Bell de forma inmediata.
+    
+    \item \textbf{Validación de la seguridad mediante las desigualdades de Bell:} La ventaja crítica del protocolo E91 es que dos partes que quieran comunicarse pueden verificar la seguridad del canal de manera estadística. Reservando una fracción de sus mediciones para realizar pruebas sobre bases diferentes, pueden comprobar si el sistema viola las desigualdades de Bell (como la desigualdad CHSH). Si la violación se mantiene en el límite teórico ideal, se demuestra matemáticamente que los cúbits no han sido manipulados ni correlacionados con ningún sistema externo, garantizando una seguridad incondicional independiente del dispositivo (\emph{Device-Independent QKD}).
+\end{itemize}
+
+\subsection{Otras Aplicaciones Tecnológicas Fundamentales}
+Más allá de la criptografía, las propiedades de correlación no local de los estados de Bell son el motor de otros tres pilares de la ingeniería cuántica:
+
+\begin{itemize}
+    \item \textbf{Teletransportación Cuántica:} Este protocolo permite transferir un estado cuántico desconocido (la información de un cúbit arbitrario $\lvert\psi\rangle$) desde un nodo emisor a uno receptor sin necesidad de desplazar físicamente la partícula que lo soporta. Para lograrlo, emisor y receptor deben compartir previamente un estado de Bell. Al realizar una medición conjunta (conocida como \emph{Medición del Estado de Bell} o BSM) entre el cúbit a teletransportar y la mitad del par entrelazado, la información cuántica se proyecta instantáneamente en el extremo receptor, requiriendo únicamente el envío de dos bits clásicos de información para reconstruir el estado original de forma exacta.
+    
+    \item \textbf{Codificación Superdensa:} Operando de forma inversa a la teletransportación, la codificación superdensa aprovecha el entrelazamiento de un estado de Bell para incrementar la capacidad de los canales de comunicación. Mediante la manipulación local de un solo cúbit de un par entrelazado compartido (aplicando compuertas de un solo cúbit como $I$, $X$, $Z$ o $XZ$), es posible transformar el par en cualquiera de los otros tres estados de Bell. Al enviar ese único cúbit modificado al receptor, este puede descodificar la información realizando una medición conjunta, logrando transmitir **dos bits de información clásica utilizando un solo cúbit físico**.
+    
+    \item \textbf{Redes e Internet Cuántico:} Las futuras redes cuánticas se estructuran bajo la necesidad de distribuir entrelazamiento a larga distancia para conectar procesadores cuánticos distribuidos. Debido a la atenuación de la fibra óptica, los estados de Bell se degradan con la distancia. Para resolverlo, se utilizan arquitecturas de \textbf{Repetidores Cuánticos} basados en un protocolo denominado \emph{Entanglement Swapping} (intercambio de entrelazamiento). Este proceso permite entrelazar dos cúbits lejanos que nunca han interactuado entre sí mediante la ejecución de mediciones de Bell en nodos intermedios, sentando las bases físicas del futuro internet cuántico.
+\end{itemize}
+
+\chapter{Conclusiones}
+
+A continuación, se presentan las conclusiones extraídas del desarrollo de este Trabajo, estructuradas en torno a los objetivos alcanzados, la validación experimental y las implicaciones tecnológicas de los sistemas entrelazados analizados.
+
+\paragraph{Validación de la lógica de circuitos.} La implementación de los cuatro estados de Bell ha permitido consolidar de manera práctica los fundamentos operativos del entrelazamiento cuántico. Mediante la correcta combinación secuencial de operadores unitarios de un solo cúbit (puertas Pauli-X y Hadamard) y operadores de control de dos cúbits (puertas CNOT), se ha demostrado la viabilidad de manipular de forma exacta tanto las amplitudes de probabilidad como las fases relativas del sistema. El diseño estructurado e independiente de las soluciones algorítmicas en el entorno de desarrollo ha cumplido con éxito las pautas lógicas requeridas para cada transformación.
+
+\paragraph{Convergencia y estadística experimental.} La validación de los modelos mediante simulación estadística ha servido para contrastar el formalismo matemático ideal con el comportamiento empírico del muestreo. Los resultados confirman que el criterio de éxito —obtener distribuciones equiprobables cercanas al $50\%$ únicamente en las componentes proyectivas correspondientes a cada estado— se cumple de forma consistente. Asimismo, el análisis del \emph{shot noise} y la aplicación de la Ley de los Grandes Números justifican rigurosamente las pequeñas desviaciones decimales observadas para un espacio muestral de 1024 ejecuciones, demostrando que dichas fluctuaciones son una propiedad intrínseca del colapso probabilístico de la función de onda y no un defecto estructural del modelado.
+
+\paragraph{Trascendencia en la infraestructura cuántica.} El estudio de los estados de Bell en contextos prácticos demuestra que el entrelazamiento máximo no es un mero fenómeno teórico, sino la piedra angular de la ingeniería de la información cuántica. Su impacto directo en la distribución cuántica de claves bajo el protocolo E91 redefine el paradigma de la ciberseguridad mediante la verificación basada en las desigualdades de Bell. Del mismo modo, procesos críticos como la teletransportación cuántica, la codificación superdensa y el desarrollo de repetidores cuánticos para el futuro internet cuántico evidencian que el control preciso de estos cuatro estados fundamentales es un requisito indispensable para el despliegue de cualquier red de comunicación cuántica escalable y segura.
+
+\begin{thebibliography}{99}
+\bibitem[Lamport(1994)]{lamport1994} Lamport, L. (1994) \emph{\LaTeX: a document preparation system}, Addison
+Wesley, Massachusetts, 2nd ed.
+\bibitem[Ackerman(2017)]{ackerman2017} Ackerman, E. (2017) Why the English Premier League Should Have Playoffs.  McGraw Hill. London. 
+\bibitem[Lund(2017)]{lund2017} Lund, A. P. and Bremner, Michael J. and Ralph, T. C. (2017) Quantum sampling problems, BosonSampling and quantum supremacy, npj Quantum Information 3: 15
+\end{thebibliography}
+
+\vspace{2cm}
+Aún a riesgo de ser redundante, repito aquí que para consultar detenidamente la formas de referenciar, debéis seguir el formato APA del siguiente documento: \url{https://bibliografiaycitas.unir.net/documentos/APA_7ed_UNIR.pdf}
+
+%\bibliographystyle{plain} 
+%\bibliography{bibliografia}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

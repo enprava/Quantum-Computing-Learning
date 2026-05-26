@@ -15,7 +15,7 @@
 \title{Ejercicios con Puertas Lógicas Cuánticas}
 \author{Enrique Prada Vázquez}
 \profesor{Andrés Navas Cáliz}
-\date{28/05/2026}
+\date{25/05/2026}
 
 %---------------------------
 %marges
@@ -35,87 +35,68 @@
 \maketitle
 \frontmatter
 \tableofcontents
-\listoffigures
-Fijaos que SOLO aparece el título de cada figura, no aparece toda la leyenda ni la fuente. \\
-(QUITAR ESTA PÁGINA SI NO HAY FIGURAS) 
-\listoftables
-Fijaos que SOLO aparece el título de cada tabla, no aparece toda la leyenda ni la fuente. \\
-(QUITAR ESTA PÁGINA SI NO HAY TABLAS)
 
 \chapter{Resumen}
-En esta Sección se introducirá un breve resumen en español del trabajo realizado (extensión máxima: esta página). 
-
-Este resumen debe incluir el propósito de la investigación, la metodología, los resultados y las conclusiones (obviamente, todo muy resumido, pero así se sabe de un vistazo lo que se va uno a encontrar a continuación). 
-
-En general, los conceptos deben estar claramente explicados (de forma resumida, repito) para que el propio resumen sea autoconsistente.
+Este Trabajo presenta un estudio analítico y una validación práctica de los cuatro estados de Bell utilizando herramientas de simulación computacional. El propósito central de la investigación consiste en caracterizar el comportamiento lógico y estadístico del entrelazamiento máximo para sistemas compuestos por dos cúbits, evaluando su viabilidad operativa como recurso físico fundamental en los protocolos modernos de información cuántica. La metodología aplicada se divide en dos fases: en primer lugar, se trasladan las transformaciones algebraicas teóricas a secuencias lógicas reproducibles mediante la combinación secuencial de operadores de un solo cúbit y compuertas de control de dos cúbits; en segundo lugar, se somete cada modelo a un muestreo estadístico repetido para aproximar las frecuencias experimentales resultantes del colapso de la función de onda. Los resultados obtenidos confirman de manera consistente la convergencia de las distribuciones empíricas hacia los valores ideales de equiprobabilidad del 50\% en las componentes correspondientes a cada estado. Asimismo, las fluctuaciones numéricas registradas quedan rigurosamente justificadas mediante la caracterización del error de disparo y la Ley de los Grandes Números. Finalmente, se concluye analizando el impacto crítico de estas correlaciones no locales en la seguridad criptográfica del protocolo E91 y en la arquitectura de redes, consolidando a los pares entrelazados como la infraestructura básica e indispensable para el despliegue del futuro internet cuántico.
 
 \vspace{0.5cm}
-{\bf Palabras clave:} se deben incluir de 4 a 6 conceptos clave en español, significativos para el contenido del Trabajo (pueden ser conceptos formados por más de una palabra, pero DEBEN ser significativos). Por favor no incluir siglas, y todas las palabras en minúsculas
+{\bf Palabras clave:} computación cuántica, entrelazamiento máximo, estados de bell, colapso de la función de onda, criptografía cuántica.
 
 \chapter{Abstract}
-This Section should include the english version of the previous Resumen.
+This report presents an analytical study and a practical validation of the four Bell states using computational simulation tools. The central purpose of the research is to characterize the logical and statistical behavior of maximal entanglement for systems composed of two qubits, evaluating its operational viability as a fundamental physical resource in modern quantum information protocols. The applied methodology is structured into two phases: first, the theoretical algebraic transformations are translated into reproducible logical sequences through the sequential combination of single-qubit operators and two-qubit control gates; second, each model is subjected to repeated statistical sampling to approximate the experimental frequencies resulting from the collapse of the wave function. The obtained results consistently confirm the convergence of empirical distributions toward the ideal 50\% equiprobability values in the components corresponding to each state. Furthermore, the recorded numerical fluctuations are rigorously justified through the characterization of shot noise and the Law of Large Numbers. Finally, the report concludes by analyzing the critical impact of these non-local correlations on the cryptographic security of the E91 protocol and on network architecture, consolidating entangled pairs as the basic and indispensable infrastructure for the deployment of the future quantum internet.
 
 \vspace{0.5cm}
-{\bf Keywords:} please include between 4 to 6 key concepts in english, relevant to the content of this report (each concept might include multiple words). Please, do not include acronims and all words should be lower letters.
-
+{\bf Keywords:} quantum computation, maximal entanglement, bell states, wave function collapse, quantum cryptography.
 \mainmatter
 
 \chapter{Introducción}
 
-En la Introducción se debe resumir de forma esquemática pero suficientemente clara lo esencial de cada una de las partes del trabajo y, sobre todo, aprovechar para explicar conceptos que puedan ser de utilidad después. 
+La computación y la teoría de la información cuántica representan uno de los cambios de paradigma más disruptivos de la ciencia contemporánea, transformando las leyes fundamentales de la física en recursos tecnológicos operativos \citep{nielsen2010}. A diferencia de los sistemas de procesamiento clásicos basados en la lógica booleana y la manipulación de bits discretos, este nuevo modelo explota las propiedades de los espacios de \cite{hilbert1906} vectoriales, la superposición lineal y, fundamentalmente, las correlaciones no locales del entrelazamiento. Este fenómeno, descrito originalmente por \cite{schrodinger1935} como la propiedad más distintiva y ajena a la intuición clásica de la mecánica cuántica, permite que sistemas compuestos manifiesten estados globales interdependientes que desafían cualquier descripción basada en el realismo local.
 
-La lectura de esta parte debe contextualizar perfectamente todo el Trabajo y debe estar PLAGADA DE REFERENCIAS (más adelante se describe cómo hacerlo).
+La manifestación física y matemática más pura de este recurso se encuentra en los cuatro estados entrelazados máximos de dos cúbits, conceptualizados a raíz de los trabajos teóricos de \cite{bell1964}. El análisis y la implementación práctica de estas estructuras no solo son esenciales para comprender la computación cuántica basada en el modelo de circuitos unitarios \citep{deutsch1989}, sino que constituyen el motor físico subyacente de la actual revolución en la infraestructura global de comunicaciones y ciberseguridad, abarcando desde la distribución cuántica de claves independiente del dispositivo \citep{ekert1991, masanes2010} hasta los esquemas de enrutamiento distribuidos del futuro internet cuántico \citep{kimble2008}.
 
-Es una parte muy importante de la memoria. Las ideas principales a transmitir son la identificación del problema a tratar, la justificación de su importancia, esbozo de los objetivos generales a grandes rasgos y un adelanto de la contribución que esperas hacer.
+\section{Justificación del tema}
+La relevancia de investigar los estados de \cite{bell1964} radica en la transición de las tecnologías cuánticas, las cuales avanzan progresivamente desde los debates fundacionales sobre la completitud de la teoría y la existencia de variables ocultas hacia el desafío de consolidar una ingeniería de sistemas escalables. Históricamente, esta correlación fue motivo de profunda controversia, enfrentando la interpretación probabilística de la escuela de Copenhague defendida por \cite{bohr1935} con el enfoque del realismo local postulado en el célebre planteamiento de \cite{einstein1935} bajo el marco de la relatividad especial \citep{einstein1905}. No obstante, la formulación de \cite{bell1964} y su adaptación en el formalismo CHSH \citep{clauser1969} proveyeron el método matemático para resolver esta disputa de manera empírica, constatando que la no localidad es una propiedad intrínseca del universo.
 
-A modo de guía, la Introducción debe contener estos tres apartados:
+En el escenario tecnológico contemporáneo, el entrelazamiento máximo \citep{schrodinger1935} ha dejado de ser una mera paradoja teórica para convertirse en un recurso operativo crítico en la informática cuántica. El control preciso de los estados de Bell es un requisito indispensable tanto para la ejecución de compuertas lógicas en arquitecturas universales \citep{barenco1995} como para la viabilidad de los protocolos de comunicación y criptografía. En este sentido, la simulación de estos estados a través de herramientas de desarrollo no pretende replicar la complejidad del hardware cuántico real, sino actuar como un entorno de verificación conceptual. Este enfoque permite contrastar la distribución de probabilidad matemática ideal derivada de la regla de \cite{born1926} con las fluctuaciones estadísticas inevitables del muestreo computacional o \emph{shot noise} \citep{schottky1918}, ofreciendo un paso intermedio esencial para validar la lógica algorítmica antes de su despliegue en sistemas físicos reales.
+
+\section{Planteamiento del Trabajo}
+El presente Trabajo se plantea como un estudio analítico y una validación práctica de los cuatro estados de \cite{bell1964} a través del uso de herramientas de simulación. El núcleo metodológico de la investigación se centra en trasladar las transformaciones algebraicas teóricas a secuencias lógicas reproducibles, evaluando la evolución del sistema desde su base computacional mediante la combinación de operadores de un solo cúbit \citep{deutsch1992} y compuertas de control de dos cúbits \citep{barenco1995}.
+
+A nivel de análisis, este Trabajo enfoca su atención en la caracterización estadística de los resultados obtenidos por simulación, justificando cómo las fluctuaciones experimentales observadas se derivan directamente del colapso de la función de onda \citep{nielsen2010} y proyectando el impacto de estas correlaciones en las arquitecturas de red actuales. Para ello, se examinan de forma dirigida los protocolos donde los estados de Bell actúan como recurso central, analizando cómo restricciones teóricas como el teorema de no clonación \citep{wootters1982} y la superación de las cotas clásicas de correlación fundamentan los esquemas de seguridad criptográfica y eficiencia en la transmisión de información.
+
+\section{Estructura del Trabajo}
+Para garantizar una exposición clara y un desarrollo metodológico riguroso, este Trabajo se organiza en la siguiente secuencia capitular:
+
 \begin{itemize}
-\item Motivación / justificación del tema a tratar
-\item Planteamiento del Trabajo (atención a la mayúscula de "Trabajo": cuando nos referimos a nuestro documento, ese Trabajo va en mayúscula)
-\item Estructura del Trabajo
+    \item \textbf{Capítulo 1 (Introducción):} Contextualiza el origen histórico del entrelazamiento cuántico y la motivación tecnológica del estudio.
+    \item \textbf{Capítulo 2 (Objetivos):} Delimita el alcance analítico general y los hitos específicos que guían la investigación.
+    \item \textbf{Capítulo 3 (Enunciado del problema):} Define el marco de los ejercicios planteados y la metodología de resolución adoptada.
+    \item \textbf{Capítulo 4 (Desarrollo del Trabajo):} Aborda el diseño de los circuitos, su validación estadística y el análisis de sus aplicaciones prácticas.
+    \item \textbf{Capítulo 5 (Conclusiones):} Sintetiza las contribuciones alcanzadas y evalúa la convergencia entre los modelos simulados y la teoría física.
 \end{itemize}
-
-\vspace{1cm}
-{\bf{ATENCIÓN, CÓMO REFERENCIAR.}}
-
-A continuación vamos a ver qué son, qué no son y para qué  sirven las referencias bibliográficas:
-\begin{itemize}
-	\item las referencias NO están para rellenar
-	\item las referencias SÍ son un TRIBUTO a las personas que hicieron en primer lugar una investigación o aportaron una idea
-	\item la referencias citan trabajo que acompaña una idea o un concepto, NO se usa UNA referencia para todo un párrafo que aglutina diferentes conceptos
-	\item deben citarse LOS TRABAJOS ORIGINALES DE LOS AUTORES, y no un libro de texto donde he visto que hablan de algo
-	\item os libros de texto se pueden referencial excepcionalmente, porque el libro es sobresaliente y conocido en el campo y/o porque quiero apoyarme en una explicación conocida para un determinado concepto o cuestión, pero no como origen del concepto del que se habla
-\end{itemize}
-
-\vspace{1cm}
-{\bf{VEAMOS EJEMPLOS DE CITAS.}}
-
-Vamos a ver los dos tipos de citas que vamos a utilizar normalmente en los trabajos y actividades:
-\begin{itemize}
-	\item CITA INDIRECTA: estamos hablando de algo e introcimos la referencia sobre la que apoyamos esa idea. Por ejemplo, hablado de los procesadores de texto, LATEX  \citep{lamport1994} es tipo de editor con el que se consiguen resultados de gran calidad
-	\item CITA DIRECTA: nos referimos directamente a un trabajo y lo citamos. Por ejemplo, según \cite{ackerman2017}, la liga de fútbol inglesa debe tener torneos de desempate
-\end{itemize}
-
-Según el párrafo anterior con la cita indirecta aparecerá entre paréntesis el apellido y el año, separados por una coma; en el caso de varios autores, podrán aparecer hasta tres apellidos y, cuando son más, aparecerá el primero seguido de "et al." (y después el año separado con una coma). Con la cita directa solo va entre paréntesis el año, pero no los autores. Podéis mirar el apartado de Bibliografía para ver cómo han quedado estas citas.
-
-En esta Actividad, cuando vamos a resolver problemas, PUEDE utilizarse libros de texto como referencias de procedimientos matemáticos que vamos a utilizar, pero sin olvidar el párrafo anterior. Es decir, sería conveniente citar ARTÍCULOS ORIGINALES de donde surgieron esos desarrollos.
-
-Para consultar detenidamente la formas de referenciar, debéis seguir el formato APA del siguiente documento: \url{https://bibliografiaycitas.unir.net/documentos/APA_7ed_UNIR.pdf}
-
 
 \chapter{Objetivos}
 
-Esquematizar claramente los objetivos del trabajo, las ideas que queremos demostrar. Podemos tener varios tipos de objetivos. Por ejemplo, podemos tener un número de objetivos generales y otro de objetivos específicos. Deben ordenarse claramente.
+El propósito de este capítulo es delimitar las metas académicas y analíticas que se persiguen en esta memoria, estableciendo el alcance del estudio teórico desarrollado a partir de la lógica cuántica programada.
 
-\section{Objetivos generales}
-Aquí vamos a exponer los objetivos generales. Es una forma de dar perspectiva al Trabajo. Debemos ser ambiciosos en esta exposición
+\section{Objetivo general}
+Estudiar los estados de Bell mediante el paradigma de la computación cuántica de circuitos, analizando su comportamiento estadístico y su función como recurso físico fundamental en los protocolos modernos de información y seguridad cuántica.
 
 \section{Objetivos específicos}
-En esta Sección vamos a dar detalles concretos de lo que queremos conseguir. Por tanto, estos objetivos van al detalle.
+\begin{itemize}
+    \item \textbf{Fundamentar la manipulación algorítmica:} Analizar de la secuencia de operadores unitarios de un solo cúbit y de control necesarios para la obtención exacta de las amplitudes de probabilidad y fases relativas de los cuatro estados entrelazados.
+    
+    \item \textbf{Justificar el comportamiento del muestreo:} Evaluar la convergencia de los resultados empíricos hacia las distribuciones ideales, proveyendo un marco matemático basado en la Ley de los Grandes Números para explicar las desviaciones producidas por el colapso probabilístico de la función de onda.
+    
+    \item \textbf{Analizar el principio de seguridad criptográfica:} Desarrollar los fundamentos teóricos del protocolo E91, examinando cómo la superación de los límites clásicos impuestos por las desigualdades de Bell permite validar la seguridad del canal de forma independiente del dispositivo.
+    
+    \item \textbf{Sistematizar los esquemas de transmisión cuántica:} Estructurar los principios operativos de la teletransportación, la codificación superdensa y el intercambio de entrelazamiento, evidenciando el papel crítico de las correlaciones no locales en el despliegue de las redes de comunicación.
+\end{itemize}
 
 \chapter{Enunciado del problema}
 
-El objetivo de esta actividad consiste en el desarrollo e investigación de los estados de Bell mediante el uso de computación cuántica y herramientas de simulación. El problema se compone de los siguientes tres ejercicios específicos:
+El objetivo de este Trabajo consiste en el desarrollo e investigación de los estados de Bell mediante el uso de computación cuántica y herramientas de simulación. El problema se compone de los siguientes tres ejercicios específicos:
 
 \begin{itemize}
     \item \textbf{Ejercicio 1:} Implementar cuatro circuitos cuánticos de forma que cada uno de ellos haga evolucionar el estado del sistema a cada uno de los cuatro estados de Bell. Demostrar con las debidas mediciones que los circuitos funcionan correctamente. Debe utilizarse la librería Qiskit.
@@ -125,11 +106,14 @@ El objetivo de esta actividad consiste en el desarrollo e investigación de los 
     \item \textbf{Ejercicio 3:} Investigar y analizar el impacto de los estados de Bell en la distribución cuántica de claves. Además, explorar qué otras aplicaciones prácticas tienen dichos estados.
 \end{itemize}
 
+\vspace{0.5cm}
+Cabe destacar que, mientras la resolución técnica y la ejecución algorítmica del Ejercicio 1 se articulan en el entorno de programación adjunto a este Trabajo, el presente documento escrito concentra su núcleo académico en el desarrollo, análisis y fundamentación teórica de los Ejercicios 2 y 3.
+
 \chapter{Desarrollo del Trabajo}
 
-En este capítulo se aborda el diseño conceptual, la arquitectura lógica y la posterior validación estadística de los cuatro estados de \cite{bell1964}. Los estados de Bell representan las configuraciones de entrelazamiento máximo para un sistema compuesto por dos cúbits, actuando como pilares fundamentales en los protocolos de información cuántica \citep{nielsen2010}.
-
-\section{Diseño Teórico y Evolución de los Estados de Bell}
+En este capítulo se aborda el diseño conceptual, la arquitectura lógica y la posterior validación estadística de los cuatro estados de \cite{bell1964}. Los estados de Bell representan las configuraciones de entrelazamiento máximo \citep{schrodinger1935} para un sistema compuesto por dos cúbits, actuando como pilares fundamentales en los protocolos de información cuántica \citep{nielsen2010}.
+ \citep{schrodinger1935}
+\section{Diseño de los Estados de Bell}
 
 A continuación, se detalla el procedimiento lógico y matemático para la construcción de cada uno de los cuatro estados a partir del estado base del sistema, denotado como $\lvert00\rangle$. Este análisis se fundamenta en las reglas algebraicas del modelo de circuitos cuánticos estandarizado por \cite{deutsch1989}.
 
@@ -165,7 +149,7 @@ Este estado caracteriza a los cúbits con una correlación inversa (antirrelacio
 \end{itemize}
 
 \subsection{Estado $\lvert\Psi^-\rangle = \frac{1}{\sqrt{2}}(\lvert01\rangle - \lvert10\rangle)$}
-Esta configuración combina tanto la correlación inversa de los estados clásicos como el desfase relativo negativo, unificando los principios operacionales de los circuitos anteriores. Este estado (singlete) es la base del célebre teorema de \cite{bell1964}, donde se demostró la incompatibilidad de la física cuántica con las teorías de variables ocultas locales.
+Esta configuración combina tanto la correlación inversa de los estados clásicos como el desfase relativo negativo, unificando los principios operacionales de los circuitos anteriores. Este estado es la base del célebre teorema de \cite{bell1964}, donde se demostró la incompatibilidad de la física cuántica con las teorías de variables ocultas locales.
 
 \begin{itemize}
     \item \textbf{Paso 1:} Se aplica una puerta $X$ de \cite{pauli1927}  al cúbit 0, alterando la base de partida al estado $\lvert10\rangle$.
@@ -178,7 +162,7 @@ Esta configuración combina tanto la correlación inversa de los estados clásic
 
 Para validar el comportamiento de los modelos lógicos diseñados, se recurre a un entorno de simulación ideal que emula las leyes de la probabilidad cuántica postuladas originalmente por \cite{born1926} mediante un muestreo estadístico repetido de varias ejecuciones por circuito. Este muestreo permite aproximar las probabilidades analíticas puras del formalismo cuántico a través del cálculo de frecuencias relativas experimentales obtenidas tras el colapso de la función de onda.
 
-Para verificar que los cuatro estados de \cite{bell1964} se han generado correctamente, se comprueba que los estados base resultantes en cada circuito se obtienen con una probabilidad cercana al $50\%$ cada uno \citep{nielsen2010}. Debido a las propiedades de entrelazamiento máximo, los circuitos diseñados para los estados $\lvert\Phi^+\rangle$ y $\lvert\Phi^-\rangle$ colapsan únicamente en las componentes correspondientes a los estados clásicos $\lvert00\rangle$ y $\lvert11\rangle$, mientras que los estados $\lvert\Psi^+\rangle$ y $\lvert\Psi^-\rangle$ se proyectan de forma exclusiva sobre las componentes cruzadas $\lvert01\rangle$ y $\lvert10\rangle$, con una distribución de probabilidad prácticamente equitativa entre ambas opciones en cada caso.
+Para verificar que los cuatro estados de \cite{bell1964} se han generado correctamente, se comprueba que los estados base resultantes en cada circuito se obtienen con una probabilidad cercana al $50\%$ cada uno \citep{nielsen2010}. Debido a las propiedades de entrelazamiento máximo \citep{schrodinger1935}, los circuitos diseñados para los estados $\lvert\Phi^+\rangle$ y $\lvert\Phi^-\rangle$ colapsan únicamente en las componentes correspondientes a los estados clásicos $\lvert00\rangle$ y $\lvert11\rangle$, mientras que los estados $\lvert\Psi^+\rangle$ y $\lvert\Psi^-\rangle$ se proyectan de forma exclusiva sobre las componentes cruzadas $\lvert01\rangle$ y $\lvert10\rangle$, con una distribución de probabilidad prácticamente equitativa entre ambas opciones en cada caso.
 
 Al analizar con detalle estas distribuciones estadísticas de salida, se observa que las probabilidades obtenidas para las componentes de cada estado (por ejemplo, un $50.39\%$ para un estado y un $49.61\%$ para el otro) raramente se posicionan en un $50.00\%$ exacto. Este comportamiento no es un error del proceso, sino una manifestation directa de las \textbf{fluctuaciones estadísticas del muestreo}, un fenómeno análogo al \emph{error de disparo} o \emph{shot noise} estudiado originalmente por \cite{schottky1918} para el recuento de eventos discretos.
 
@@ -186,28 +170,26 @@ Matemáticamente, cada ejecución individual constituye un ensayo de Bernoulli i
 
 \section{Aplicaciones Prácticas e Impacto en Criptografía Cuántica}
 
-Los estados de \cite{bell1964} no constituyen únicamente construcciones teóricas para la validación del entrelazamiento cuántico, sino que representan la manifestación física más pura de este fenómeno, considerado formalmente en la literatura científica como un recurso físico cuantificable y explotable para el procesamiento de información. Bajo este enfoque, las correlaciones no locales estipuladas por dichos estados se consolidan como el pilar operativo fundamental sobre el que se erigen los protocolos avanzados de las tecnologías de la información cuántica moderna \citep{nielsen2010}. A continuación, se analiza su impacto en la seguridad criptográfica y sus aplicaciones tecnológicas más relevantes.
+Los estados de \cite{bell1964} no constituyen únicamente construcciones teóricas para la validación del entrelazamiento cuántico \citep{schrodinger1935}, sino que representan la manifestación física más pura de este fenómeno, considerado formalmente en la literatura científica como un recurso físico cuantificable y explotable para el procesamiento de información. Bajo este enfoque, las correlaciones no locales estipuladas por dichos estados se consolidan como el pilar operativo fundamental sobre el que se erigen los protocolos avanzados de las tecnologías de la información cuántica moderna \citep{nielsen2010}. A continuación, se analiza su impacto en la seguridad criptográfica y sus aplicaciones tecnológicas más relevantes.
 
 \subsection{Distribución Cuántica de Claves y el Protocolo E91}
-El impacto más disruptivo de los estados de \cite{bell1964} en el ámbito de la seguridad de la información se manifiesta en la Distribución Cuántica de Claves (\emph{Quantum Key Distribution}, QKD). Mientras que protocolos primitivos como BB84 \citep{bennett1984} se basan en la preparación y medición de estados cuánticos individuales de una sola partícula, el protocolo \textbf{E91}, propuesto originalmente por \cite{ekert1991}, revolucionó la disciplina al introducir el entrelazamiento cuántico basado en pares de Bell (típicamente el estado $\lvert\Psi^-\rangle$) como núcleo del sistema.
-
+La aplicación de los estados de \cite{bell1964} en el ámbito de la seguridad de la información constituye un pilar fundamental en los esquemas de Distribución Cuántica de Claves (\emph{Quantum Key Distribution}, QKD). Mientras que aproximaciones como el protocolo BB84 \citep{bennett1984} se basan en la preparación y medición de estados cuánticos independientes de una sola partícula, el protocolo \textbf{E91}, propuesto por \cite{ekert1991}, introdujo un paradigma alternativo al emplear el entrelazamiento cuántico \citep{schrodinger1935} de pares de Bell como el mecanismo central para garantizar la confidencialidad en el intercambio.
 Las implicaciones fundamentales de los estados de Bell en este protocolo son:
 
 \begin{itemize}
     \item \textbf{Generación de correlaciones perfectas a distancia:} Al distribuir los dos cúbits entrelazados de un estado de Bell entre dos partes legítimas, las mediciones individuales realizadas en las mismas bases colapsan en resultados correlacionados de forma idéntica o complementaria (dependiendo del estado de Bell utilizado). Esto permite generar una clave simétrica compartida totalmente aleatoria sin necesidad de transmitir la clave de forma explícita por ningún canal de comunicación.
     
-    \item \textbf{Detección intrínseca de espías mediante el Teorema de No Clonación:} Debido a las leyes de la mecánica cuántica formuladas en este contexto por \cite{wootters1982}, es imposible duplicar o medir un estado cuántico desconocido sin alterar su función de onda de manera irreversible. Si un tercer actor intenta interceptar y medir uno de los cúbits en tránsito, destruirá el entrelazamiento del par de Bell de forma inmediata.
+    \item \textbf{Detección intrínseca de espías mediante el Teorema de No Clonación:} Debido a las leyes de la mecánica cuántica formuladas en este contexto por \cite{wootters1982}, es imposible duplicar o medir un estado cuántico desconocido sin alterar su función de onda de manera irreversible. Si un tercer actor  intenta interceptar y medir uno de los cúbits en tránsito, destruirá el entrelazamiento del forma inmediata.
     
-    \item \textbf{Validación de la seguridad mediante las desigualdades de Bell:} La ventaja crítica del protocolo E91 es que tanto emisor como receptor pueden verificar la seguridad del canal de manera estadística. Reservando una fracción de sus mediciones para realizar pruebas sobre bases diferentes, pueden comprobar si el sistema viola las desigualdades de Bell generalizadas a través del formalismo matemático de \cite{clauser1969} (la desigualdad CHSH). Si la violación se mantiene en el límite teórico ideal, se demuestra que los cúbits no han sido manipulados ni correlacionados con ningún sistema externo, garantizando una seguridad incondicional independiente del dispositivo (\emph{Device-Independent QKD}), un paradigma consolidado posteriormente por desarrollos como los de \cite{pironio2010}.
-\end{itemize}
+\item \textbf{Validación de la seguridad mediante las desigualdades de Bell:} La ventaja crítica del protocolo E91 es que tanto emisor como receptor pueden verificar la seguridad del canal de manera estadística. Reservando una fracción de sus mediciones para realizar pruebas sobre bases diferentes, pueden comprobar si el sistema \textbf{excede los límites de} las desigualdades de \cite{bell1964}, generalizadas mediante el formalismo CHSH \citep{clauser1969}. Si la desviación respecto al límite clásico se mantiene en el rango teórico ideal, se puede asumir que los cúbits no han sido manipulados ni correlacionados con ningún sistema externo. Esto infiere un marco de seguridad incondicional independiente del dispositivo, un paradigma consolidado posteriormente por desarrollos como los de \cite{masanes2010}.\end{itemize}
 
 \subsection{Otras Aplicaciones Tecnológicas Fundamentales}
 Más allá de la criptografía, las propiedades de correlación no local de los estados de Bell son el motor de otros tres pilares de la ingeniería cuántica:
 
 \begin{itemize}
-    \item \textbf{Teletransportación Cuántica:} Este protocolo permite transferir un estado cuántico desconocido (la información de un cúbit arbitrario $\lvert\psi\rangle$) desde un nodo emisor (Alice) a uno receptor (Bob) sin necesidad de desplazar físicamente la partícula que lo soporta. De acuerdo con el esquema fundacional de \cite{bennett1993}, emisor y receptor deben compartir previamente un estado de Bell. Al realizar una medición conjunta (conocida como \emph{Medición del Estado de Bell} o BSM) entre el cúbit a teletransportar y la mitad del par entrelazado, la información cuántica se proyecta instantáneamente en el extremo receptor, requiriendo únicamente el envío de dos bits clásicos de información para reconstruir el estado original de forma exacta.
+    \item \textbf{Teletransportación Cuántica:} Este protocolo permite transferir un estado cuántico desconocido desde un emisor a un receptor sin necesidad de desplazar físicamente la partícula que lo soporta. De acuerdo con el esquema fundacional de \cite{bennett1993}, ambos deben compartir previamente un estado de \cite{bell1964}. Al realizar una medición conjunta (conocida como \emph{Medición del Estado de Bell} o BSM) entre el cúbit a teletransportar y la mitad del par entrelazamiento \citep{schrodinger1935}, el estado original se destruye en el origen y se proyecta instantáneamente en el extremo receptor. Sin embargo, este proceso no implica una transferencia superlumínica de información; para que el receptor pueda reconstruir el estado de forma exacta, requiere obligatoriamente el envío de dos bits clásicos a través de un canal convencional, preservando el principio de causalidad y respetando el límite de la velocidad de la luz impuesto por la relatividad especial de \cite{einstein1905}.
     
-    \item \textbf{Codificación Superdensa:} Operando de forma inversa a la teletransportación, la codificación superdensa aprovecha el entrelazamiento de un estado de Bell para incrementar la capacidad de los canales de comunicación. Diseñado originalmente por \cite{bennett1992dense}, este protocolo demuestra que mediante la manipulación local de un solo cúbit de un par entrelazado compartido (aplicando compuertas de un solo cúbit), es posible transformar el par en cualquiera de los otros tres estados de Bell. Al enviar ese único cúbit modificado al receptor, este puede descodificar la información realizando una medición conjunta, logrando transmitir \textbf{dos bits de información clásica utilizando un solo cúbit físico}.
+    \item \textbf{Codificación Superdensa:} La codificación superdensa aprovecha el entrelazamiento de un estado de Bell para incrementar la capacidad de los canales de comunicación. Diseñado originalmente por \cite{bennett1992dense}, este protocolo demuestra que mediante la manipulación local con puertas de \cite{pauli1927} de un solo cúbit de un par entrelazado compartido, es posible transformar el par en cualquiera de los otros tres estados de Bell. Al enviar ese único cúbit modificado al receptor, este puede descodificar la información realizando una medición conjunta, logrando transmitir \textbf{dos bits de información clásica utilizando un solo cúbit físico}.
     
     \item \textbf{Redes e Internet Cuántico:} Las futuras redes cuánticas se estructuran bajo la necesidad de distribuir entrelazamiento a larga distancia para conectar procesadores cuánticos distribuidos \citep{kimble2008}. Debido a la atenuación de la fibra óptica, los estados de Bell se degradan con la distancia. Para resolverlo, se utilizan arquitecturas de \textbf{Repetidores Cuánticos} basados en un protocolo denominado \emph{Entanglement Swapping} (intercambio de entrelazamiento), propuesto originalmente por \cite{zukowski1993}. Este proceso permite entrelazar dos cúbits lejanos que nunca han interactuado entre sí mediante la ejecución de mediciones de Bell en nodos intermedios, sentando las bases físicas del futuro internet cuántico.
 \end{itemize}
@@ -216,61 +198,42 @@ Más allá de la criptografía, las propiedades de correlación no local de los 
 
 A continuación, se presentan las conclusiones extraídas del desarrollo de este Trabajo, estructuradas en torno a los objetivos alcanzados, la validación experimental y las implicaciones tecnológicas de los sistemas entrelazados analizados.
 
-\paragraph{Validación de la lógica de circuitos.} La implementación de los cuatro estados de Bell ha permitido consolidar de manera práctica los fundamentos operativos del entrelazamiento cuántico. Mediante la correcta combinación secuencial de operadores unitarios de un solo cúbit (puertas Pauli-X y Hadamard) y operadores de control de dos cúbits (puertas CNOT), se ha demostrado la viabilidad de manipular de forma exacta tanto las amplitudes de probabilidad como las fases relativas del sistema. El diseño estructurado e independiente de las soluciones algorítmicas en el entorno de desarrollo ha cumplido con éxito las pautas lógicas requeridas para cada transformación.
+\paragraph{Validación de la lógica de circuitos.} La implementación de los cuatro estados de \cite{bell1964} ha permitido consolidar de manera práctica los fundamentos operativos del entrelazamiento cuántico \citep{schrodinger1935}. Mediante la correcta combinación secuencial de operadores unitarios de un solo cúbit y operadores de control de dos cúbits, se ha comprobado la viabilidad de manipular de forma exacta tanto las amplitudes de probabilidad como las fases relativas del sistema bajo el modelo de circuitos estandarizado \citep{deutsch1989}. El diseño estructurado e independiente de las soluciones algorítmicas en el entorno de desarrollo ha cumplido con éxito las pautas lógicas requeridas para cada transformación, validando los principios de universalidad de las compuertas cuánticas analizadas \citep{barenco1995}.
 
-\paragraph{Convergencia y estadística experimental.} La validación de los modelos mediante simulación estadística ha servido para contrastar el formalismo matemático ideal con el comportamiento empírico del muestreo. Los resultados confirman que el criterio de éxito —obtener distribuciones equiprobables cercanas al $50\%$ únicamente en las componentes proyectivas correspondientes a cada estado— se cumple de forma consistente. Asimismo, el análisis del \emph{shot noise} y la aplicación de la Ley de los Grandes Números justifican rigurosamente las pequeñas desviaciones decimales observadas para un espacio muestral de 1024 ejecuciones, demostrando que dichas fluctuaciones son una propiedad intrínseca del colapso probabilístico de la función de onda y no un defecto estructural del modelado.
+\paragraph{Convergencia y estadística experimental.} La validación de los modelos mediante simulación estadística ha servido para contrastar el formalismo matemático ideal con el comportamiento empírico del muestreo. Los resultados confirman que el criterio de éxito, obtener distribuciones equiprobables cercanas al $50\%$ únicamente en las componentes proyectivas correspondientes a cada estado, se cumple de forma consistente de acuerdo con la regla de probabilidad cuántica \citep{born1926}. Asimismo, el análisis del \emph{shot noise} \citep{schottky1918} y la aplicación de la Ley de los Grandes Números justifican rigurosamente las pequeñas desviaciones decimales observadas, demostrando que dichas fluctuaciones son una propiedad intrínseca del colapso probabilístico de la función de onda \citep{nielsen2010} y no un defecto estructural del modelado.
 
-\paragraph{Trascendencia en la infraestructura cuántica.} El estudio de los estados de Bell en contextos prácticos demuestra que el entrelazamiento máximo no es un mero fenómeno teórico, sino la piedra angular de la ingeniería de la información cuántica. Su impacto directo en la distribución cuántica de claves bajo el protocolo E91 redefine el paradigma de la ciberseguridad mediante la verificación basada en las desigualdades de Bell. Del mismo modo, procesos críticos como la teletransportación cuántica, la codificación superdensa y el desarrollo de repetidores cuánticos para el futuro internet cuántico evidencian que el control preciso de estos cuatro estados fundamentales es un requisito indispensable para el despliegue de cualquier red de comunicación cuántica escalable y segura.
+\paragraph{Trascendencia en la infraestructura cuántica.} El estudio de los estados de \cite{bell1964} en contextos prácticos demuestra que el entrelazamiento máximo \citep{schrodinger1935} no es un mero fenómeno teórico, sino la piedra angular de la ingeniería de la información cuántica \citep{nielsen2010}. Su impacto directo en la distribución cuántica de claves bajo el protocolo E91 \citep{ekert1991} redefine el paradigma de la ciberseguridad mediante la verificación basada en las desigualdades de \cite{bell1964}. Del mismo modo, procesos críticos como la teletransportación cuántica \citep{bennett1993}, la codificación superdensa \citep{bennett1992dense} y el desarrollo de repetidores cuánticos para el futuro internet cuántico \citep{kimble2008} evidencian que el control preciso de estos cuatro estados fundamentales es un requisito indispensable para el despliegue de cualquier red de comunicación cuántica escalable y segura.
 
 \begin{thebibliography}{99}
-\bibitem[Nielsen y Chuang(2010)]{nielsen2010} Nielsen, M. A., y Chuang, I. L. (2010). \emph{Quantum Computation and Quantum Information}. Cambridge University Press.
-\bibitem[Deutsch(1989)]{deutsch1989} Deutsch, D. (1989). Quantum theory, the Church--Turing principle and the quantum computer. \emph{Proceedings of the Royal Society of London. A. Mathematical and Physical Sciences}, 400(1818), 97-117.
-\bibitem[Bennett et al.(1993)]{bennett1993} Bennett, C. H., Brassard, G., Crépeau, C., Jozsa, R., Peres, A., y Wootters, W. K. (1993). Teleporting an unknown quantum state via dual classical and Einstein-Podolsky-Rosen channels. \emph{Physical Review Letters}, 70(13), 1895.
 \bibitem[Barenco et al.(1995)]{barenco1995} Barenco, A., Bennett, C. H., Cleve, R., DiVincenzo, D. P., Margolus, N., Shor, P., Sleator, T., Smolin, J. A., y Weinfurter, H. (1995). Elementary gates for quantum computation. \emph{Physical Review A}, 52(5), 3457.
-\bibitem[Deutsch y Jozsa(1992)]{deutsch1992} Deutsch, D., y Jozsa, R. (1992). Rapid solution of problems by quantum computation. \emph{Proceedings of the Royal Society of London. Series A: Mathematical and Physical Sciences}, 439(1907), 553-558.
-\bibitem[Einstein, Podolsky y Rosen(1935)]{einstein1935} Einstein, A., Podolsky, B., y Rosen, N. (1935). Can quantum-mechanical description of physical reality be considered complete? \emph{Physical Review}, 47(10), 777.
 \bibitem[Bell(1964)]{bell1964} Bell, J. S. (1964). On the Einstein Podolsky Rosen paradox. \emph{Physics Physique Fizika}, 1(3), 195.
-\bibitem[Pauli(1927)]{pauli1927} Pauli, W. (1927). Über die Gasentartung und Paramagnetismus. \emph{Zeitschrift für Physik}, 41(2), 81-102.
-\bibitem[Bloch(1946)]{bloch1946} Bloch, F. (1946). Nuclear induction. \emph{Physical Review}, 70(7-8), 460-474.1
-\bibitem[Born(1926)]{born1926} Born, M. (1926). Zur Quantenmechanik der Stoßvorgänge. \emph{Zeitschrift für Physik}, 37(12), 863-867.
-\bibitem[Schottky(1918)]{schottky1918} Schottky, W. (1918). Über spontane Stromschwankungen in verschiedenen Elektrizitätsleitern. \emph{Annalen der Physik}, 362(23), 541-567.
-\bibitem[Bernoulli(1713)]{bernoulli1713} Bernoulli, J. (1713). \emph{Ars Conjectandi}. Impensis Thurnisiorum, Fratrum.
-\bibitem[Poisson(1837)]{poisson1837} Poisson, S. D. (1837). \emph{Recherches sur la probabilité des jugements en matière criminelle et en matière civile, précédées des règles générales du calcul des probabilités}. Bachelier.
 \bibitem[Bennett y Brassard(1984)]{bennett1984} Bennett, C. H., y Brassard, G. (1984). Quantum cryptography: Public key distribution and coin tossing. In \emph{Proceedings of IEEE International Conference on Computers, Systems and Signal Processing} (Vol. 175, p. 8).
-\bibitem[Ekert(1991)]{ekert1991} Ekert, A. K. (1991). Quantum cryptography based on Bell’s theorem. \emph{Physical Review Letters}, 67(6), 661.
-\bibitem[Wootters y Zurek(1982)]{wootters1982} Wootters, W. K., y Zurek, W. H. (1982). A single quantum cannot be cloned. \emph{Nature}, 299(5886), 802-803.
-\bibitem[Clauser et al.(1969)]{clauser1969} Clauser, J. F., Horne, M. A., Shimony, A., y Holt, R. A. (1969). Proposed experiment to test local hidden-variable theories. \emph{Physical Review Letters}, 23(15), 880.
-\bibitem[Pironio et al.(2010)]{pironio2010} Pironio, S., Acín, A., Massar, S., Boyer de la Giroday, A., García-Escartín, X., Ranfaing, E., ... y Monroe, C. (2010). Random numbers certified by quantum contextuality. \emph{Nature}, 464(7291), 1021-1024.
 \bibitem[Bennett y Wiesner(1992)]{bennett1992dense} Bennett, C. H., y Wiesner, S. J. (1992). Communication via one- and two-particle operators on Einstein-Podolsky-Rosen states. \emph{Physical Review Letters}, 69(20), 2881.
+\bibitem[Bennett et al.(1993)]{bennett1993} Bennett, C. H., Brassard, G., Crépeau, C., Jozsa, R., Peres, A., y Wootters, W. K. (1993). Teleporting an unknown quantum state via dual classical and Einstein-Podolsky-Rosen channels. \emph{Physical Review Letters}, 70(13), 1895.
+\bibitem[Bernoulli(1713)]{bernoulli1713} Bernoulli, J. (1713). \emph{Ars Conjectandi}. Impensis Thurnisiorum, Fratrum.
+\bibitem[Bloch(1946)]{bloch1946} Bloch, F. (1946). Nuclear induction. \emph{Physical Review}, 70(7-8), 460-474.1
+\bibitem[Bohr(1935)]{bohr1935} Bohr, N. (1935). Can quantum-mechanical description of physical reality be considered complete? \emph{Physical Review}, 48(8), 696-702.
+\bibitem[Born(1926)]{born1926} Born, M. (1926). Zur Quantenmechanik der Stoßvorgänge. \emph{Zeitschrift für Physik}, 37(12), 863-867.
+\bibitem[Clauser et al.(1969)]{clauser1969} Clauser, J. F., Horne, M. A., Shimony, A., y Holt, R. A. (1969). Proposed experiment to test local hidden-variable theories. \emph{Physical Review Letters}, 23(15), 880.
+\bibitem[Deutsch(1989)]{deutsch1989} Deutsch, D. (1989). Quantum theory, the Church--Turing principle and the quantum computer. \emph{Proceedings of the Royal Society of London. A. Mathematical and Physical Sciences}, 400(1818), 97-117.
+\bibitem[Deutsch y Jozsa(1992)]{deutsch1992} Deutsch, D., y Jozsa, R. (1992). Rapid solution of problems by quantum computation. \emph{Proceedings of the Royal Society of London. Series A: Mathematical and Physical Sciences}, 439(1907), 553-558.
+\bibitem[Einstein(1905)]{einstein1905} Einstein, A. (1905). Zur Elektrodynamik bewegter Körper. \emph{Annalen der Physik}, 322(10), 891-921.
+\bibitem[Einstein, Podolsky y Rosen(1935)]{einstein1935} Einstein, A., Podolsky, B., y Rosen, N. (1935). Can quantum-mechanical description of physical reality be considered complete? \emph{Physical Review}, 47(10), 777.
+\bibitem[Ekert(1991)]{ekert1991} Ekert, A. K. (1991). Quantum cryptography based on Bell’s theorem. \emph{Physical Review Letters}, 67(6), 661.
+\bibitem[Hilbert(1906)]{hilbert1906} Hilbert, D. (1906). Grundzüge einer allgemeinen Theorie der linearen Integralgleichungen. (Vierte Mitteilung). \emph{Nachrichten von der Gesellschaft der Wissenschaften zu Göttingen, Mathematisch-Physikalische Klasse}, 1906, 157-227.
 \bibitem[Kimble(2008)]{kimble2008} Kimble, H. J. (2008). The quantum internet. \emph{Nature}, 453(7198), 1023-1030.
+\bibitem[Masanes, Pironio y Acín(2010)]{masanes2010} Masanes, L., Pironio, S., y Acín, A. (2010). Secure device-independent quantum key distribution with causally independent measurement devices. \emph{arXiv preprint arXiv:1009.1567.}
+\bibitem[Nielsen y Chuang(2010)]{nielsen2010} Nielsen, M. A., y Chuang, I. L. (2010). \emph{Quantum Computation and Quantum Information}. Cambridge University Press.
+\bibitem[Pauli(1927)]{pauli1927} Pauli, W. (1927). Über die Gasentartung und Paramagnetismus. \emph{Zeitschrift für Physik}, 41(2), 81-102.
+\bibitem[Poisson(1837)]{poisson1837} Poisson, S. D. (1837). \emph{Recherches sur la probabilité des jugements en matière criminelle et en matière civile, précédées des règles générales du calcul des probabilités}. Bachelier.
+\bibitem[Schrödinger(1935)]{schrodinger1935} Schrödinger, E. (1935). Discussion of probability relations between separated systems. \emph{Mathematical Proceedings of the Cambridge Philosophical Society}, 31(4), 555-563.
+\bibitem[Schottky(1918)]{schottky1918} Schottky, W. (1918). Über spontane Stromschwankungen in verschiedenen Elektrizitätsleitern. \emph{Annalen der Physik}, 362(23), 541-567.
+\bibitem[Wootters y Zurek(1982)]{wootters1982} Wootters, W. K., y Zurek, W. H. (1982). A single quantum cannot be cloned. \emph{Nature}, 299(5886), 802-803.
 \bibitem[Żukowski et al.(1993)]{zukowski1993} Żukowski, M., Zeilinger, A., Horne, M. A., y Ekert, A. K. (1993). ``Event-ready-detectors'' Bell experiment via entanglement swapping. \emph{Physical Review Letters}, 71(26), 4287.
 \end{thebibliography}
-
-\vspace{2cm}
-Aún a riesgo de ser redundante, repito aquí que para consultar detenidamente la formas de referenciar, debéis seguir el formato APA del siguiente documento: \url{https://bibliografiaycitas.unir.net/documentos/APA_7ed_UNIR.pdf}
 
 %\bibliographystyle{plain} 
 %\bibliography{bibliografia}
 
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

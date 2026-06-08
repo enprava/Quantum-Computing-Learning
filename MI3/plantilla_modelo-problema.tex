@@ -29,21 +29,16 @@
 \tableofcontents
 
 \chapter{Resumen}
-En esta Sección se introducirá un breve resumen en español del trabajo realizado (extensión máxima: esta página). 
-
-Este resumen debe incluir el propósito de la investigación, la metodología, los resultados y las conclusiones (obviamente, todo muy resumido, pero así se sabe de un vistazo lo que se va uno a encontrar a continuación). 
-
-En general, los conceptos deben estar claramente explicados (de forma resumida, repito) para que el propio resumen sea autoconsistente.
+El presente Trabajo realiza un análisis computacional y asintótico de los problemas de verificación de primalidad y factorización entera, pilares fundamentales de la criptografía de clave pública actual. El propósito de la investigación es evaluar el impacto del tamaño de la entrada de datos en bits sobre el tiempo de ejecución físico de los algoritmos de búsqueda de divisores. Metodológicamente, se recurre a la resolución analítica y al cálculo de límites al infinito para contrastar las cotas de complejidad de los métodos clásicos frente a los avanzados. Los resultados obtenidos resuelven la discrepancia conceptual de la división por tentativa, cuya aparente cota sublineal numérica se traduce estrictamente en un coste exponencial de $\mathcal{O}(2^{k/2})$ bits. Asimismo, se demuestra el posicionamiento intermedio de la función de coste $\mathcal{O} \left(e^{\sqrt{(\ln n)(\ln \ln n)}}\right)$, clasificándola de forma como un orden de tiempo subexponencial respecto al tamaño de la entrada. Finalmente, se concluye que si bien los algoritmos avanzados (CFRAC, criba cuadrática y criba general del cuerpo de números) suavizan sustancialmente las curvas de crecimiento temporal frente al enfoque clásico, no logran la viabilidad de un orden polinomial puro, lo que justifica matemáticamente la robustez de los estándares criptográficos vigentes en computación clásica ante la ausencia de infraestructuras cuánticas estables a gran escala.
 
 \vspace{0.5cm}
-{\bf Palabras clave:} se deben incluir de 4 a 6 conceptos clave en español, significativos para el contenido del Trabajo (pueden ser conceptos formados por más de una palabra, pero DEBEN ser significativos). Por favor no incluir siglas, y todas las palabras en minúsculas
+{\bf Palabras clave:} complejidad asintótica, factorización entera, algoritmos deterministas, tiempo subexponencial, números primos, criptografía asimétrica
 
 \chapter{Abstract}
-This Section should include the english version of the previous Resumen.
+This report provides a computational and asymptotic analysis of primality verification and integer factorization problems, which constitute the core foundations of modern public-key cryptography. The purpose of this research is to evaluate the impact of input data size in bits on the physical execution time of divisor search algorithms. Methodologically, analytical evaluation and calculus of limits at infinity are used to contrast the complexity bounds of classical approaches against advanced methods. The results successfully resolve the conceptual discrepancy of the trial division algorithm, demonstrating that its apparent sublinear numerical bound translates strictly into an exponential cost of $\mathcal{O}(2^{k/2})$ bits. Furthermore, the intermediate behavior of the cost function $\mathcal{O} \left(e^{\sqrt{(\ln n)(\ln \ln n)}}\right)$ is proven, classifying it as a subexponential time order with respect to input size. Finally, it is concluded that while advanced algorithms (CFRAC, quadratic sieve, and general number field sieve) substantially smooth out time growth curves compared to the classical approach, they do not achieve the feasibility of a pure polynomial order, which mathematically justifies the robustness of current cryptographic standards in classical computing given the absence of large-scale, stable quantum infrastructures.
 
 \vspace{0.5cm}
-{\bf Keywords:} please include between 4 to 6 key concepts in english, relevant to the content of this report (each concept might include multiple words). Please, do not include acronims and all words should be lower letters.
-
+{\bf Keywords:} asymptotic complexity, integer factorization, deterministic algorithms, subexponential time, prime numbers, asymmetric cryptography
 \mainmatter
 
 \chapter{Introducción}
@@ -53,7 +48,7 @@ La teoría de números y la complejidad computacional constituyen dos de los pil
 \section{Justificación del tema}
 La relevancia de estudiar los números primos y su descomposición radica en la asimetría computacional que presentan ciertos operadores matemáticos. Mientras que la multiplicación de dos factores primos es una operación realizable en tiempo polinomial, el proceso inverso carece de un algoritmo eficiente conocido en computación clásica. Esta propiedad fue propuesta inicialmente como pilar conceptual para la seguridad por \citep{diffie1976}, y posteriormente materializada de forma práctica mediante el desarrollo del célebre criptosistema RSA \citep{rivest1978}.
 
-Sin embargo, la viabilidad de estos sistemas de seguridad depende críticamente de la evolución de las técnicas de análisis numérico y de la capacidad de cómputo disponible \citep{odlyzko1995}. El desarrollo histórico de los algoritmos de factorización avanzados, diseñados para romper la barrera del tiempo exponencial mediante aproximaciones heurísticas, ha permitido suavizar drásticamente las curvas de coste temporal. Entre los métodos deterministas no rigurosos más rápidos de la literatura destacan el método de las fracciones continuas o CFRAC, propuesto por \citet{morrison1975}; la criba cuadrática (QS), desarrollada por \citet{pomerance1982}; y la criba general del cuerpo de números (GNFS), consolidada por \citet{lenstra1993}. Comprender con precisión matemática las fronteras asintóticas de estos órdenes de complejidad subexponenciales es fundamental para anticipar la obsolescencia de los estándares criptográficos actuales y garantizar la integridad de las infraestructuras de datos en el futuro.
+Sin embargo, la viabilidad de estos sistemas de seguridad depende críticamente de la evolución de las técnicas de análisis numérico y de la capacidad de cómputo disponible \citep{odlyzko1995}. El desarrollo histórico de los algoritmos de factorización avanzados, diseñados para romper la barrera del tiempo exponencial mediante aproximaciones heurísticas, ha permitido suavizar las curvas de coste temporal. Entre los métodos deterministas no rigurosos más rápidos de la literatura destacan el método de las fracciones continuas o CFRAC, propuesto por \citet{morrison1975}; la criba cuadrática (QS), desarrollada por \citet{pomerance1982}; y la criba general del cuerpo de números (GNFS), consolidada por \citet{lenstra1993}. Comprender las fronteras asintóticas de estos órdenes de complejidad permite anticipar la evolución de los estándares criptográficos actuales y garantizar una transición ordenada hacia sistemas de seguridad más robustos.
 \section{Planteamiento del Trabajo}
 Este Trabajo se plantea como un estudio orientado a desglosar las cotas de complejidad que gobiernan la búsqueda de divisores y la verificación de la primalidad. A grandes rasgos, el objetivo general de la investigación es evaluar cómo impacta el tamaño de la entrada de datos en el tiempo de ejecución físico de los algoritmos bajo estudio. 
 
@@ -64,8 +59,8 @@ Para facilitar una lectura sistemática y progresiva, el presente Trabajo se org
 
 \begin{itemize}
     \item \textbf{Capítulo 1: Introducción.} Constituye el punto de partida de la memoria. En él se contextualiza históricamente el problema de estudio, se justifica su relevancia en el ámbito de la seguridad digital y se detalla la metodología de investigación mediante un sólido respaldo bibliográfico.
-    \item \textbf{Capítulo 2: Objetivos.} Se establecen de manera concisa las metas metodológicas de la investigación, acotando el alcance del estudio en torno a la fundamentación teórica, la evaluación de métodos clásicos y la caracterización analítica del horizonte subexponencial.
-    \item \textbf{Capítulo 3: Enunciado del problema.} Se delimita el marco conceptual de las tareas computacionales propuestas por el ejercicio. En él se plantean formalmente los requerimientos de la demostración del teorema del factor primo, las cuestiones sobre la naturaleza operativa de la división por tentativa y las premisas algebraicas que definen la criba subexponencial.
+    \item \textbf{Capítulo 2: Objetivos.} Se establecen de manera concisa las metas del Trabajo, la evaluación de métodos clásicos y la caracterización analítica del horizonte subexponencial.
+    \item \textbf{Capítulo 3: Enunciado del problema.} Se delimita el marco conceptual de las tareas computacionales propuestas por el ejercicio. En él se plantean los requerimientos de la demostración del teorema del factor primo, las cuestiones sobre la naturaleza operativa de la división por tentativa y las premisas algebraicas que definen la complejidad subexponencial.
     \item \textbf{Capítulo 4: Desarrollo del Trabajo.} Constituye el núcleo resolutivo del documento. Se presenta la demostración matemática por reducción al absurdo del límite de la raíz cuadrada, se resuelve la discrepancia de complejidad en bits para el caso de peor coste en la división por tentativa, y se ejecutan las demostraciones analíticas de límites para clasificar las expresiones de coste de los algoritmos avanzados frente a órdenes polinomiales ($k^c$) y exponenciales ($2^{k\epsilon}$).
     \item \textbf{Capítulo 5: Conclusiones.} Ofrece una síntesis de los hallazgos más relevantes derivados del análisis asintótico. Se recapitula sobre el impacto real del tamaño de la entrada en los algoritmos analizados y se evalúan de forma crítica las implicaciones de los resultados obtenidos de cara a las tendencias criptográficas actuales.
 \end{itemize}\chapter{Objetivos}
@@ -80,13 +75,13 @@ El presente Trabajo se estructura con el fin de profundizar en el análisis comp
 
 \chapter{Enunciado del problema}
 
-En este capítulo se delimita el marco teórico y los objetivos del problema de estudio. Se formaliza el desafío computacional que supone verificar la condición de primo de un número entero, presentando los enfoques algorítmicos tanto clásicos como modernos que plantea el enunciado para su análisis asintótico.
+En este capítulo se delimita el marco teórico y los objetivos del problema de estudio. Se describe el desafío computacional que supone verificar la condición de primo de un número entero, presentando los enfoques algorítmicos tanto clásicos como modernos que plantea el enunciado para su análisis asintótico.
 
 \section{Demostración del teorema del factor primo}
 En esta sección se plantea el fundamento matemático esencial que rige la búsqueda de divisores de un número entero. Se introduce el teorema que postula que si $n$ es un número compuesto, entonces $n$ tiene un factor primo $p$ tal que $p \leq \sqrt{n}$.
 
 \section{Algoritmo de división por tentativa}
-Se presenta de manera formal el método más intuitivo para abordar la primalidad, el cual comprueba la divisibilidad de un entero compuesto $n$ de forma secuencial entre los números primos hasta su límite teórico de $\sqrt{n}$. Con el objetivo de evaluar la viabilidad computacional de este procedimiento, se plantean formalmente las siguientes cuestiones para su posterior resolución analítica:
+Se presenta el método más intuitivo para abordar la primalidad, el cual comprueba la divisibilidad de un entero compuesto $n$ de forma secuencial entre los números primos hasta su límite teórico de $\sqrt{n}$. Con el objetivo de evaluar la viabilidad computacional de este procedimiento, se plantean las siguientes cuestiones para su posterior resolución analítica:
 
 \begin{enumerate}
     \item \textbf{Análisis de complejidad y naturaleza operativa:} Se debe determinar la complejidad asintótica del algoritmo en el peor escenario posible, evaluando si el tiempo de ejecución real se comporta de manera polinomial o exponencial. Asimismo, se cuestiona si el procedimiento se clasifica como un algoritmo determinista o aleatorio, y si su validez matemática requiere el uso de hipótesis heurísticas no probadas.
@@ -98,22 +93,22 @@ Se presenta de manera formal el método más intuitivo para abordar la primalida
 Aquí se describe el escenario donde estos algoritmos buscan suavizar la curva de crecimiento temporal del problema de factorización, presentando una expresión de coste con el objetivo de resolver analíticamente los siguientes requerimientos matemáticos:
 
 \begin{enumerate}
-    \item \textbf{Demostración de la naturaleza subexponencial:} Se debe demostrar formalmente que la función de complejidad $\mathcal{O} \left(e^{\sqrt{(\ln n) (\ln \ln n)}}\right)$ se clasifica como un tiempo subexponencial, verificando que no puede ser acotada superiormente por un polinomio. Para establecer el comportamiento intermedio de la función, el análisis asintótico debe partir de las siguientes acotaciones fundamentales de sus expresiones simplificadas:
+    \item \textbf{Demostración de la naturaleza subexponencial:} Se debe demostrar que la función de complejidad $\mathcal{O} \left(e^{\sqrt{(\ln n) (\ln \ln n)}}\right)$ se clasifica como un tiempo subexponencial, verificando que no puede ser acotada superiormente por un polinomio. Para establecer el comportamiento intermedio de la función, el análisis asintótico debe partir de las siguientes acotaciones fundamentales de sus expresiones simplificadas:
     $$\begin{aligned}
         e^{\sqrt{(\ln n) (\ln \ln n)}} & \leq e^{\sqrt{(\ln n) (\ln n)}} = e^{\ln n} = n, \\
         e^{\sqrt{(\ln n) (\ln \ln n)}} & \geq e^{\sqrt{(\ln \ln n) (\ln \ln n)}} = e^{\ln \ln n} = \ln n.
     \end{aligned}$$
     
-    \item \textbf{Análisis de límites y comparación asintótica:} En base a las acotaciones anteriores, se requiere evaluar formalmente el comportamiento asintótico y determinar qué se puede concluir respecto a la relación frente a $n^{\epsilon}$ (para todo $\epsilon > 0$) al evaluar la primera expresión simplificada, así como frente a la función polilogarítmica $(\ln n)^c$ (para cualquier constante $c > 0$) al evaluar el comportamiento de la segunda.
+    \item \textbf{Análisis de límites y comparación asintótica:} En base a las acotaciones anteriores, se requiere evaluar el comportamiento asintótico y determinar qué se puede concluir respecto a la relación frente a $n^{\epsilon}$ (para todo $\epsilon > 0$) al evaluar la primera expresión simplificada, así como frente a la función polilogarítmica $(\ln n)^c$ (para cualquier constante $c > 0$) al evaluar el comportamiento de la segunda.
 \end{enumerate}
 
 \chapter{Desarrollo del Trabajo}
 
-En este capítulo se aborda el núcleo analítico y computacional del Trabajo, centrado en el estudio de la factorización de números enteros. El desarrollo se articula de manera progresiva: en primer lugar, se realiza la demostración formal del límite superior de los factores primos de un número compuesto. Posteriormente, se evalúa el algoritmo clásico de división por tentativa, analizando la discrepancia entre su complejidad numérica y su coste real en función del tamaño de entrada en bits. Finalmente, se explora la complejidad de métodos deterministas de naturaleza no rigurosa.
+En este capítulo se aborda el núcleo analítico y computacional del Trabajo, centrado en el estudio de la factorización de números enteros. El desarrollo se articula de manera progresiva: en primer lugar, se realiza la demostración del límite superior de los factores primos de un número compuesto. Posteriormente, se evalúa el algoritmo clásico de división por tentativa, analizando la discrepancia entre su complejidad numérica y su coste real en función del tamaño de entrada en bits. Finalmente, se explora la complejidad de métodos deterministas de naturaleza no rigurosa.
 
 \section{Demostración del teorema del factor primo}
 
-A continuación, se presenta la demostración formal del teorema que establece la existencia de un factor primo acotado por la raíz cuadrada en todo número entero compuesto.
+A continuación, se presenta la demostración del teorema que establece la existencia de un factor primo acotado por la raíz cuadrada en todo número entero compuesto.
 
 \textbf{Teorema:} Si $n$ es un número compuesto, entonces $n$ tiene un factor primo $p$ tal que $p \leq \sqrt{n}$.
 
@@ -159,7 +154,7 @@ A continuación, se analizan las propiedades fundamentales de este algoritmo en 
 
 \subsection{Ventajas y desventajas}
 
-Aunque el algoritmo de división por tentativa presenta ciertas ventajas operativas frente a otros métodos, sus limitaciones estructurales dificultan drásticamente su escalabilidad en escenarios prácticos. A continuación, se detallan las principales ventajas y desventajas de este procedimiento:
+Aunque el algoritmo de división por tentativa presenta ciertas ventajas operativas frente a otros métodos, sus limitaciones estructurales dificultan su escalabilidad en escenarios prácticos. A continuación, se detallan las principales ventajas y desventajas de este procedimiento:
 
 \subsubsection{Ventajas}
 
@@ -173,7 +168,7 @@ Aunque el algoritmo de división por tentativa presenta ciertas ventajas operati
 
 La principal desventaja de este método radica en el crecimiento asintótico del tiempo de ejecución cuando se opera con entradas de gran magnitud. Su complejidad exponencial, $\mathcal{O} (2^{k/2})$, provoca una explosión en el número de operaciones conforme aumenta el número de bits $k$, lo que deriva en tiempos de ejecución inviables para su aplicación práctica.
 
-Un ejemplo crítico se observa en el ámbito de la criptografía asimétrica, como el criptosistema RSA, el cual emplea de manera estándar números del orden de $2^{1024}$ o superiores. Para procesar una entrada de dicha magnitud en su peor caso, el algoritmo requeriría ejecutar un total de $\sqrt{2^{1024}} = 2^{512}$ iteraciones. Dado que realizar esa cantidad de operaciones excede por amplio margen la capacidad de cómputo de la tecnología actual, queda plenamente justificada la imposibilidad de trasladar este algoritmo a la práctica de la seguridad informática moderna
+Un ejemplo crítico se observa en el ámbito de la criptografía asimétrica, como el criptosistema RSA, el cual emplea de manera estándar números del orden de $2^{1024}$ o superiores \citep{rivest1978, nist2020}. Para procesar una entrada de dicha magnitud en su peor caso, el algoritmo requeriría ejecutar un total de $\sqrt{2^{1024}} = 2^{512}$ iteraciones. Dado que realizar esa cantidad de operaciones excede por amplio margen la capacidad de cómputo de la tecnología actual, queda plenamente justificada la imposibilidad de trasladar este algoritmo a la práctica de la seguridad informática moderna
 
 \section{Algoritmos de factorización deterministas y no rigurosos}
 
@@ -193,29 +188,29 @@ Este tiempo de ejecución se considera subexponencial debido a que no crece tan 
 Para demostrar analíticamente que la función de complejidad del algoritmo se clasifica como subexponencial, se procede a evaluar el comportamiento asintótico de su exponente mediante el cálculo de límites cuando $k$ tiende a infinito.
 
 Sea la función componente del exponente original $g(k) = \sqrt{(\ln 2^k)(\ln \ln 2^k)}$. Aplicando las propiedades de los logaritmos, esta expresión se puede reescribir en función de $k$ como:
-$$g(k) = \sqrt{(k \ln 2) \cdot \ln(k \ln 2)}$$
+$$g(k) = \sqrt{(k \ln 2) \cdot \ln(k \ln 2)}.$$
 
 A continuación, se realizan las dos comparaciones fundamentales para verificar las cotas superior e inferior:
 
 \begin{enumerate}
     \item \textbf{Cota superior (Crecimiento menor al exponencial puro):}
     Un comportamiento exponencial puro respecto a los bits vendría dado por una función de la forma $c^k = e^{k \ln c}$, donde el exponente crece de forma lineal respecto a $k$. Para demostrar que $g(k)$ crece más lentamente que cualquier función lineal, se evalúa el siguiente límite:
-    $$\lim_{k \to \infty} \frac{g(k)}{k} = \lim_{k \to \infty} \frac{\sqrt{(k \ln 2) \cdot \ln(k \ln 2)}}{k} = \lim_{k \to \infty} \sqrt{\frac{\ln 2 \cdot \ln(k \ln 2)}{k}}$$
+    $$\lim_{k \to \infty} \frac{g(k)}{k} = \lim_{k \to \infty} \frac{\sqrt{(k \ln 2) \cdot \ln(k \ln 2)}}{k} = \lim_{k \to \infty} \sqrt{\frac{\ln 2 \cdot \ln(k \ln 2)}{k}}.$$
     Dado que la función logarítmica $\ln(k \ln 2)$ crece a un ritmo infinitamente menor que la función lineal $k$ en el denominador, el cociente tiende a cero:
-    $$\lim_{k \to \infty} \frac{g(k)}{k} = 0$$
-        Este resultado demuestra que el exponente de estos algoritmos de factorización son asintóticamente menores que cualquier exponente lineal, confirmando que la función general $e^{g(x)}$ crece más lento que un tiempo exponencial puro $\mathcal{O}(c^k)$.
+    $$\lim_{k \to \infty} \frac{g(k)}{k} = 0.$$
+    Este resultado demuestra que el exponente de estos algoritmos de factorización son asintóticamente menores que cualquier exponente lineal, confirmando que la función general $e^{g(x)}$ crece más lento que un tiempo exponencial puro $\mathcal{O}(e^k)$.
 
     \item \textbf{Cota inferior (Crecimiento mayor al polinomial):}
     Un comportamiento polinomial puro de grado constante $c$ se expresa como $k^c = e^{c \ln k}$, donde el exponente crece de forma logarítmica respecto a $k$. Para demostrar que $g(k)$ crece más rápido que cualquier función logarítmica, se analiza el límite de su cociente:
-    $$\lim_{k \to \infty} \frac{g(k)}{\ln k} = \lim_{k \to \infty} \frac{\sqrt{(k \ln 2) \cdot \ln(k \ln 2)}}{\ln k}$$
+    $$\lim_{k \to \infty} \frac{g(k)}{\ln k} = \lim_{k \to \infty} \frac{\sqrt{(k \ln 2) \cdot \ln(k \ln 2)}}{\ln k}.$$
     Al elevar la expresión al cuadrado para facilitar el análisis de las magnitudes de crecimiento, se obtiene:
-    $$\lim_{k \to \infty} \frac{(k \ln 2) \cdot \ln(k \ln 2)}{(\ln k)^2}$$
-    Por la regla de la jerarquía de infinitos, una función lineal encadenada con un logaritmo, como $k \ln(k)$, domina por completo a cualquier potencia de un logaritmo en el denominador. Por consiguiente, el límite diverge al infinito:
-    $$\lim_{k \to \infty} \frac{g(k)}{\ln k} = \infty$$
-        Este resultado confirma que el exponente del algoritmo supera asintóticamente a cualquier función logarítmica, lo que garantiza que la complejidad de $e^{g(x)}$ es estrictamente mayor que la de cualquier polinomio $\mathcal{O}(k^c)$.
+    $$\lim_{k \to \infty} \frac{(k \ln 2) \cdot \ln(k \ln 2)}{(\ln k)^2}.$$
+    Por la regla de la jerarquía de infinitos, una función lineal encadenada con un logaritmo, como $k \ln(2) \ln (k \ln 2)$, crece más rápido que una potencia de un logaritmo. Por consiguiente, el límite diverge al infinito:
+    $$\lim_{k \to \infty} \frac{g(k)}{\ln k} = \infty.$$
+    Este resultado confirma que el exponente del algoritmo supera asintóticamente a cualquier función logarítmica, lo que garantiza que la complejidad de $e^{g(x)}$ es estrictamente mayor que la de cualquier polinomio $\mathcal{O}(k^c)$.
 \end{enumerate}
 
-A partir de ambas conclusiones, queda demostrado formalmente que la complejidad de estos algoritmos se encuentra en una categoría intermedia, denominada \textbf{tiempo subexponencial}, cumpliendo rigurosamente con la condición de no poder ser acotada ni por un polinomio superior ni por una exponencial inferior. $\blacksquare$
+A partir de ambas conclusiones, queda demostrado formalmente que la complejidad de estos algoritmos se encuentra en una categoría intermedia, denominada \textbf{tiempo subexponencial}, cumpliendo con la condición de no poder ser acotada ni por un polinomio superior ni por una exponencial inferior. $\blacksquare$
 
 \subsection{Comparación asintótica frente a $n^{\epsilon}$ y $(\ln n)^c$}
 
@@ -223,8 +218,8 @@ Siguiendo la estructura del enunciado, se analiza el comportamiento de las expre
 
 \begin{itemize}
     \item \textbf{Para $n^{\epsilon}$ (con $\epsilon > 0$) en la primera expresión:} 
-    Al evaluar $n^{\epsilon}$ en la primera función de coste, se aplica la propiedad del logaritmo de una potencia ($\ln n^{\epsilon} = \epsilon \ln n$), lo que permite cancelar la raíz cuadrada de forma exacta:
-    $$e^{\sqrt{(\ln n^{\epsilon}) (\ln n^{\epsilon})}} = e^{\sqrt{(\epsilon \ln n)^2}} = e^{\ln(n^{\epsilon})} = n^{\epsilon}$$
+    Al evaluar $n^{\epsilon}$ en la primera función de coste se puede cancelar la raíz cuadrada, obteniendo:
+    $$e^{\sqrt{(\ln n^{\epsilon}) (\ln n^{\epsilon})}} = e^{\ln(n^{\epsilon})} = n^{\epsilon}.$$
     
     Trasladando este resultado al tamaño de la entrada en bits ($n < 2^k$), la cota superior se expresa como:
     $$(2^k)^{\epsilon} = 2^{k \cdot \epsilon}$$
@@ -232,11 +227,11 @@ Siguiendo la estructura del enunciado, se analiza el comportamiento de las expre
     Dado que la variable $k$ se encuentra multiplicando en el exponente de una base constante, este comportamiento se clasifica formalmente como un tiempo exponencial respecto al número de bits, atenuado si $0 < \epsilon < 1$ o superexponencial si $\epsilon > 1$.
 
     \item \textbf{Para $(\ln n)^c$ (con $c > 0$) en la segunda expresión:} 
-    Al evaluar la función en la segunda expresión de coste ($e^{\sqrt{(\ln \ln n)(\ln \ln n)}} = e^{\ln \ln n} = \ln n$), se aplica primero la propiedad del logaritmo sobre el término sustituido: $\ln(\ln n)^c = c \ln \ln n$. Al introducirlo en la estructura del doble logaritmo, la raíz se simplifica de forma análoga:
-    $$e^{\sqrt{\ln(\ln n)^c \cdot \ln(\ln n)^c}} = e^{\sqrt{(c \ln \ln n)^2}} = e^{\ln(\ln n)^c} = (\ln n)^c$$
+    Al evaluar la función en la segunda expresión de coste la raíz se simplifica de forma análoga a la expresión anterior:
+    $$e^{\sqrt{\ln(\ln n)^c \cdot \ln(\ln n)^c}} = e^{\ln(\ln n)^c} = (\ln n)^c.$$
     
     Si se analiza este resultado final en función de los bits de la entrada ($n < 2^k$), se obtiene:
-    $$(\ln 2^k)^c = (k \ln 2)^c = (\ln 2)^c \cdot k^c$$
+    $$(\ln 2^k)^c = (k \ln 2)^c = (\ln 2)^c \cdot k^c.$$
     
     Dado que $(\ln 2)^c$ opera como una constante numérica fija, el crecimiento asintótico queda determinado por el término $k^c$. Al encontrarse la variable $k$ en la base y el exponente constante $c$ arriba, este orden de coste se clasifica estrictamente como un tiempo polinomial respecto al número de bits de la entrada.
 \end{itemize}
@@ -248,7 +243,7 @@ El análisis asintótico y computacional realizado en este Trabajo permite extra
 \vspace{0.3cm}
 
 \noindent \textbf{Consolidación del límite teórico de parada} \\
-La demostración formal del teorema del factor primo ha permitido validar matemáticamente el criterio de acotación superior mediante la raíz cuadrada ($\sqrt{n}$). Este logro no representa únicamente un ejercicio algebraico aislado, sino la justificación del pilar fundamental que rige la optimización de los algoritmos de cribado y división secuencial. Desde una perspectiva crítica, delimitar este umbral demuestra cómo la teoría de números pura es capaz de reducir drásticamente el espacio de búsqueda de soluciones, pasando de una exploración lineal indefendible a una cota geométrica que optimiza el diseño algorítmico básico.
+La demostración formal del teorema del factor primo ha permitido validar matemáticamente el criterio de acotación superior mediante la raíz cuadrada ($\sqrt{n}$). Este logro no representa únicamente un ejercicio algebraico aislado, sino la justificación del pilar fundamental que rige la optimización de los algoritmos de cribado y división secuencial. Desde una perspectiva crítica, delimitar este umbral demuestra cómo la teoría de números pura es capaz de reducir el espacio de búsqueda de soluciones, pasando de una exploración lineal indefendible a una cota geométrica que optimiza el diseño algorítmico básico.
 
 \vspace{0.3cm}
 
@@ -257,11 +252,11 @@ El estudio detallado del algoritmo de división por tentativa ha resuelto con é
 \vspace{0.3cm}
 
 \noindent \textbf{Ubicación asintótica del horizonte subexponencial} \\
-El principal núcleo analítico de este Trabajo ha culminado con la demostración rigurosa, mediante el cálculo de límites al infinito, de la naturaleza de la función de coste $\mathcal{O} \left(e^{\sqrt{(\ln n)(\ln \ln n)}}\right)$. Al trasladar el análisis al dominio de los bits ($k$) y contrastar el comportamiento frente a funciones de orden polinomial ($k^c$) y exponencial puro ($2^{k\epsilon}$), se ha probado formalmente su carácter intermedio o subexponencial. El valor crítico de este logro radica en comprender el comportamiento de los algoritmos avanzados de factorización como CFRAC, QS o GNFS \citep{morrison1975, pomerance1982, lenstra1993}: estos métodos no logran la eficiencia idónea de un tiempo polinomial, pero sí consiguen disminuir la curva de crecimiento temporal de forma drástica, posicionándose como la frontera del límite tecnológico actual para comprometer la seguridad de clave pública \citep{odlyzko1995}.
+El principal núcleo analítico de este Trabajo ha culminado con la demostración, mediante el cálculo de límites al infinito, de la naturaleza de la función de coste $\mathcal{O} \left(e^{\sqrt{(\ln n)(\ln \ln n)}}\right)$. Al trasladar el análisis al dominio de los bits ($k$) y contrastar el comportamiento frente a funciones de orden polinomial ($k^c$) y exponencial puro ($2^{k\epsilon}$), se ha probado su carácter intermedio o subexponencial. El valor crítico de este logro radica en comprender el comportamiento de los algoritmos avanzados de factorización como CFRAC, QS o GNFS \citep{morrison1975, pomerance1982, lenstra1993}: estos métodos no logran la eficiencia idónea de un tiempo polinomial, pero sí consiguen disminuir la curva de crecimiento temporal, posicionándose como la frontera del límite tecnológico actual para comprometer la seguridad de clave pública \citep{odlyzko1995}.
 \vspace{0.3cm}
 
 \noindent \textbf{Consideraciones finales e implicaciones criptográficas} \\
-Como balance global del Trabajo, la resolución de las cuestiones planteadas pone de manifiesto que la seguridad digital no es estática, sino que depende directamente de la evolución del análisis numérico asintótico. La aportación de este documento radica en clarificar de forma transparente dichas fronteras de complejidad. Los resultados obtenidos permiten concluir de manera crítica que, mientras no se descubra un algoritmo determinista riguroso de orden polinomial en computación clásica, o mientras la computación cuántica y el célebre algoritmo de \cite{shor1994} no alcancen una escala de despliegue comercial y estabilidad operativa, el equilibrio de la infraestructura criptográfica global seguirá dependiendo de mantener la brecha de eficiencia que separa a la multiplicación de la factorización subexponencial analizada.
+Como balance global del Trabajo, la resolución de las cuestiones planteadas pone de manifiesto que la seguridad digital no es estática, sino que depende directamente de la evolución del análisis numérico asintótico. La aportación de este documento radica en clarificar de forma transparente dichas fronteras de complejidad. Los resultados obtenidos permiten concluir de manera crítica que, mientras no se descubra un algoritmo determinista riguroso de orden polinomial en computación clásica, o mientras la computación cuántica y el algoritmo de \cite{shor1994} no alcancen una escala de despliegue comercial y estabilidad operativa, el equilibrio de la infraestructura criptográfica global seguirá dependiendo de mantener la brecha de eficiencia que separa a la multiplicación de la factorización subexponencial analizada.
 
 \begin{thebibliography}{99}
 
@@ -279,6 +274,9 @@ Lenstra, A. K., \& Pomerance, C. (1993). \emph{The development of the number fie
 
 \bibitem[Morrison \& Brillhart(1975)]{morrison1975} 
 Morrison, M. A., \& Brillhart, J. (1975). A method of factoring large integers. \emph{Mathematics of Computation}, 29(129), 183--205.
+
+\bibitem[NIST(2020)]{nist2020}
+National Institute of Standards and Technology. (2020). \emph{Recommendation for key management: Part 1 -- General} (NIST Special Publication 800-57 Part 1 Revision 5). U.S. Department of Commerce.
 
 \bibitem[Odlyzko(1995)]{odlyzko1995} 
 Odlyzko, A. M. (1995). The future of long-term cryptography. \emph{IEEE Communications Magazine}, 33(9), 100--107.
